@@ -1,0 +1,108 @@
+﻿<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewData["Title"] - Lean Campaign</title>
+    <environment include="Development,Production">
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="~/css/Dashboard/bootstrap.min.css">
+        <link rel="stylesheet" href="~/css/Dashboard/fontawesome-all.css">
+
+        <link rel="stylesheet" href="~/css/Dashboard/custom.css">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link href="~/css/Dashboard/jquery.steps.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,600,700" rel="stylesheet">
+        @RenderSection("Style", required: false)
+    </environment>
+    <environment exclude="Development,Production">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+</head>
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                @await Html.PartialAsync("_LeftMenuPartial")
+            </div>
+
+            
+            <!-- top navigation -->
+            <div class="top_nav">
+                
+                  @await Html.PartialAsync("_TopNavBarPartial")
+            </div>
+                <div class="right_col" role="main">
+                    <br />
+                    <div class="cont-area">
+
+                        @RenderBody()
+
+                    </div>
+                </div>
+
+                <!-- /page content -->
+                <!-- footer content -->
+                <footer>
+                    <div class="copyright">
+                        © Copyright 2018 LeanContact - All Rights Reserved.
+                    </div>
+                    <div class="clearfix"></div>
+                </footer>
+                <!-- /footer content -->
+            </div>
+    </div>
+
+    <environment include="Development,Production">
+        <script src="~/css/Dashboard/js/jquery.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="~/css/Dashboard/js/bootstrap.min.js"></script>
+        <script src="~/css/Dashboard/js/custom.js"></script>
+
+        <!-- Flot -->
+        <script src="~/css/Dashboard/js/jquery.flot.js"></script>
+        <script src="~/css/Dashboard/js/jquery.flot.time.js"></script>
+        <script src="~/css/Dashboard/js/jquery.flot.resize.js"></script>
+
+
+        <script src="~/css/Dashboard/js/date.js"></script>
+  
+
+        <!-- Custom Theme Scripts -->
+        <script src="~/css/Dashboard/js/custom.min.js"></script>
+        @RenderSection("Scripts", required: false)
+
+        <script type="text/javascript">
+
+            // toggle small or large menu 
+            $("#menu_toggle").on('click', function () {              
+                console.log('clicked - menu toggle');
+
+                if ($BODY.hasClass('nav-md')) {
+                    $SIDEBAR_MENU.find('li.active ul').hide();
+                    $SIDEBAR_MENU.find('li.active').addClass('active-sm').removeClass('active');
+                } else {
+                    $SIDEBAR_MENU.find('li.active-sm ul').show();
+                    $SIDEBAR_MENU.find('li.active-sm').addClass('active').removeClass('active-sm');
+                }
+
+                $BODY.toggleClass('nav-md nav-sm');
+
+                setContentHeight();
+
+                $('.dataTable').each(function () { $(this).dataTable().fnDraw(); });
+            });
+        </script>
+    </environment>
+   
+   
+</body>
+
+</html>

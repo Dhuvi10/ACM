@@ -1,0 +1,28 @@
+﻿@model List<ACMWeb.Models.UserViewModel.UserViewModel>
+@{var Status = "";}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Store Name</th>
+            <th>Email</th>
+            @*<th>Status</th>*@
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            Status = item.suspened == true ? "Active" : "Deactive";
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Email</td>
+            @*<td>@Status</td>*@
+            @*<td><button onclick="StatusChanged('@item.id','@Status');">@Status</button></td>*@
+            <td><a onclick="EditStore('@item.id');">Edit</a></td>
+            @*<td><a onclick="DeleteStore('@item.id');">Delete</a></td>*@
+        </tr>
+
+        }
+
+    </tbody>
+</table>

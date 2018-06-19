@@ -1,0 +1,46 @@
+﻿@model RegisterViewModel
+@{
+    ViewData["Title"] = "Create Admin User";
+  
+}
+<div class="signin-up-area">
+    <div class="form-cont">
+        <div class="form">
+            <form asp-route-returnUrl="CreateStoreUser" asp-action="CreateStoreUser" method="post">
+                @*<div asp-validation-summary="All" class="text-danger"></div>*@
+                <input asp-for="id" type="hidden" class="form-control" />
+                <h1 class="h3 mb-5 font-weight-bold"><span> @ViewData["Title"]</span></h1>
+                <div class="form-group">
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password"></label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ConfirmPassword"></label>
+                    <input asp-for="ConfirmPassword" class="form-control" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
+                @*<div class="form-group">
+                <label asp-for="Role"></label>
+                @Html.DropDownListFor(m => m.Role, Model.roleList, new { @class = "form-control" })
+                <span asp-validation-for="Role" class="text-danger"></span>
+            </div>*@
+                <button type="submit" class="btn btn-default">Register</button>
+                <a href="@Url.Action("Index","UserManagement")" class="btn btn-default">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

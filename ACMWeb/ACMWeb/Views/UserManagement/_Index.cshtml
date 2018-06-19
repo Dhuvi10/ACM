@@ -1,0 +1,36 @@
+﻿@model List<ACMWeb.Models.UserViewModel.UserViewModel>
+@{var Status = "";}
+@{var ButtonText = "";}
+@{var color = "";}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Status</th>
+            <th>Suspend</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            Status = item.suspened == true ? "Active" : "Suspened";
+            ButtonText = item.suspened == true ? "Suspened" : "Active";
+            color = item.suspened == true ? "green" : "red";
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Email</td>
+            <td style="color:@color;"><strong>@Status</strong></td>
+            <td><button onclick="PasswordView('@item.id','@Status');" style="width:100px">@ButtonText</button></td>
+            <td><a onclick="EditAdminUser('@item.id');">Edit</a></td>
+        </tr>
+
+        }
+
+    </tbody>
+</table>
+@*@foreach (var item in Model)
+    {
+
+    }*@
