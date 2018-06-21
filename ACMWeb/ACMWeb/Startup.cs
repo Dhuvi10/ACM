@@ -95,7 +95,7 @@ namespace ACMWeb
             {
                 app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
+               // app.UseDatabaseErrorPage();
              //   SeedDatabase(app);
 
             }

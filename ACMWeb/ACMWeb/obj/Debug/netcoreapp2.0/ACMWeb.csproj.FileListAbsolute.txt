@@ -24,3 +24,17 @@ F:\Robin\ACMWeb\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.csprojAssemblyRefer
 F:\Robin\ACMWeb\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACM.Core.dll
 F:\Robin\ACMWeb\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACM.Core.pdb
 F:\Robin\ACMWeb\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.csproj.CopyComplete
+E:\Projects\ACM\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACM.Core.dll
+E:\Projects\ACM\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.csprojResolveAssemblyReference.cache
+E:\Projects\ACM\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.csproj.CoreCompileInputs.cache
+E:\Projects\ACM\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.AssemblyInfoInputs.cache
+E:\Projects\ACM\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.AssemblyInfo.cs
+E:\Projects\ACM\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.deps.json
+E:\Projects\ACM\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.runtimeconfig.json
+E:\Projects\ACM\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.runtimeconfig.dev.json
+E:\Projects\ACM\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.dll
+E:\Projects\ACM\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACM.Core.pdb
+E:\Projects\ACM\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.pdb
+E:\Projects\ACM\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+E:\Projects\ACM\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.dll
+E:\Projects\ACM\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.pdb
