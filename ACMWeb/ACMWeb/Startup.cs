@@ -11,6 +11,10 @@ using Microsoft.Extensions.DependencyInjection;
 using ACMWeb.Data;
 using ACMWeb.Models;
 using ACMWeb.Services;
+//using ACM.Core.Context;
+using ACM.Core.Interfaces;
+using ACM.Core.Managers;
+using ACM.Core.Context;
 
 namespace ACMWeb
 {
@@ -26,12 +30,16 @@ namespace ACMWeb
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            // services.AddHangfire(x => x.UseSqlServerStorage(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddDbContext<ACMContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")))
+                .AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+               
             services.AddDbContext<ApplicationDbContext>(options =>
     options.UseInMemoryDatabase(Guid.NewGuid().ToString()));
             services.Configure<IdentityOptions>(options =>
@@ -69,6 +77,7 @@ namespace ACMWeb
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
+            services.AddTransient<IManageStore, ManageStore>();
             services.Configure<SecurityStampValidatorOptions>(options =>
             {
                 // enables immediate logout, after updating the user's stat.

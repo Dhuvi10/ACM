@@ -59,7 +59,22 @@
         //alert(123)
 
         }
+            function LoginStoreUser(email) {
 
+                 $.ajax({
+            method: "get",
+            url: "@Url.Action("LoginStoreUser", "Usermanagement")",
+                     data: { id: email},
+            success: function (result) {
+                if (result == "true") {
+                    window.location.href= "@Url.Action("ManageStore", "Usermanagement")";
+                }
+            },
+            error: function (err) {
+                console.log(err);
+            }
+           });
+            }
         function EditStore(id) {
 
           $.ajax({

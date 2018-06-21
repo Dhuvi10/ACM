@@ -184,6 +184,41 @@ namespace ACMWeb.Controllers
             //  usr.LockoutEnabled = Suspend;
             return PartialView("_EditStore", model);
         }
+        public async Task<IActionResult> LoginStoreUser(string id)
+        {
+            var storeUser = _userManager.Users.Where(e => e.Id == id).FirstOrDefault();
+            if (storeUser.LockoutEnabled)
+            {
+              //  await _signInManager.SignOutAsync();
+                await _signInManager.SignInAsync(storeUser, isPersistent: false);
+                return Json("true");
+            }
+            else
+            {
+                return Json("false");
+            }
+          
+           
+            //  var result = await _signInManager.PasswordSignInAsync(storeUser.Email, storeUser.PasswordHash, storeUser.RememberMe, lockoutOnFailure: false);
+            //if (result.Succeeded)
+            //{
+            //    _logger.LogInformation("User logged in.");
+            //    //return Redirect("UserMangement");
+            //    if (await _userManager.IsInRoleAsync(_userManager.Users.Where(e => e.Email == model.Email).FirstOrDefault(), "Admin"))
+            //    {
+            //        return RedirectToAction(nameof(UserManagementController.Index), "UserManagement");
+            //    }
+            //    else
+            //    {
+            //        return RedirectToAction(nameof(UserManagementController.ManageStore), "UserManagement");
+           
+        //}
+          ///  }
+          //  else
+           // {
+             //   return View();
+          //  }
+        }
         public IActionResult ManageStoreLogo()
         {
             return View();

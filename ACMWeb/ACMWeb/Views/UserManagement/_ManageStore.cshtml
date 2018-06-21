@@ -14,7 +14,7 @@
         {
             Status = item.suspened == true ? "Active" : "Deactive";
         <tr>
-            <td>@item.Name</td>
+            <td><a onclick="LoginStoreUser('@item.id');">@item.Name </a></td>
             <td>@item.Email</td>
             @*<td>@Status</td>*@
             @*<td><button onclick="StatusChanged('@item.id','@Status');">@Status</button></td>*@

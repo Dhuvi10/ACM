@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "9cf502dd50649e23c6f07de16eb801aabf8b656f"
+    "signature": "674f20054b4a465b1cd2b15f3006584d58e39bc4"
   },
   "compilationOptions": {
     "defines": [
@@ -23,6 +23,7 @@
     ".NETCoreApp,Version=v2.0": {
       "ACMWeb/1.0.0": {
         "dependencies": {
+          "ACM.Core": "1.0.0",
           "Microsoft.AspNetCore.All": "2.0.8",
           "Microsoft.EntityFrameworkCore.Tools": "2.0.3",
           "Microsoft.NETCore.App": "2.0.0",
@@ -1655,6 +1656,18 @@
           "lib/netstandard2.0/Microsoft.EntityFrameworkCore.Relational.dll": {}
         }
       },
+      "Microsoft.EntityFrameworkCore.Relational.Design/1.1.5": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Relational": "2.0.3",
+          "NETStandard.Library": "2.0.0"
+        },
+        "runtime": {
+          "lib/netstandard1.3/Microsoft.EntityFrameworkCore.Relational.Design.dll": {}
+        },
+        "compile": {
+          "lib/netstandard1.3/Microsoft.EntityFrameworkCore.Relational.Design.dll": {}
+        }
+      },
       "Microsoft.EntityFrameworkCore.Sqlite/2.0.3": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Sqlite.Core": "2.0.3",
@@ -1683,6 +1696,19 @@
         },
         "compile": {
           "lib/netstandard2.0/Microsoft.EntityFrameworkCore.SqlServer.dll": {}
+        }
+      },
+      "Microsoft.EntityFrameworkCore.SqlServer.Design/1.1.5": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Relational.Design": "1.1.5",
+          "Microsoft.EntityFrameworkCore.SqlServer": "2.0.3",
+          "NETStandard.Library": "2.0.0"
+        },
+        "runtime": {
+          "lib/netstandard1.3/Microsoft.EntityFrameworkCore.SqlServer.Design.dll": {}
+        },
+        "compile": {
+          "lib/netstandard1.3/Microsoft.EntityFrameworkCore.SqlServer.Design.dll": {}
         }
       },
       "Microsoft.EntityFrameworkCore.Tools/2.0.3": {
@@ -4054,6 +4080,19 @@
           "lib/netstandard1.3/Microsoft.WindowsAzure.Storage.dll": {}
         }
       },
+      "ACM.Core/1.0.0": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.SqlServer": "2.0.3",
+          "Microsoft.EntityFrameworkCore.SqlServer.Design": "1.1.5",
+          "Microsoft.EntityFrameworkCore.Tools": "2.0.3"
+        },
+        "runtime": {
+          "ACM.Core.dll": {}
+        },
+        "compile": {
+          "ACM.Core.dll": {}
+        }
+      },
       "Microsoft.NETCore.App/2.0.0": {
         "dependencies": {
           "Microsoft.NETCore.DotNetHostPolicy": "2.0.0",
@@ -4973,6 +5012,13 @@
       "path": "microsoft.entityframeworkcore.relational/2.0.3",
       "hashPath": "microsoft.entityframeworkcore.relational.2.0.3.nupkg.sha512"
     },
+    "Microsoft.EntityFrameworkCore.Relational.Design/1.1.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-WqPO8M9Ho0CiJ1tnIgWgXoAPt8/oIE8lcELZYbvmiVyr59f395HmHQhGCXti0/DePgPb7N6EHTIgCczRyuqIkg==",
+      "path": "microsoft.entityframeworkcore.relational.design/1.1.5",
+      "hashPath": "microsoft.entityframeworkcore.relational.design.1.1.5.nupkg.sha512"
+    },
     "Microsoft.EntityFrameworkCore.Sqlite/2.0.3": {
       "type": "package",
       "serviceable": true,
@@ -4993,6 +5039,13 @@
       "sha512": "sha512-kbYgPZxFIs3Mlz6AdOA+/RrS28o1ehyoRP2RzbEdG8NkqO2lHbMPTBHFmQAlOVLlb2XBOaj96SMtwjRuRruuSg==",
       "path": "microsoft.entityframeworkcore.sqlserver/2.0.3",
       "hashPath": "microsoft.entityframeworkcore.sqlserver.2.0.3.nupkg.sha512"
+    },
+    "Microsoft.EntityFrameworkCore.SqlServer.Design/1.1.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-5Pzxg+WEzPivrBYur4uRTQt+c3kWOebWq51nkmkuOtK2O5hjCKS3Lw6Mln2iI/ae7rJcvVW6hUd3rCgctFSmmw==",
+      "path": "microsoft.entityframeworkcore.sqlserver.design/1.1.5",
+      "hashPath": "microsoft.entityframeworkcore.sqlserver.design.1.1.5.nupkg.sha512"
     },
     "Microsoft.EntityFrameworkCore.Tools/2.0.3": {
       "type": "package",
@@ -6365,6 +6418,11 @@
       "sha512": "sha512-W6ZZ0/o7+3Qb77mRAQyLjPudHG3OMeeQ4p9yY13PUdJArmRCx2cLMm5F4tpIjJXxzHC0ew0oK7DMDGILMdfCnw==",
       "path": "windowsazure.storage/8.1.4",
       "hashPath": "windowsazure.storage.8.1.4.nupkg.sha512"
+    },
+    "ACM.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "Microsoft.NETCore.App/2.0.0": {
       "type": "package",

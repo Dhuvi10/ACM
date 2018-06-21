@@ -16,9 +16,11 @@ F:\Robin\ACMWeb\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.runtimeconfig.dev.j
 F:\Robin\ACMWeb\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.dll
 F:\Robin\ACMWeb\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.pdb
 F:\Robin\ACMWeb\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.csproj.CoreCompileInputs.cache
-F:\Robin\ACMWeb\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
 F:\Robin\ACMWeb\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.AssemblyInfoInputs.cache
 F:\Robin\ACMWeb\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.AssemblyInfo.cs
 F:\Robin\ACMWeb\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.dll
 F:\Robin\ACMWeb\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.pdb
 F:\Robin\ACMWeb\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.csprojAssemblyReference.cache
+F:\Robin\ACMWeb\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACM.Core.dll
+F:\Robin\ACMWeb\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACM.Core.pdb
+F:\Robin\ACMWeb\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.csproj.CopyComplete
