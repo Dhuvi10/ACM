@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@ViewData["Title"] - Lean Campaign</title>
+    <title>@ViewData["Title"] - Schlanke Kampagne</title>
     <environment include="Development,Production">
         <!-- Required meta tags -->
         <meta charset="utf-8">
@@ -29,35 +29,37 @@
 <body class="nav-md">
     <div class="container body">
         <div class="main_container">
+
             <div class="col-md-3 left_col">
                 @await Html.PartialAsync("_LeftMenuPartial")
             </div>
 
-            
             <!-- top navigation -->
             <div class="top_nav">
-                
-                  @await Html.PartialAsync("_TopNavBarPartial")
+
+                @await Html.PartialAsync("_TopNavBarPartial")
             </div>
+            <div class="right_col_inner">
                 <div class="right_col" role="main">
+
                     <br />
                     <div class="cont-area">
 
                         @RenderBody()
-
                     </div>
                 </div>
 
-                <!-- /page content -->
-                <!-- footer content -->
-                <footer>
-                    <div class="copyright">
-                        © Copyright 2018 LeanContact - All Rights Reserved.
-                    </div>
-                    <div class="clearfix"></div>
-                </footer>
-                <!-- /footer content -->
             </div>
+            <!-- /page content -->
+            <!-- footer content -->
+            <footer>
+                <div class="copyright">
+                    © Urheberrechte 2018 LeanKontakt -Alle Rechte vorbehalten.
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+            <!-- /footer content -->
+        </div>
     </div>
 
     <environment include="Development,Production">
@@ -73,7 +75,8 @@
 
 
         <script src="~/css/Dashboard/js/date.js"></script>
-  
+        <!-- Chart.js -->
+        <script src="~/css/Dashboard/js/echarts.min.js"></script>
 
         <!-- Custom Theme Scripts -->
         <script src="~/css/Dashboard/js/custom.min.js"></script>
@@ -81,8 +84,8 @@
 
         <script type="text/javascript">
 
-            // toggle small or large menu 
-            $("#menu_toggle").on('click', function () {              
+            // toggle small or large menu
+            $("#menu_toggle").on('click', function () {
                 console.log('clicked - menu toggle');
 
                 if ($BODY.hasClass('nav-md')) {
@@ -101,8 +104,8 @@
             });
         </script>
     </environment>
-   
-   
+
+
 </body>
 
 </html>

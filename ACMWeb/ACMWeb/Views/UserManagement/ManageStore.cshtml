@@ -1,18 +1,38 @@
 ﻿@model List<ACMWeb.Models.UserViewModel.UserViewModel>
-    @{
+@{
     ViewData["Title"] = "User Management";
     Layout = "_LoggedInLayout";
-    }
+}
 
 
-    @*<h2>Manage Admin User</h2>*@
+@*<h2>Manage Admin User</h2>*@
+<div class="row">
+@*<a asp-controller="campaign" asp-action="create"><i class="fas fa-plus"></i> Neu Kampagne</a>*@
 
-    <div id="divList">
+<div class="col-xs-12">
 
+    <div class="x_panel">
+
+        <div class="x_title">
+            @*<h2>Verwalten Kampagnen</h2>*@
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            @*@if (Model.Count == 0)
+            {
+                <h3>Keine Kampagne gefunden!</h3>
+            }*@
+            <div id="divList">
+
+            </div>
+        </div>
     </div>
-    @section Scripts
+</div>
+    </div>
+
+@section Scripts
     {
-        <script type="text/javascript">
+    <script type="text/javascript">
     $(function()
     {
     List();
@@ -111,5 +131,5 @@
         //alert(123)
 
     }
-        </script>
-    }
+    </script>
+}

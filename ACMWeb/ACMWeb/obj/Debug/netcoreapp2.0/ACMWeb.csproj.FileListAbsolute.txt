@@ -38,3 +38,4 @@ E:\Projects\ACM\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.pdb
 E:\Projects\ACM\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
 E:\Projects\ACM\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.dll
 E:\Projects\ACM\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.pdb
+F:\Robin\ACMWeb\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs

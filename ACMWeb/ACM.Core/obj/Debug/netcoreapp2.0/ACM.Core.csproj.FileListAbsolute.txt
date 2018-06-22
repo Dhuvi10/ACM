@@ -7,11 +7,6 @@ F:\Robin\ACMWeb\ACMWeb\ACM.Core\obj\Debug\netcoreapp2.0\ACM.Core.AssemblyInfo.cs
 F:\Robin\ACMWeb\ACMWeb\ACM.Core\bin\Debug\netcoreapp2.0\ACM.Core.pdb
 F:\Robin\ACMWeb\ACMWeb\ACM.Core\obj\Debug\netcoreapp2.0\ACM.Core.dll
 F:\Robin\ACMWeb\ACMWeb\ACM.Core\obj\Debug\netcoreapp2.0\ACM.Core.pdb
-F:\Robin\ACMWeb\ACMWeb\ACM.Core\bin\Debug\netcoreapp2.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
-F:\Robin\ACMWeb\ACMWeb\ACM.Core\bin\Debug\netcoreapp2.0\Microsoft.Extensions.Identity.Stores.dll
-F:\Robin\ACMWeb\ACMWeb\ACM.Core\bin\Debug\netcoreapp2.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.xml
-F:\Robin\ACMWeb\ACMWeb\ACM.Core\bin\Debug\netcoreapp2.0\Microsoft.Extensions.Identity.Stores.xml
-F:\Robin\ACMWeb\ACMWeb\ACM.Core\obj\Debug\netcoreapp2.0\ACM.Core.csproj.CopyComplete
 E:\Projects\ACM\ACMWeb\ACM.Core\bin\Debug\netcoreapp2.0\ACM.Core.deps.json
 E:\Projects\ACM\ACMWeb\ACM.Core\bin\Debug\netcoreapp2.0\ACM.Core.dll
 E:\Projects\ACM\ACMWeb\ACM.Core\bin\Debug\netcoreapp2.0\ACM.Core.pdb

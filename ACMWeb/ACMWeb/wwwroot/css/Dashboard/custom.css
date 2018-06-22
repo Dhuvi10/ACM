@@ -112,6 +112,27 @@ body.nav-sm .profile {
         margin-top: 10px;
     }
 
+.nav.child_menu {
+    display: none;
+}
+
+.current-page .nav.child_menu {
+    display: block;
+}
+
+.nav.side-menu li .fa-chevron-right {
+    width: 5px !important;
+    float: right;
+}
+
+.current-page .fa-chevron-right {
+    transform: rotate(90deg);
+}
+
+.nav.child_menu li {
+    padding: 5px 0 5px 36px;
+}
+
 .profile_pic {
     width: 100%;
     float: left;
@@ -678,10 +699,14 @@ a {
             background: transparent;
         }
 
-.nav.child_menu li:hover {
-    background-color: #2299ed;
+.nav.side-menu li:hover .nav.child_menu li {
+    background-color: #2d2d2d;
     border-color: #1f83ca;
 }
+
+    .nav.side-menu li:hover .nav.child_menu li:hover {
+        background-color: #1f83ca;
+    }
 
 .nav.child_menu li {
     padding-left: 36px

@@ -3,35 +3,42 @@
     ViewData["Title"] = "Index";
     Layout = "_LoggedInLayout";
 }
+<div class="row">
+    <div class="col-xs-12">
 
-<div class="signin-up-area">
-    <div class="form-cont">
-        <div class="form">
-            <input type="hidden" name="LogoId" value="@Model.LogoId" />
-            <input type="hidden" name="StoerId" value="@Model.StoerId" />
-            <img src="@Model.Logo" alt="" />
+        <div class="x_panel">
 
-            <div class="upload-file text-center">
-                <input id="contactUpload" type="file" onchange="uploadContacts()" style="display:none" />
-                <span onclick='$("#contactUpload").click()' style="cursor:pointer">
-                    <i class="fa fa-upload">  </i>Upload Logo <small>( Png)</small>
-                </span><br>
-                @*<button class="btn btn-save" type="submit"><i class="fa fa-save"></i>&nbsp; Save</button>*@
-            </div>
+            <div class="x_title">
+                <div class="signin-up-area">
+                    <div class="form-cont">
+                        <div class="form">
+                            <input type="hidden" name="LogoId" value="@Model.LogoId" />
+                            <input type="hidden" name="StoerId" value="@Model.StoerId" />
+                            <img src="@Model.Logo" alt="" />
 
-            @*<div class="form-group">
-            <label asp-for="Role"></label>
-            @Html.DropDownListFor(m => m.Role, Model.roleList, new { @class = "form-control" })
-            <span asp-validation-for="Role" class="text-danger"></span>
-        </div>*@
-            @*<button type="submit" class="btn btn-default">Register</button>*@
+                            <div class="upload-file text-center">
+                                <input id="contactUpload" type="file" onchange="uploadContacts()" style="display:none" />
+                                <span onclick='$("#contactUpload").click()' style="cursor:pointer">
+                                    <i class="fa fa-upload">  </i>Upload Logo <small>( Png)</small>
+                                </span><br>
+                                @*<button class="btn btn-save" type="submit"><i class="fa fa-save"></i>&nbsp; Save</button>*@
+                            </div>
 
-        </div>
-    </div>
-</div>
-@section Scripts {
-    @await Html.PartialAsync("_ValidationScriptsPartial")
-<script>
+                            @*<div class="form-group">
+                                    <label asp-for="Role"></label>
+                                    @Html.DropDownListFor(m => m.Role, Model.roleList, new { @class = "form-control" })
+                                    <span asp-validation-for="Role" class="text-danger"></span>
+                                </div>*@
+                            @*<button type="submit" class="btn btn-default">Register</button>*@
+
+                        </div>
+                    </div>
+                </div>
+
+                </div></div></div>  </div>
+                @section Scripts {
+                    @await Html.PartialAsync("_ValidationScriptsPartial")
+                    <script>
      function uploadContacts1() {
 
             var fileUpload = $("#contactUpload").get(0);
@@ -49,7 +56,7 @@
             formData.append('file', file);
             formData.append('cid', $("#Id").val());
             formData.append('ImgName', file.name);
-            
+
             var reader = new FileReader();
             var test = "";
 
@@ -69,11 +76,11 @@
                 console.log('Error: ', error);
             };
             // Create FormData object
-           
+
             //debugger;
-            
-           
+
+
         }
-    </script>
-}
+                    </script>
+                }
 
