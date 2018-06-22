@@ -34,7 +34,9 @@ namespace ACMWeb.Controllers.API
             _roleManager = roleManager;
             _JwtAuthentication = JwtAuthentication;
         }
-        public IActionResult Login(LoginViewModel model, string returnUrl = null)
+        [HttpPost]
+        [Route("Login")]
+        public IActionResult Login([FromBody]LoginViewModel model)
         {          
             if (ModelState.IsValid)
             {

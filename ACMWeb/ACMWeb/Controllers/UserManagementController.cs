@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ACMWeb.Models;
-using ACMWeb.Models.AccountViewModels;
-using ACMWeb.Models.UserViewModel;
+using ACM.Core.Interfaces;
+using ACM.Core.Models;
+using ACM.Core.Models.AccountViewModels;
+using ACM.Core.Models.UserViewModel;
 using ACMWeb.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -20,11 +21,13 @@ namespace ACMWeb.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
+        private readonly IUserManager _manager;
         public UserManagementController(UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
             ILogger<AccountController> logger,
-           RoleManager<IdentityRole> roleManager
+           RoleManager<IdentityRole> roleManager,
+           IUserManager manager
             )
         {
             _userManager = userManager;
@@ -32,6 +35,7 @@ namespace ACMWeb.Controllers
             _emailSender = emailSender;
             _logger = logger;
             _roleManager = roleManager;
+            _manager = manager;
         }
         public IActionResult Index()
         {
@@ -68,7 +72,7 @@ namespace ACMWeb.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Name = model.Name };
-                var result = await _userManager.CreateAsync(user, model.Password);
+                var result = await _manager.Register(model);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
@@ -78,7 +82,7 @@ namespace ACMWeb.Controllers
                    // await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
 
                     var role = _roleManager.Roles.Where(e => e.Name == "Admin").FirstOrDefault();
-                    await _userManager.AddToRoleAsync(user, role.Name);
+                    await _userManager.AddToRoleAsync(_userManager.Users.Where(e => e.Email == model.Email).FirstOrDefault(), role.Name);
                     // await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation("User created a new account with password.");
                     //return Redirect("/UserMangement/Index");
@@ -136,9 +140,8 @@ namespace ACMWeb.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Name = model.Name };
                 if (string.IsNullOrWhiteSpace(model.id))
-
                 {
-                    var result = await _userManager.CreateAsync(user, model.Password);
+                    var result = await _manager.StoreUserRegister(model);
 
                     if (result.Succeeded)
                     {
@@ -149,12 +152,13 @@ namespace ACMWeb.Controllers
                         // await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
 
                         var role = _roleManager.Roles.Where(e => e.Name == "Store").FirstOrDefault();
-                        await _userManager.AddToRoleAsync(user, role.Name);
+                        await _userManager.AddToRoleAsync(_userManager.Users.Where(e => e.Email == model.Email).FirstOrDefault(), role.Name);
                         //await _signInManager.SignInAsync(user, isPersistent: false);
                         _logger.LogInformation("User created a new account with password.");
                         //return Redirect("/UserMangement/Index");
                         return RedirectToAction(nameof(UserManagementController.ManageStore), "UserManagement");
                     }
+                    AddErrors(result);
                 }
                 else
                 {
@@ -238,12 +242,15 @@ namespace ACMWeb.Controllers
         public async Task<IActionResult> PassswordView(string id, string status, string password)
         {
             var Suspend = status == "Active" ? false : true;
-            var usr = _userManager.Users.Where(e => e.Id == id).FirstOrDefault();
+           
+                 var usr = _userManager.Users.Where(e => e.Id == _userManager.GetUserId(User)).FirstOrDefault();
+            //  var usr = _userManager.Users.Where(e => e.Id == id).FirstOrDefault();
             var result = await _signInManager.PasswordSignInAsync(usr.Email, password, false, lockoutOnFailure: false);
             if (result.Succeeded)
             {
-                usr.LockoutEnabled = Suspend;
-                await _userManager.UpdateAsync(usr);
+               // usr.LockoutEnabled = Suspend;
+
+                await _userManager.SetLockoutEnabledAsync(usr, Suspend); ;
                 List<UserViewModel> userList = new List<UserViewModel>();
                 var user = _userManager.Users.ToList();
                 foreach (var item in user)

@@ -10,8 +10,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using ACMWeb.Models;
-using ACMWeb.Models.ManageViewModels;
+using ACM.Core.Models;
+using ACM.Core.Models.ManageViewModels;
 using ACMWeb.Services;
 
 namespace ACMWeb.Controllers

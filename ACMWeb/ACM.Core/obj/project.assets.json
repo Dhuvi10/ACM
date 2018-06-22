@@ -8241,11 +8241,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Robin\\ACMWeb\\ACMWeb\\ACM.Core\\ACM.Core.csproj",
+      "projectUniqueName": "F:\\Robin\\AcM22\\acmweb\\ACMWeb\\ACM.Core\\ACM.Core.csproj",
       "projectName": "ACM.Core",
-      "projectPath": "F:\\Robin\\ACMWeb\\ACMWeb\\ACM.Core\\ACM.Core.csproj",
+      "projectPath": "F:\\Robin\\AcM22\\acmweb\\ACMWeb\\ACM.Core\\ACM.Core.csproj",
       "packagesPath": "C:\\Users\\lenovo\\.nuget\\packages\\",
-      "outputPath": "F:\\Robin\\ACMWeb\\ACMWeb\\ACM.Core\\obj\\",
+      "outputPath": "F:\\Robin\\AcM22\\acmweb\\ACMWeb\\ACM.Core\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

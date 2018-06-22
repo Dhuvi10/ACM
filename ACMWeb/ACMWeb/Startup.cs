@@ -1,20 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ACMWeb.Data;
-using ACMWeb.Models;
+using ACM.Core.Data;
+using ACM.Core.Models;
 using ACMWeb.Services;
 //using ACM.Core.Context;
 using ACM.Core.Interfaces;
 using ACM.Core.Managers;
 using ACM.Core.Context;
+using TechnicalWeb.Filters;
 
 namespace ACMWeb
 {
@@ -78,6 +76,8 @@ namespace ACMWeb
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddTransient<IManageStore, ManageStore>();
+            services.AddTransient<IUserManager, UserManager>();
+            services.AddTransient<JwtAuthentication, JwtAuthentication>();
             services.Configure<SecurityStampValidatorOptions>(options =>
             {
                 // enables immediate logout, after updating the user's stat.

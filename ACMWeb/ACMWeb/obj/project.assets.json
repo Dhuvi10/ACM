@@ -11026,11 +11026,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Robin\\ACMWeb\\ACMWeb\\ACMWeb\\ACMWeb.csproj",
+      "projectUniqueName": "F:\\Robin\\AcM22\\acmweb\\ACMWeb\\ACMWeb\\ACMWeb.csproj",
       "projectName": "ACMWeb",
-      "projectPath": "F:\\Robin\\ACMWeb\\ACMWeb\\ACMWeb\\ACMWeb.csproj",
+      "projectPath": "F:\\Robin\\AcM22\\acmweb\\ACMWeb\\ACMWeb\\ACMWeb.csproj",
       "packagesPath": "C:\\Users\\lenovo\\.nuget\\packages\\",
-      "outputPath": "F:\\Robin\\ACMWeb\\ACMWeb\\ACMWeb\\obj\\",
+      "outputPath": "F:\\Robin\\AcM22\\acmweb\\ACMWeb\\ACMWeb\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -11049,8 +11049,8 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "F:\\Robin\\ACMWeb\\ACMWeb\\ACM.Core\\ACM.Core.csproj": {
-              "projectPath": "F:\\Robin\\ACMWeb\\ACMWeb\\ACM.Core\\ACM.Core.csproj"
+            "F:\\Robin\\AcM22\\acmweb\\ACMWeb\\ACM.Core\\ACM.Core.csproj": {
+              "projectPath": "F:\\Robin\\AcM22\\acmweb\\ACMWeb\\ACM.Core\\ACM.Core.csproj"
             }
           }
         }
