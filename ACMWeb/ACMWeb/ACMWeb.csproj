@@ -32,4 +32,8 @@
     <ProjectReference Include="..\ACM.Core\ACM.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\StoreLogo\" />
+  </ItemGroup>
+
 </Project>

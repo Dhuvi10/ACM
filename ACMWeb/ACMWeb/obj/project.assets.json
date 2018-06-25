@@ -11020,24 +11020,30 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\lenovo\\.nuget\\packages\\": {},
+    "C:\\Users\\Vikas\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
+    "restoreSettings": {
+      "hideWarningsAndErrors": true
+    },
     "restore": {
-      "projectUniqueName": "F:\\Robin\\AcM22\\acmweb\\ACMWeb\\ACMWeb\\ACMWeb.csproj",
+      "projectUniqueName": "E:\\Projects\\ACM\\ACM\\ACMWeb\\ACMWeb\\ACMWeb.csproj",
       "projectName": "ACMWeb",
-      "projectPath": "F:\\Robin\\AcM22\\acmweb\\ACMWeb\\ACMWeb\\ACMWeb.csproj",
-      "packagesPath": "C:\\Users\\lenovo\\.nuget\\packages\\",
-      "outputPath": "F:\\Robin\\AcM22\\acmweb\\ACMWeb\\ACMWeb\\obj\\",
+      "projectPath": "E:\\Projects\\ACM\\ACM\\ACMWeb\\ACMWeb\\ACMWeb.csproj",
+      "packagesPath": "C:\\Users\\Vikas\\.nuget\\packages\\",
+      "outputPath": "E:\\Projects\\ACM\\ACM\\ACMWeb\\ACMWeb\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\Vikas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"
@@ -11049,8 +11055,8 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "F:\\Robin\\AcM22\\acmweb\\ACMWeb\\ACM.Core\\ACM.Core.csproj": {
-              "projectPath": "F:\\Robin\\AcM22\\acmweb\\ACMWeb\\ACM.Core\\ACM.Core.csproj"
+            "E:\\Projects\\ACM\\ACM\\ACMWeb\\ACM.Core\\ACM.Core.csproj": {
+              "projectPath": "E:\\Projects\\ACM\\ACM\\ACMWeb\\ACM.Core\\ACM.Core.csproj"
             }
           }
         }

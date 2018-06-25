@@ -58,9 +58,25 @@ namespace ACMWeb.Controllers
             }
             return PartialView("_index", userList);
         }
-        public IActionResult CreateAdminUser()
+        public IActionResult CreateAdminUser(string id)
         {
-            return View();
+
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                return View(new RegisterViewModel());
+            }
+            else
+            {
+                // var  model = new RegisterStoreViewModel();
+                var adminUser = _userManager.Users.Where(e => e.Id == id).FirstOrDefault();
+                RegisterViewModel model = new RegisterViewModel();
+                model.id = adminUser.Id;
+                model.Name = adminUser.Name;
+                model.Email = adminUser.Email;
+                return View(model);
+
+
+            }
         }
 
         [HttpPost]
@@ -72,7 +88,9 @@ namespace ACMWeb.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Name = model.Name };
-                var result = await _manager.Register(model);
+                if (string.IsNullOrWhiteSpace(model.id))
+                {
+                    var result = await _manager.Register(model);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
@@ -89,10 +107,35 @@ namespace ACMWeb.Controllers
                     return RedirectToAction(nameof(UserManagementController.Index), "UserManagement");
                 }
                 AddErrors(result);
-            }
+                   
+                }
+            else
+            {
+                var adminUser = _userManager.Users.Where(e => e.Id == model.id).FirstOrDefault();
+                adminUser.Name = model.Name;
+                adminUser.Email = model.Email;
+                adminUser.UserName = model.Email;
+                var code = await _userManager.GeneratePasswordResetTokenAsync(adminUser);
+                var result = await _userManager.UpdateAsync(adminUser);
+                    if (result.Succeeded)
+                    {
+                      var pwdresult=  await _userManager.ResetPasswordAsync(adminUser, code, model.Password);
+                        if (pwdresult.Succeeded)
+                        {
+                            return RedirectToAction(nameof(UserManagementController.Index), "UserManagement");
+                        }
+                        AddErrors(result);
+                    }
+                    
+                    AddErrors(result);
+                }
+        }
+          
+                return View(model);
 
+            
             // If we got this far, something failed, redisplay form
-            return View(model);
+
         }
 
         public IActionResult EditAdminUser(string id)
@@ -126,9 +169,27 @@ namespace ACMWeb.Controllers
             }
             return PartialView("_ManageStore", userList);
         }
-        public IActionResult CreateStoreUser()
+        public IActionResult CreateStoreUser(string id)
         {
-            return View();
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                return View(new RegisterStoreViewModel());
+            }
+            else
+            {
+                // var  model = new RegisterStoreViewModel();
+                var storeUser = _userManager.Users.Where(e => e.Id == id).FirstOrDefault();
+                RegisterStoreViewModel model = new RegisterStoreViewModel();
+                model.id = storeUser.Id;
+                model.Name = storeUser.Name;
+                model.Email = storeUser.Email;
+                return View(model);
+               
+
+            }
+            //  usr.LockoutEnabled = Suspend;
+         //   return View("_EditStore", model);
+          //  return View(new RegisterStoreViewModel());
         }
         [HttpPost]
         [AllowAnonymous]
@@ -152,7 +213,8 @@ namespace ACMWeb.Controllers
                         // await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
 
                         var role = _roleManager.Roles.Where(e => e.Name == "Store").FirstOrDefault();
-                        await _userManager.AddToRoleAsync(_userManager.Users.Where(e => e.Email == model.Email).FirstOrDefault(), role.Name);
+                        var user1 = _userManager.Users.Where(e => e.Email == model.Email).FirstOrDefault();
+                        await _userManager.AddToRoleAsync(user1, role.Name);
                         //await _signInManager.SignInAsync(user, isPersistent: false);
                         _logger.LogInformation("User created a new account with password.");
                         //return Redirect("/UserMangement/Index");
@@ -165,11 +227,20 @@ namespace ACMWeb.Controllers
                     var storeUser = _userManager.Users.Where(e => e.Id == model.id).FirstOrDefault();
                     storeUser.Name = model.Name;
                     storeUser.Email = model.Email;
-                    var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+                    storeUser.UserName = model.Email;
+                    var code = await _userManager.GeneratePasswordResetTokenAsync(storeUser);
                     var result = await _userManager.UpdateAsync(storeUser);
-                    await _userManager.ResetPasswordAsync(user, code, model.Password);
-
-                    return RedirectToAction(nameof(UserManagementController.ManageStore), "UserManagement");
+                    if (result.Succeeded)
+                    {
+                      var changePResult=  await _userManager.ResetPasswordAsync(storeUser, code, model.Password);
+                        if (changePResult.Succeeded)
+                        {
+                            return RedirectToAction(nameof(UserManagementController.ManageStore), "UserManagement");
+                        }
+                        AddErrors(result);
+                    }
+                    AddErrors(result);
+                    
                 }
                 //AddErrors(result);
             }
@@ -186,7 +257,7 @@ namespace ACMWeb.Controllers
             model.Name = storeUser.Name;
             model.Email = storeUser.Email;
             //  usr.LockoutEnabled = Suspend;
-            return PartialView("_EditStore", model);
+            return View("_EditStore", model);
         }
         public async Task<IActionResult> LoginStoreUser(string id)
         {
@@ -243,17 +314,26 @@ namespace ACMWeb.Controllers
         {
             var Suspend = status == "Active" ? false : true;
            
-                 var usr = _userManager.Users.Where(e => e.Id == _userManager.GetUserId(User)).FirstOrDefault();
+                 var currentuser = _userManager.Users.Where(e => e.Id == _userManager.GetUserId(User)).FirstOrDefault();
             //  var usr = _userManager.Users.Where(e => e.Id == id).FirstOrDefault();
-            var result = await _signInManager.PasswordSignInAsync(usr.Email, password, false, lockoutOnFailure: false);
+            var result = await _signInManager.PasswordSignInAsync(currentuser.Email, password, false, lockoutOnFailure: false);
             if (result.Succeeded)
             {
-               // usr.LockoutEnabled = Suspend;
-
-                await _userManager.SetLockoutEnabledAsync(usr, Suspend); ;
+                // usr.LockoutEnabled = Suspend;
+                var user = _userManager.Users.Where(e => e.Id == id).FirstOrDefault();
+                if (!Suspend)
+                {
+                    await _userManager.SetLockoutEnabledAsync(user, Suspend);
+                    await _userManager.SetLockoutEndDateAsync(user, DateTimeOffset.Now.AddDays(2));
+                }
+                else
+                {
+                    await _userManager.SetLockoutEnabledAsync(user, Suspend);
+                    await _userManager.SetLockoutEndDateAsync(user,null);
+                }
                 List<UserViewModel> userList = new List<UserViewModel>();
-                var user = _userManager.Users.ToList();
-                foreach (var item in user)
+                var _userList =await  _userManager.GetUsersInRoleAsync("Admin");
+                foreach (var item in _userList)
                 {
                     UserViewModel model = new UserViewModel();
                     model.Name = item.Name;

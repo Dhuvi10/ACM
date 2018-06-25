@@ -5,6 +5,7 @@ namespace ACM.Core.Interfaces
     public interface IManageStore
     {
         ResponseModel<StoreInfoViewModel> StoreLogo(string userId);
+        ResponseModel<StoreInfoViewModel> SaveStoreLogo(StoreInfoViewModel model);
   //      ResponseModel<List<CampaignVM>> CampaignList(string userId);
   //      ResponseModel<CampaignVM> EditCampaigns(int Id);
   //ResponseModel<List<CampaignVM>> CampaignListToMail();

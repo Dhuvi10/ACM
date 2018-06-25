@@ -54,7 +54,25 @@ namespace ACMWeb.Controllers
         {
             // Clear the existing external cookie to ensure a clean login process
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
-
+            if(User.Identity.IsAuthenticated)
+            {
+                var user = _userManager.Users.Where(e => e.Id == _userManager.GetUserId(User)).FirstOrDefault();
+                if (user.LockoutEnabled)
+                {
+                    if (User.IsInRole("Admin"))
+                    {
+                        return RedirectToAction(nameof(UserManagementController.Index), "UserManagement");
+                    }
+                    else
+                    {
+                        return RedirectToAction(nameof(UserManagementController.ManageStore), "UserManagement");
+                    }
+                }
+                else
+                {
+                    return RedirectToAction(nameof(Lockout));
+                }
+            }
             ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
@@ -70,11 +88,11 @@ namespace ACMWeb.Controllers
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var user = _userManager.Users.Where(e => e.Email == model.Email).FirstOrDefault();
-                var Islock = await _userManager.IsLockedOutAsync(user);
-                if (!Islock)
+              
+                if (user.LockoutEnabled)
                 {
-                    var result = await _manager.UserLogin(model, returnUrl);
-                    //var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
+                    //var result = await _manager.UserLogin(model, returnUrl);
+                   var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
                     if (result.Succeeded)
                     {
 
@@ -199,8 +217,10 @@ namespace ACMWeb.Controllers
                     // var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     // var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
                     /// await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
-
-                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    var role = _roleManager.Roles.Where(e => e.Name == "Admin").FirstOrDefault();
+                    var user1 = _userManager.Users.Where(e => e.Email == model.Email).FirstOrDefault();
+                    await _userManager.AddToRoleAsync(user1, role.Name);
+                    await _signInManager.SignInAsync(user1, isPersistent: false);
                     _logger.LogInformation("User created a new account with password.");
                     //return Redirect("/UserMangement/Index");
                     return RedirectToAction(nameof(UserManagementController.Index), "UserManagement");

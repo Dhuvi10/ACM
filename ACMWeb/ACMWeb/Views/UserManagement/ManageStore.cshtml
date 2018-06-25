@@ -32,7 +32,7 @@
 
 @section Scripts
     {
-    <script type="text/javascript">
+<script type="text/javascript">
     $(function()
     {
     List();
@@ -50,12 +50,7 @@
         });
             }
             function Save() {
-                if (confirm("Are you sure you wish to save these changes")) {
-                    $("form").submit();
-                }
-                else {
-                    return false;
-                }
+                  $("form").submit();
 
             }
         function StatusChangeddd(id, status) {
@@ -95,11 +90,13 @@
             }
            });
             }
-        function EditStore(id) {
+            function EditStore(Id) {
 
-          $.ajax({
+                window.location.href = "@Url.Action("CreateStoreUser", "Usermanagement")" + "/" + Id+"";
+
+          @*$.ajax({
             method: "get",
-            url: "@Url.Action("EditStore", "Usermanagement")",
+            url: "@Url.Action("CreateStoreUser", "Usermanagement")",
                data: { id: id},
             success: function (result) {
                 $('#divList').html(result);
@@ -107,7 +104,7 @@
             error: function (err) {
                 console.log(err);
             }
-           });
+           });*@
 
         }
         function DeleteStore(id) {
@@ -131,5 +128,5 @@
         //alert(123)
 
     }
-    </script>
+</script>
 }

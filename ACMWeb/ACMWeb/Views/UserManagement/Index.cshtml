@@ -4,28 +4,22 @@
     Layout = "_LoggedInLayout";
 }
 
-
 <h2>Manage Admin User</h2>
 <div class="row">
     @*<a asp-controller="campaign" asp-action="create"><i class="fas fa-plus"></i> Neu Kampagne</a>*@
-
     <div class="col-xs-12">
-
         <div class="x_panel">
-
             <div class="x_title">
-                <h2>Verwalten Kampagnen</h2>
+                @*<h2>Verwalten Kampagnen</h2>*@
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
                 @*@if (Model.Count == 0)
-                {
-                    <h3>Keine Kampagne gefunden!</h3>
-                }*@
+                    {
+                        <h3>Keine Kampagne gefunden!</h3>
+                    }*@
                 <div id="divList">
-
                 </div>
-
 
             </div>
         </div>
@@ -33,7 +27,7 @@
 </div>
 @section Scripts
     {
-    <script type="text/javascript">
+<script type="text/javascript">
     $(function()
     {
     List();
@@ -51,8 +45,8 @@
         });
         }
         function EditAdminUser(id) {
-
-          $.ajax({
+                   window.location.href = "@Url.Action("CreateAdminUser", "Usermanagement")" + "/" + id+"";
+          @*$.ajax({
             method: "get",
             url: "@Url.Action("EditAdminUser", "Usermanagement")",
                data: { id: id},
@@ -62,17 +56,36 @@
             error: function (err) {
                 console.log(err);
             }
-           });
+           });*@
+
+    }
+        function SavePopUp() {
+
+            $('#myModal').modal('show');
+        }
+        function Save() {
+            $("form").submit();
 
         }
-        function PasswordView(id, status) {
+        var Uid = "";
+        var Ustatus = "";
+        function PasswordPopup(id, status) {
+           // alert(id)
+           // alert(status)
             var stat = status == "Active" ? "Deactive" : "Active";
-            if (confirm("Are you sure you wish to " + stat+" this user?")) {
+             $('#userID').val(id);
+             $('#status').val(stat);
+             Uid = id; Ustatus = status;
+        }
+        function PasswordView() {
+           // alert(2)
+            var stat = status == "Active" ? "Deactive" : "Active";
+                        //if (confirm("Are you sure you wish to " + stat+" this user?")) {
                  $.ajax({
                      method: "get",
                      url: "@Url.Action("PassswordView", "Usermanagement")",
                      data: {
-                         id: id, status: status },
+                         id: Uid, status: Ustatus },
                      success: function (result) {
 
                          $('#divList').html(result);
@@ -82,17 +95,29 @@
                          console.log(err);
                      }
                  });
-             }
-             else {
-                 return false;
-             }
+             //}
+             //else {
+             //    return false;
+             //}
         }
-        function StatusChanged() {
+        function StatusChangedPopup() {
+            //alert(3)
+            console.log('test')
+            console.log($('#status').val())
             var stat = $('#txtstatus').val() == "Active" ? "Suspended" : "Active";
             var txtid = $('#txtid').val();
             var txtstatus = $('#txtstatus').val();
-            if (confirm("Are you sure you want to "+stat+" this?")) {
-                $.ajax({
+            if($('#txtpassword').val())
+            {
+                $('#myModal .modal-body').html("Are you sure you wish to " + stat + " this user")
+                $('#myModal').modal('show');
+            }
+
+        //alert(123)
+
+        }
+        function StatusChanged() {
+              $.ajax({
             method: "post",
             url: "@Url.Action("PassswordView", "Usermanagement")",
                     data: { id: $('#txtid').val(), status: $('#txtstatus').val(), password: $('#txtpassword').val()},
@@ -100,8 +125,26 @@
                         var test ="@ViewData["tryagain"]";
                         console.log(test);
                         if (result=="false") {
-                             if (confirm("The password entered is incorrect Try Again")) {
-                                 $.ajax({
+                            $('#myModal').modal('show')
+                            $('#myModal .modal-body').html("password is incorrect  try again?")
+                            $('#btnStatuslock').css('display', 'none');
+                            $('#btnTryagain').css('display', 'in-line');
+                         }
+                         else{
+                         $('#divList').html(result);
+                     }
+
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+
+        }
+        function passwordTryAgain() {
+            var txtid = $('#txtid').val();
+            var txtstatus = $('#txtstatus').val();
+              $.ajax({
                      method: "get",
                      url: "@Url.Action("PassswordView", "Usermanagement")",
                      data: {
@@ -115,28 +158,11 @@
                          console.log(err);
                      }
                  });
-                                 }
-                         else {
 
-                                 window.location.href = "@Url.Action("Index", "Usermanagement")";
-                         }
+        }
+        function cancel() {
+            window.location.href='@Url.Action("Index", "UserManagement")';
 
-                         }
-                         else{
-                         $('#divList').html(result);
-                     }
-
-            },
-            error: function (err) {
-                console.log(err);
-            }
-        });
-            }
-            else {
-                return false;
-            }
-        //alert(123)
-
-    }
-    </script>
+        }
+</script>
 }

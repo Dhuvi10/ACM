@@ -9,12 +9,12 @@
                 <input asp-for="id" type="hidden" class="form-control" />
                 <div class="form-group">
                     <label asp-for="Name"></label>
-                    <input asp-for="Name" class="form-control" />
+                    <input asp-for="Name" class="form-control" required />
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Email"></label>
-                    <input asp-for="Email" class="form-control" />
+                    <input asp-for="Email" class="form-control" required />
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
                 <div class="form-group">
@@ -24,7 +24,7 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="ConfirmPassword"></label>
-                    <input asp-for="ConfirmPassword" class="form-control" />
+                    <input asp-for="ConfirmPassword" class="form-control" required/>
                     <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                 </div>
                 @*<div class="form-group">
@@ -32,9 +32,33 @@
             @Html.DropDownListFor(m => m.Role, Model.roleList, new { @class = "form-control" })
             <span asp-validation-for="Role" class="text-danger"></span>
         </div>*@
-                <button type="button" class="btn btn-default" onclick="Save();">Save</button>
+                <button type="button" class="btn btn-default"  data-toggle="modal" data-target="#myModal">Save</button>
                 <a href="@Url.Action("ManageStore","UserManagement")" class="btn btn-default">Cancel</a>
             </form>
+        </div>
+    </div>
+</div>
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                @*<h4 class="modal-title">Modal Heading</h4>*@
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                Are you sure you wish to save these changes?
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button onclick=" Save();" style="width:100px" data-dismiss="modal">Yes</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="cancel()">Cancel</button>
+            </div>
+
         </div>
     </div>
 </div>

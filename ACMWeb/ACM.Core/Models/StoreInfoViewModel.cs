@@ -8,6 +8,7 @@ namespace ACM.Core.Models
     {
         public string StoerId { get; set; }
         public string Logo { get; set; }
+        public string LogoName { get; set; }
         public Int64 LogoId { get; set; }
 
         public string UserId { get; set; }
