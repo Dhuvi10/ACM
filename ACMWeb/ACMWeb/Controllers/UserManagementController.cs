@@ -37,6 +37,13 @@ namespace ACMWeb.Controllers
             _roleManager = roleManager;
             _manager = manager;
         }
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
+
+        public async Task<string> GetCurrentUserId()
+        {
+            ApplicationUser usr = await GetCurrentUserAsync();
+            return usr?.Id;
+        }
         public IActionResult Index()
         {
            
@@ -87,7 +94,7 @@ namespace ACMWeb.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Name = model.Name };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Name = model.Name};
                 if (string.IsNullOrWhiteSpace(model.id))
                 {
                     var result = await _manager.Register(model);
@@ -158,7 +165,7 @@ namespace ACMWeb.Controllers
             List<UserViewModel> userList = new List<UserViewModel>();
             var user = await _userManager.GetUsersInRoleAsync("Store");
 
-            foreach (var item in user)
+            foreach (var item in user.Where(e=>e.AdminId==GetCurrentUserId().Result))
             {
                 UserViewModel model = new UserViewModel();
                 model.Name = item.Name;
@@ -199,10 +206,10 @@ namespace ACMWeb.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Name = model.Name };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Name = model.Name, AdminId = GetCurrentUserId().Result};
                 if (string.IsNullOrWhiteSpace(model.id))
                 {
-                    var result = await _manager.StoreUserRegister(model);
+                    var result = await _manager.StoreUserRegister(model, GetCurrentUserId().Result);
 
                     if (result.Succeeded)
                     {

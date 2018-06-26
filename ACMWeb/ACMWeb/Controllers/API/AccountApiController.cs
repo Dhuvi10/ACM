@@ -29,7 +29,7 @@ namespace ACMWeb.Controllers.API
             RoleManager<IdentityRole> roleManager, JwtAuthentication JwtAuthentication)
         {
             _userManager = userManager;
-            _signInManager = signInManager;           
+            _signInManager = signInManager;
             _logger = logger;
             _roleManager = roleManager;
             _JwtAuthentication = JwtAuthentication;
@@ -37,7 +37,7 @@ namespace ACMWeb.Controllers.API
         [HttpPost]
         [Route("Login")]
         public IActionResult Login([FromBody]LoginViewModel model)
-        {          
+        {
             if (ModelState.IsValid)
             {
                 // This doesn't count login failures towards account lockout
@@ -45,40 +45,67 @@ namespace ACMWeb.Controllers.API
                 var result = _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false).Result;
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User logged in.");
-                    //return Redirect("UserMangement");
-                    var role = _userManager.IsInRoleAsync(_userManager.Users.Where(e => e.Email == model.Email).FirstOrDefault(), "Admin").Result;
-                    if (role)
+                    var user = _userManager.Users.Where(e => e.Email == model.Email).FirstOrDefault();
+                    if (user.LockoutEnabled)
                     {
-                        //return RedirectToAction(nameof(UserManagementController.Index), "UserManagement");
-                        return Ok(new { Result = "UserManagementIndex" });
+                        _logger.LogWarning("User account locked out.");
+                        //return RedirectToAction(nameof(Lockout));
+
+
+
+                        _logger.LogInformation("User logged in.");
+                        //return Redirect("UserMangement");
+                        var role = _userManager.IsInRoleAsync(_userManager.Users.Where(e => e.Email == model.Email).FirstOrDefault(), "Admin").Result;
+                        if (role)
+                        {
+                            //return RedirectToAction(nameof(UserManagementController.Index), "UserManagement");
+                            return Ok(new { Status = true, id= user.Id,role = "Admin", token = _JwtAuthentication.BuildToken(model.Email, user.Name), message = "Login Sucessfully" });
+                        }
+                        else
+                        {
+                            //return RedirectToAction(nameof(UserManagementController.ManageStore), "UserManagement");
+                            return Ok(new { Status = true, id = user.Id, role = "Store", token = _JwtAuthentication.BuildToken(model.Email, user.Name), message = "Login Sucessfully" });
+                        }
+
                     }
                     else
                     {
-                        //return RedirectToAction(nameof(UserManagementController.ManageStore), "UserManagement");
-                        return Ok(new { Result = "UserManagementStore" });
+
+                        return StatusCode(401, new { Status = false, role = "Store", token = "", message = "Invalid Login Details" });
                     }
-                }
-                if (result.RequiresTwoFactor)
-                {
-                   // return RedirectToAction(nameof(LoginWith2fa), new { returnUrl, model.RememberMe });
-                    return Ok(new { Result = "LoginWith2fa" });
-                }
-                if (result.IsLockedOut)
-                {
-                    _logger.LogWarning("User account locked out.");
-                    //return RedirectToAction(nameof(Lockout));
-                    return Ok(new { Result = "Lockout" });
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                    return BadRequest(model); 
+                    return StatusCode(401, new { Status = false, role = "Store", token = "", message = "Account Locked Please contact Acm Admin" });
                 }
             }
 
             // If we got this far, something failed, redisplay form
-            return BadRequest(model);
+            return StatusCode(401, new { Status = false, role = "", token = "", message = "please fill the required details" });
+        }
+
+        [HttpPost]
+        [Route("StoreLogin")]
+        public async Task<IActionResult> LoginStoreUser(string id)
+        {
+            if (!string.IsNullOrWhiteSpace(id))
+            {
+                var storeUser = _userManager.Users.Where(e => e.Id == id).FirstOrDefault();
+                if (storeUser.LockoutEnabled)
+                {
+                    //  await _signInManager.SignOutAsync();
+                    await _signInManager.SignInAsync(storeUser, isPersistent: false);
+                    return Ok(new { Status = true,id= storeUser.Id, role = "Admin", token = _JwtAuthentication.BuildToken(storeUser.Email, storeUser.Name), message = "Login Sucessfully" });
+                }
+                else
+                {
+                    return StatusCode(401, new { Status = false, id = storeUser.Id, role = "Store", token = "", message = "Account Locked Please contact Acm Admin" });
+                }
+            }
+            else
+            {
+                return StatusCode(401, new { Status = false, role = "", token = "", message = "please fill the required details" });
+            }
         }
     }
 }

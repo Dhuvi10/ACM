@@ -6,6 +6,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using ACM.Core.Interfaces;
 using ACM.Core.Models;
+using ACM.Core.Models.AccountViewModels;
+using ACM.Core.Models.ManageStoreContractViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -108,6 +110,18 @@ namespace ACMWeb.Controllers
             }
 
 
+        }
+
+        public IActionResult ManageStoreContract()
+        {
+            return View( new RegisterStoreViewModel());
+        }
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public IActionResult ManageStoreContract(ManageStoreContractsViewModel model)
+        {
+            return View();
         }
     }
 }

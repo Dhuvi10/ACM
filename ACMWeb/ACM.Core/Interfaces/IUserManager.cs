@@ -18,7 +18,7 @@ namespace ACM.Core.Interfaces
         Task<ApplicationUser> FindUserById(string userId);
         Task<IdentityResult> ConfirmEmail(ApplicationUser user, string code);
         Task<IdentityResult> Register(RegisterViewModel model);
-        Task<IdentityResult> StoreUserRegister(RegisterStoreViewModel model);
+        Task<IdentityResult> StoreUserRegister(RegisterStoreViewModel model,string AdminId);
         Task<string> GenerateEmailConfirmationToken(ApplicationUser user);
     }
 }

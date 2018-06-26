@@ -43,3 +43,12 @@ E:\Projects\ACM\ACM\ACMWeb\ACM.Core\obj\Debug\netcoreapp2.0\ACM.Core.AssemblyInf
 E:\Projects\ACM\ACM\ACMWeb\ACM.Core\obj\Debug\netcoreapp2.0\ACM.Core.AssemblyInfo.cs
 E:\Projects\ACM\ACM\ACMWeb\ACM.Core\obj\Debug\netcoreapp2.0\ACM.Core.dll
 E:\Projects\ACM\ACM\ACMWeb\ACM.Core\obj\Debug\netcoreapp2.0\ACM.Core.pdb
+G:\Robin\ACM\ACMWeb\ACM.Core\bin\Debug\netcoreapp2.0\ACM.Core.deps.json
+G:\Robin\ACM\ACMWeb\ACM.Core\bin\Debug\netcoreapp2.0\ACM.Core.dll
+G:\Robin\ACM\ACMWeb\ACM.Core\bin\Debug\netcoreapp2.0\ACM.Core.pdb
+G:\Robin\ACM\ACMWeb\ACM.Core\obj\Debug\netcoreapp2.0\ACM.Core.csprojAssemblyReference.cache
+G:\Robin\ACM\ACMWeb\ACM.Core\obj\Debug\netcoreapp2.0\ACM.Core.csproj.CoreCompileInputs.cache
+G:\Robin\ACM\ACMWeb\ACM.Core\obj\Debug\netcoreapp2.0\ACM.Core.AssemblyInfoInputs.cache
+G:\Robin\ACM\ACMWeb\ACM.Core\obj\Debug\netcoreapp2.0\ACM.Core.AssemblyInfo.cs
+G:\Robin\ACM\ACMWeb\ACM.Core\obj\Debug\netcoreapp2.0\ACM.Core.dll
+G:\Robin\ACM\ACMWeb\ACM.Core\obj\Debug\netcoreapp2.0\ACM.Core.pdb

@@ -58,9 +58,9 @@ namespace ACM.Core.Managers
             var result = await _userManager.CreateAsync(user, model.Password);
             return result;
         }
-        public async Task<IdentityResult> StoreUserRegister(RegisterStoreViewModel model)
+        public async Task<IdentityResult> StoreUserRegister(RegisterStoreViewModel model,string AdminId)
         {
-            var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Name = model.Name };
+            var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Name = model.Name, AdminId=AdminId };
             var result = await _userManager.CreateAsync(user, model.Password);
             return result;
         }

@@ -1796,6 +1796,21 @@
           "lib/netstandard1.0/_._": {}
         }
       },
+      "Microsoft.VisualStudio.Web.BrowserLink/2.0.2": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Hosting.Abstractions": "2.0.2",
+          "Microsoft.AspNetCore.Http.Abstractions": "2.0.2",
+          "Microsoft.AspNetCore.Http.Extensions": "2.0.2",
+          "Microsoft.Extensions.FileProviders.Physical": "2.0.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.VisualStudio.Web.BrowserLink.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.VisualStudio.Web.BrowserLink.dll": {}
+        }
+      },
       "Microsoft.VisualStudio.Web.BrowserLink.Loader/14.1.0": {
         "type": "package",
         "dependencies": {
@@ -5717,6 +5732,17 @@
         "microsoft.netcore.targets.1.1.0.nupkg.sha512",
         "microsoft.netcore.targets.nuspec",
         "runtime.json"
+      ]
+    },
+    "Microsoft.VisualStudio.Web.BrowserLink/2.0.2": {
+      "sha512": "ZS/yWRNbOseQefHnPewOqSuh9lvwVItikPNw6hhm0MKQRFkaTHw7NSb+SqDYM4LBzgx5uvkz3f3kHLZg9AgMFw==",
+      "type": "package",
+      "path": "microsoft.visualstudio.web.browserlink/2.0.2",
+      "files": [
+        "lib/netstandard2.0/Microsoft.VisualStudio.Web.BrowserLink.dll",
+        "lib/netstandard2.0/Microsoft.VisualStudio.Web.BrowserLink.xml",
+        "microsoft.visualstudio.web.browserlink.2.0.2.nupkg.sha512",
+        "microsoft.visualstudio.web.browserlink.nuspec"
       ]
     },
     "Microsoft.VisualStudio.Web.BrowserLink.Loader/14.1.0": {
@@ -11013,6 +11039,7 @@
       "Microsoft.EntityFrameworkCore.Tools >= 2.1.1",
       "Microsoft.IdentityModel.Tokens >= 5.2.2",
       "Microsoft.NETCore.App >= 2.0.0",
+      "Microsoft.VisualStudio.Web.BrowserLink >= 2.0.2",
       "Microsoft.VisualStudio.Web.BrowserLink.Loader >= 14.1.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 2.1.1",
       "System.IdentityModel.Tokens.Jwt >= 5.2.2",
@@ -11020,30 +11047,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Vikas\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
+    "C:\\Users\\Ragini\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
-    "restoreSettings": {
-      "hideWarningsAndErrors": true
-    },
     "restore": {
-      "projectUniqueName": "E:\\Projects\\ACM\\ACM\\ACMWeb\\ACMWeb\\ACMWeb.csproj",
+      "projectUniqueName": "G:\\Robin\\ACM\\ACMWeb\\ACMWeb\\ACMWeb.csproj",
       "projectName": "ACMWeb",
-      "projectPath": "E:\\Projects\\ACM\\ACM\\ACMWeb\\ACMWeb\\ACMWeb.csproj",
-      "packagesPath": "C:\\Users\\Vikas\\.nuget\\packages\\",
-      "outputPath": "E:\\Projects\\ACM\\ACM\\ACMWeb\\ACMWeb\\obj\\",
+      "projectPath": "G:\\Robin\\ACM\\ACMWeb\\ACMWeb\\ACMWeb.csproj",
+      "packagesPath": "C:\\Users\\Ragini\\.nuget\\packages\\",
+      "outputPath": "G:\\Robin\\ACM\\ACMWeb\\ACMWeb\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Vikas\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
+        "C:\\Users\\Ragini\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"
@@ -11055,8 +11076,8 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "E:\\Projects\\ACM\\ACM\\ACMWeb\\ACM.Core\\ACM.Core.csproj": {
-              "projectPath": "E:\\Projects\\ACM\\ACM\\ACMWeb\\ACM.Core\\ACM.Core.csproj"
+            "G:\\Robin\\ACM\\ACMWeb\\ACM.Core\\ACM.Core.csproj": {
+              "projectPath": "G:\\Robin\\ACM\\ACMWeb\\ACM.Core\\ACM.Core.csproj"
             }
           }
         }
@@ -11111,6 +11132,10 @@
             "target": "Package",
             "version": "[2.0.0, )",
             "autoReferenced": true
+          },
+          "Microsoft.VisualStudio.Web.BrowserLink": {
+            "target": "Package",
+            "version": "[2.0.2, )"
           },
           "Microsoft.VisualStudio.Web.BrowserLink.Loader": {
             "target": "Package",

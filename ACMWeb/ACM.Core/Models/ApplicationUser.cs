@@ -13,6 +13,8 @@ namespace ACM.Core.Models
 
         public DateTime DOB { get; set; }
 
-        
+        public string AdminId { get; set; }
+
+
     }
 }
