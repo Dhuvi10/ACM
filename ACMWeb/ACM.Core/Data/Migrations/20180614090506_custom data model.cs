@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace ACM.Core.Data.Migrations
+namespace ACMWeb.Data.Migrations
 {
     public partial class customdatamodel : Migration
     {

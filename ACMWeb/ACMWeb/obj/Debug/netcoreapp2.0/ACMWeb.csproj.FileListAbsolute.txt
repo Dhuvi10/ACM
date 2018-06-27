@@ -1,87 +1,18 @@
-c:\users\admin\documents\visual studio 2017\Projects\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.deps.json
-c:\users\admin\documents\visual studio 2017\Projects\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.runtimeconfig.json
-c:\users\admin\documents\visual studio 2017\Projects\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.runtimeconfig.dev.json
-c:\users\admin\documents\visual studio 2017\Projects\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.dll
-c:\users\admin\documents\visual studio 2017\Projects\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.pdb
-c:\users\admin\documents\visual studio 2017\Projects\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.csproj.CoreCompileInputs.cache
-c:\users\admin\documents\visual studio 2017\Projects\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
-c:\users\admin\documents\visual studio 2017\Projects\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.AssemblyInfoInputs.cache
-c:\users\admin\documents\visual studio 2017\Projects\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.AssemblyInfo.cs
-c:\users\admin\documents\visual studio 2017\Projects\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.dll
-c:\users\admin\documents\visual studio 2017\Projects\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.pdb
-c:\users\admin\documents\visual studio 2017\Projects\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.csprojAssemblyReference.cache
-F:\Robin\ACMWeb\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.deps.json
-F:\Robin\ACMWeb\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.runtimeconfig.json
-F:\Robin\ACMWeb\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.runtimeconfig.dev.json
-F:\Robin\ACMWeb\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.dll
-F:\Robin\ACMWeb\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.pdb
-F:\Robin\ACMWeb\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.csproj.CoreCompileInputs.cache
-F:\Robin\ACMWeb\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.AssemblyInfoInputs.cache
-F:\Robin\ACMWeb\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.AssemblyInfo.cs
-F:\Robin\ACMWeb\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.dll
-F:\Robin\ACMWeb\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.pdb
-F:\Robin\ACMWeb\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.csprojAssemblyReference.cache
-F:\Robin\ACMWeb\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACM.Core.dll
-F:\Robin\ACMWeb\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACM.Core.pdb
-F:\Robin\ACMWeb\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.csproj.CopyComplete
-E:\Projects\ACM\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACM.Core.dll
-E:\Projects\ACM\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.csprojResolveAssemblyReference.cache
-E:\Projects\ACM\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.csproj.CoreCompileInputs.cache
-E:\Projects\ACM\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.AssemblyInfoInputs.cache
-E:\Projects\ACM\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.AssemblyInfo.cs
-E:\Projects\ACM\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.deps.json
-E:\Projects\ACM\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.runtimeconfig.json
-E:\Projects\ACM\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.runtimeconfig.dev.json
-E:\Projects\ACM\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.dll
-E:\Projects\ACM\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACM.Core.pdb
-E:\Projects\ACM\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.pdb
-E:\Projects\ACM\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
-E:\Projects\ACM\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.dll
-E:\Projects\ACM\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.pdb
-F:\Robin\ACMWeb\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
-D:\Hidden\ACM-master\ACM-master\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.csprojResolveAssemblyReference.cache
-D:\Hidden\ACM-master\ACM-master\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.csproj.CoreCompileInputs.cache
-D:\Hidden\ACM-master\ACM-master\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
-D:\Hidden\ACM-master\ACM-master\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.AssemblyInfoInputs.cache
-D:\Hidden\ACM-master\ACM-master\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.AssemblyInfo.cs
-D:\Hidden\ACM-master\ACM-master\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.dll
-D:\Hidden\ACM-master\ACM-master\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.pdb
-D:\Hidden\ACM-master\ACM-master\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.deps.json
-D:\Hidden\ACM-master\ACM-master\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.runtimeconfig.json
-D:\Hidden\ACM-master\ACM-master\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.runtimeconfig.dev.json
-D:\Hidden\ACM-master\ACM-master\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.dll
-D:\Hidden\ACM-master\ACM-master\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.pdb
-D:\Hidden\ACM-master\ACM-master\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACM.Core.dll
-D:\Hidden\ACM-master\ACM-master\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACM.Core.pdb
-F:\Robin\AcM22\acmweb\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.csprojAssemblyReference.cache
-F:\Robin\AcM22\acmweb\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.csproj.CoreCompileInputs.cache
-F:\Robin\AcM22\acmweb\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
-F:\Robin\AcM22\acmweb\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.AssemblyInfoInputs.cache
-F:\Robin\AcM22\acmweb\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.AssemblyInfo.cs
-F:\Robin\AcM22\acmweb\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.dll
-F:\Robin\AcM22\acmweb\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.pdb
-F:\Robin\AcM22\acmweb\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.deps.json
-F:\Robin\AcM22\acmweb\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.runtimeconfig.json
-F:\Robin\AcM22\acmweb\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.runtimeconfig.dev.json
-F:\Robin\AcM22\acmweb\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.dll
-F:\Robin\AcM22\acmweb\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.pdb
-F:\Robin\AcM22\acmweb\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACM.Core.dll
-F:\Robin\AcM22\acmweb\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACM.Core.pdb
-F:\Robin\AcM22\acmweb\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.csproj.CopyComplete
-E:\Projects\ACM\ACM\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.deps.json
-E:\Projects\ACM\ACM\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.runtimeconfig.json
-E:\Projects\ACM\ACM\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.runtimeconfig.dev.json
-E:\Projects\ACM\ACM\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.dll
-E:\Projects\ACM\ACM\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.pdb
-E:\Projects\ACM\ACM\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACM.Core.dll
-E:\Projects\ACM\ACM\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACM.Core.pdb
-E:\Projects\ACM\ACM\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.csprojResolveAssemblyReference.cache
-E:\Projects\ACM\ACM\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.csproj.CoreCompileInputs.cache
-E:\Projects\ACM\ACM\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
-E:\Projects\ACM\ACM\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.AssemblyInfoInputs.cache
-E:\Projects\ACM\ACM\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.AssemblyInfo.cs
-E:\Projects\ACM\ACM\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.dll
-E:\Projects\ACM\ACM\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.pdb
+G:\Robin\New folder\ACM\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.csprojAssemblyReference.cache
+G:\Robin\New folder\ACM\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.csproj.CoreCompileInputs.cache
+G:\Robin\New folder\ACM\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+G:\Robin\New folder\ACM\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.AssemblyInfoInputs.cache
+G:\Robin\New folder\ACM\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.AssemblyInfo.cs
+G:\Robin\New folder\ACM\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.deps.json
+G:\Robin\New folder\ACM\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.runtimeconfig.json
+G:\Robin\New folder\ACM\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.runtimeconfig.dev.json
+G:\Robin\New folder\ACM\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.dll
+G:\Robin\New folder\ACM\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.pdb
+G:\Robin\New folder\ACM\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACM.Core.dll
+G:\Robin\New folder\ACM\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACM.Core.pdb
+G:\Robin\New folder\ACM\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.csproj.CopyComplete
+G:\Robin\New folder\ACM\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.dll
+G:\Robin\New folder\ACM\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.pdb
 G:\Robin\ACM\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.deps.json
 G:\Robin\ACM\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.runtimeconfig.json
 G:\Robin\ACM\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACMWeb.runtimeconfig.dev.json
@@ -91,9 +22,9 @@ G:\Robin\ACM\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACM.Core.dll
 G:\Robin\ACM\ACMWeb\ACMWeb\bin\Debug\netcoreapp2.0\ACM.Core.pdb
 G:\Robin\ACM\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.csprojAssemblyReference.cache
 G:\Robin\ACM\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.csproj.CoreCompileInputs.cache
+G:\Robin\ACM\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
 G:\Robin\ACM\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.AssemblyInfoInputs.cache
 G:\Robin\ACM\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.AssemblyInfo.cs
 G:\Robin\ACM\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.csproj.CopyComplete
 G:\Robin\ACM\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.dll
 G:\Robin\ACM\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\ACMWeb.pdb
-G:\Robin\ACM\ACMWeb\ACMWeb\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs

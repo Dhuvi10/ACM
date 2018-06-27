@@ -36,7 +36,7 @@ namespace ACMWeb.Controllers.API
         }
         [HttpPost]
         [Route("Login")]
-        public IActionResult Login([FromBody]LoginViewModel model)
+        public IActionResult LoginAPI([FromBody]LoginViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace ACMWeb.Controllers.API
 
         [HttpPost]
         [Route("StoreLogin")]
-        public async Task<IActionResult> LoginStoreUser(string id)
+        public async Task<IActionResult> LoginStoreUserAPI(string id)
         {
             if (!string.IsNullOrWhiteSpace(id))
             {

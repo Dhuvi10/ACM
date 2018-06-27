@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ACM.Core.Data;
+
 using ACM.Core.Models;
 using ACMWeb.Services;
 //using ACM.Core.Context;
@@ -13,6 +13,8 @@ using ACM.Core.Interfaces;
 using ACM.Core.Managers;
 using ACM.Core.Context;
 using TechnicalWeb.Filters;
+
+using ACM.Core.Data;
 
 namespace ACMWeb
 {
@@ -89,7 +91,7 @@ namespace ACMWeb
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure( IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
