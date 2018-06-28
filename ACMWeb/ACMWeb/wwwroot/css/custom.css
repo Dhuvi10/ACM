@@ -537,12 +537,14 @@ footer a:hover{
   background-color: #2299ed;
   border-color: #2299ed;
 }
+.note-editable {
+    max-height:200px !important;
+    overflow:scroll !important;
+}
 
 
-
-
-@media (max-width:1024px){
-.testimonial-area .form-inline input {
+@media (max-width:1024px) {
+    .testimonial-area .form-inline input {
   width: 55%;
 }
 
@@ -762,3 +764,4 @@ footer a:hover{
     
     
 }
+
