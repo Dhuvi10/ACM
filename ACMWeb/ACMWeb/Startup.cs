@@ -15,6 +15,10 @@ using ACM.Core.Context;
 using TechnicalWeb.Filters;
 
 using ACM.Core.Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace ACMWeb
 {
@@ -42,6 +46,27 @@ namespace ACMWeb
                
             services.AddDbContext<ApplicationDbContext>(options =>
     options.UseInMemoryDatabase(Guid.NewGuid().ToString()));
+
+            services.AddAuthentication(
+                //CookieAuthenticationDefaults.AuthenticationScheme
+                options =>
+                {
+                    options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                }
+                ).AddCookie().AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = false,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = Configuration["Jwt:Issuer"],
+                        ValidAudience = Configuration["Jwt:Issuer"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+                    };
+                });
+
             services.Configure<IdentityOptions>(options =>
             {
                 // Password settings
@@ -77,7 +102,7 @@ namespace ACMWeb
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
-            services.AddTransient<IManageStore, ManageStore>();
+            services.AddTransient<IStoreManager, StoreManager>();
             services.AddTransient<IUserManager, UserManager>();
             services.AddTransient<JwtAuthentication, JwtAuthentication>();
             services.Configure<SecurityStampValidatorOptions>(options =>

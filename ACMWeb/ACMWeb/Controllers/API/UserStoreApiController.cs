@@ -16,7 +16,7 @@ namespace ACMWeb.Controllers.API
 {
 
     [Produces("application/json")]
-    [Route("api/Store")]
+    [Route("api/UserStore")]
     public class UserStoreApiController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;

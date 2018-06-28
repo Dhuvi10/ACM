@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using ACM.Core.Interfaces;
 using ACM.Core.Models;
 using ACM.Core.Models.AccountViewModels;
-using ACM.Core.Models.ManageStoreContractViewModels;
+using ACM.Core.Models.CheckInContractViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -20,11 +20,11 @@ namespace ACMWeb.Controllers
     {
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly IManageStore _manageStore;
+        private readonly IStoreManager _manageStore;
         private readonly IHostingEnvironment _hostingEnvironment;
         string webRootPath = "";
 
-        public ManageStoreInfoController(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager, IManageStore manageStore,
+        public ManageStoreInfoController(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager, IStoreManager manageStore,
             IHostingEnvironment hostingEnvironment
 )
         {
@@ -119,7 +119,7 @@ namespace ACMWeb.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public IActionResult ManageStoreContract(ManageStoreContractsViewModel model)
+        public IActionResult ManageStoreContract(CheckInContractsViewModel model)
         {
             return View();
         }
