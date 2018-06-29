@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ACM.Core.Interfaces;
 using ACM.Core.Models;
 using ACM.Core.Models.AccountViewModels;
 using ACM.Core.Models.UserViewModel;
@@ -23,19 +24,20 @@ namespace ACMWeb.Controllers.API
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger _logger;
         private readonly RoleManager<IdentityRole> _roleManager;
-       
+        private readonly IStoreManager _storeManager;
 
         JwtAuthentication _JwtAuthentication;
         public AccountApiController(UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             ILogger<AccountController> logger,
-            RoleManager<IdentityRole> roleManager, JwtAuthentication JwtAuthentication)
+            RoleManager<IdentityRole> roleManager, JwtAuthentication JwtAuthentication, IStoreManager storeManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _roleManager = roleManager;
             _JwtAuthentication = JwtAuthentication;
+            _storeManager = storeManager;
         }
         [HttpPost]
         [Route("Login")]
@@ -63,7 +65,7 @@ namespace ACMWeb.Controllers.API
                         {
                             List<UserViewModel> userList = new List<UserViewModel>();
                             var usr =  _userManager.GetUsersInRoleAsync("Store").Result;
-
+                            var logoList = _storeManager.StoreLogoList();
                             foreach (var item in usr.Where(e => e.AdminId == GetCurrentUserId().Result))
                             {
                                 UserViewModel _model = new UserViewModel();
@@ -71,6 +73,7 @@ namespace ACMWeb.Controllers.API
                                 _model.Email = item.Email;
                                 _model.id = item.Id;
                                 _model.suspened = item.LockoutEnabled;
+                                _model.Logo = logoList.Data.Where(k => k.StoreId == item.Id).FirstOrDefault().Logo;
                                 userList.Add(_model);
                             }
                             //return RedirectToAction(nameof(UserManagementController.Index), "UserManagement");

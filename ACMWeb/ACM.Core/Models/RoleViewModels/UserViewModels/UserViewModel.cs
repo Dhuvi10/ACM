@@ -11,6 +11,7 @@ namespace ACM.Core.Models.UserViewModel
         public String Email { get; set; }
         public String id { get; set; }
         public bool suspened { get; set; }
+        public string Logo { get; set; }
        
     }
 }

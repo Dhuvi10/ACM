@@ -17,6 +17,33 @@ namespace ACM.Core.Managers
         {
             acmContext = _acmContext;
         }
+        public ResponseModel<List<StoreLogo>> StoreLogoList()
+        {
+            ResponseModel<List<StoreLogo>> response = new ResponseModel<List<StoreLogo>> { Data = new List<StoreLogo>() };
+            try
+            {
+                var model = acmContext.StoreInfo.Select(x => new StoreLogo { StoreId = x.StoerId, Logo = x.Logo }).ToList();
+                if (model != null)
+                {
+                    response.Data = model;
+                    // response.Data = list;
+                    response.Status = true;
+                }
+                else
+                {
+                    response.Status = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                response.Status = false;
+                response.ErrorMessage = ex.Message;
+
+            }
+
+            return response;
+        }
         public ResponseModel<StoreInfoViewModel> StoreLogo(string userId)
         {
             ResponseModel<StoreInfoViewModel> response = new ResponseModel<StoreInfoViewModel> { Data = new StoreInfoViewModel() };

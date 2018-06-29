@@ -13,4 +13,9 @@ namespace ACM.Core.Models
 
         public string UserId { get; set; }
     }
+    public class StoreLogo
+    {
+        public string StoreId { get; set; }
+        public string Logo { get; set; }
+    }
 }
