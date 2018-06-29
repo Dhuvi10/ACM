@@ -77,12 +77,12 @@ namespace ACMWeb.Controllers.API
                                 userList.Add(_model);
                             }
                             //return RedirectToAction(nameof(UserManagementController.Index), "UserManagement");
-                            return Ok(new { Status = true, id= user.Id,role = "Admin", token = _JwtAuthentication.BuildToken(model.Email, user.Name), message = "Login Sucessfully", storeUserList= userList });
+                            return Ok(new { Status = true, id= user.Id,Name=user.Name,role = "Admin", message = "Login Sucessfully", storeUserList= userList });
                         }
                         else
                         {
                             //return RedirectToAction(nameof(UserManagementController.ManageStore), "UserManagement");
-                            return Ok(new { Status = true, id = user.Id, role = "Store", token = _JwtAuthentication.BuildToken(model.Email, user.Name), message = "Login Sucessfully" });
+                            return Ok(new { Status = true, id = user.Id, role = "Store", message = "Login Sucessfully" });
                         }
 
                     }
