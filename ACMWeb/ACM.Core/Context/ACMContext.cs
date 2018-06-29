@@ -194,13 +194,13 @@ namespace ACM.Core.Context
 
                 entity.Property(e => e.Logo).HasMaxLength(100);
 
-                entity.Property(e => e.StoerId)
+                entity.Property(e => e.StoreId)
                     .IsRequired()
                     .HasMaxLength(450);
 
-                entity.HasOne(d => d.Stoer)
+                entity.HasOne(d => d.Store)
                     .WithMany(p => p.StoreInfo)
-                    .HasForeignKey(d => d.StoerId)
+                    .HasForeignKey(d => d.StoreId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_StoreInfo_StoreInfo");
             });

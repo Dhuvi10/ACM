@@ -15,7 +15,7 @@
                             <form asp-route-returnUrl="@ViewData["ReturnUrl"]" asp-action="Index" method="post">
                                 <input type="hidden" name="LogoId" value="@Model.LogoId" />
                                 <input type="hidden" id="Logo" name="Logo" value="@Model.Logo" />
-                                <input type="hidden" name="StoerId" value="@Model.StoerId" />
+                                <input type="hidden" name="StoreId" value="@Model.StoreId" />
                                 <input type="hidden" id="LogoName" name="LogoName" value="@Model.LogoName" />
                                 @if (!string.IsNullOrWhiteSpace(Model.Logo))
     {

@@ -22,7 +22,7 @@ namespace ACM.Core.Managers
             ResponseModel<List<StoreLogo>> response = new ResponseModel<List<StoreLogo>> { Data = new List<StoreLogo>() };
             try
             {
-                var model = acmContext.StoreInfo.Select(x => new StoreLogo { StoreId = x.StoerId, Logo = x.Logo }).ToList();
+                var model = acmContext.StoreInfo.Select(x => new StoreLogo { StoreId = x.StoreId, Logo = x.Logo }).ToList();
                 if (model != null)
                 {
                     response.Data = model;
@@ -49,20 +49,20 @@ namespace ACM.Core.Managers
             ResponseModel<StoreInfoViewModel> response = new ResponseModel<StoreInfoViewModel> { Data = new StoreInfoViewModel() };
             try
             {
-                var model = acmContext.StoreInfo.Where(e => e.StoerId == userId).FirstOrDefault();
+                var model = acmContext.StoreInfo.Where(e => e.StoreId == userId).FirstOrDefault();
                 if (model != null)
                 {
                     response.Data.Logo = model.Logo;
                     response.Data.LogoId = model.LogoId;
-                    response.Data.StoerId = model.StoerId==null? userId: model.StoerId;
+                    response.Data.StoreId = model.StoreId == null ? userId : model.StoreId;
                     response.Data.LogoName = model.Logo;
                     // response.Data = list;
                     response.Status = true;
                 }
                 else
                 {
-               
-                    //response.Data.StoerId = model.StoerId == null ? userId : model.StoerId;
+
+                    //response.Data.StoreId = model.StoreId == null ? userId : model.StoreId;
                     // response.Data = list;
                     response.Status = false;
                 }
@@ -82,12 +82,12 @@ namespace ACM.Core.Managers
             ResponseModel<StoreInfoViewModel> response = new ResponseModel<StoreInfoViewModel>();
             try
             {
-                var model = acmContext.StoreInfo.Where(e => e.StoerId == _model.StoerId).FirstOrDefault();
+                var model = acmContext.StoreInfo.Where(e => e.StoreId == _model.StoreId).FirstOrDefault();
                 if (model != null)
                 {
                     model.Logo = _model.LogoName;
-                   // model.LogoId = _model.LogoId;
-                    model.StoerId = _model.StoerId;
+                    // model.LogoId = _model.LogoId;
+                    model.StoreId = _model.StoreId;
 
                     acmContext.SaveChanges();
 
@@ -99,13 +99,13 @@ namespace ACM.Core.Managers
                     StoreInfo storeModel = new StoreInfo();
                     storeModel.Logo = _model.LogoName;
                     //storeModel.LogoId = model.LogoId;
-                    storeModel.StoerId = _model.StoerId;
+                    storeModel.StoreId = _model.StoreId;
                     acmContext.Add(storeModel);
                     acmContext.SaveChanges();
                     response.Data = null;
                     response.Status = true;
                 }
-             
+
             }
             catch (Exception ex)
             {
@@ -179,36 +179,76 @@ namespace ACM.Core.Managers
             }
 
             return response;
-           // return responseModel;
+            // return responseModel;
 
         }
 
         public ResponseModel<List<CheckInContractsViewModel>> ManageContractList()
         {
-            ResponseModel<List<CheckInContractsViewModel>> response = new ResponseModel<List<CheckInContractsViewModel>> { Data = new List<CheckInContractsViewModel>()};
-            var _list = acmContext.CheckInForm.Select(e => e).ToList();
-            foreach (var item in _list)
+            ResponseModel<List<CheckInContractsViewModel>> response = new ResponseModel<List<CheckInContractsViewModel>> { Data = new List<CheckInContractsViewModel>() };
+            try
             {
-               // ManageStoreContractsViewModel model = new ManageStoreContractsViewModel();
-               // model.Id = item.Id;
-               // model.SummeryOfTaskCompleted = item.SummeryOfTaskCompleted;
-               // model.EmailAddress = item.EmailAddress;
-               // model.Name = item.Name;
-               // model.Vin = item.Vin;
-               // model.Year = item.Year;
-               // model.PartsNeeded = item.PartsNeeded;
-               // model.PersonalItemInVehicle = item.PersonalItemInVehicle;
-               // model.PhoneNumber = item.PhoneNumber;
-               // model.OdoMeter = item.OdoMeter;
-               // model.Model = item.Model;
-               // model.Make = item.Make;
-               //// model.CreatedOn = DateTime.Now;
-               // model.IsActive = item.IsActive;
-               // response.Data.Add(model);
-               // response.Status = true;
+                var _list = acmContext.CheckInForm.Select(e => e).ToList();
+                foreach (var item in _list)
+                {
+                    CheckInContractsViewModel model = new CheckInContractsViewModel();
+                    model.Id = item.Id;
+                    model.SummeryOfTaskCompleted = item.SummeryOfTaskCompleted;
+                    model.EmailAddress = item.EmailAddress;
+                    model.Name = item.Name;
+                    model.Vin = item.Vin;
+                    model.Year = item.Year;
+                    model.PartsNeeded = item.PartsNeeded;
+                    model.PersonalItemInVehicle = item.PersonalItemInVehicle;
+                    model.PhoneNumber = item.PhoneNumber;
+                    model.OdoMeter = item.OdoMeter;
+                    model.Model = item.Model;
+                    model.Make = item.Make;
+                    model.CreatedOn = item.CreatedOn;
+                    model.IsActive = item.IsActive;
+                    response.Data.Add(model);
+                }
+                response.Status = true;
+            }
+            catch (Exception ex)
+            {
+                response.Status = false;
+                response.Message = ex.Message;
             }
             return response;
         }
-
+        public ResponseModel<CheckInContractsViewModel> CheckInContractDetail(string storeId)
+        {
+            ResponseModel<CheckInContractsViewModel> model = new ResponseModel<CheckInContractsViewModel> { Data = new CheckInContractsViewModel() };
+            try
+            {
+                var _model = acmContext.CheckInForm.Where(e => e.StoreId == storeId).FirstOrDefault();
+                if (_model != null)
+                {
+                    model.Data.Id = _model.Id;
+                    model.Data.SummeryOfTaskCompleted = _model.SummeryOfTaskCompleted;
+                    model.Data.EmailAddress = _model.EmailAddress;
+                    model.Data.Name = _model.Name;
+                    model.Data.Vin = _model.Vin;
+                    model.Data.Year = _model.Year;
+                    model.Data.PartsNeeded = _model.PartsNeeded;
+                    model.Data.PersonalItemInVehicle = _model.PersonalItemInVehicle;
+                    model.Data.PhoneNumber = _model.PhoneNumber;
+                    model.Data.OdoMeter = _model.OdoMeter;
+                    model.Data.Model = _model.Model;
+                    model.Data.Make = _model.Make;
+                    model.Data.CreatedOn = _model.CreatedOn;
+                    model.Data.IsActive = _model.IsActive;
+                    model.Data.StoreId = _model.StoreId;
+                }
+                model.Status = true;
+            }
+            catch (Exception ex)
+            {
+                model.Status = false;
+                model.Message = ex.Message;
+            }
+            return model;
+        }
     }
 }

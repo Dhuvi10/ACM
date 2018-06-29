@@ -54,7 +54,7 @@ namespace ACMWeb.Controllers
             else
             {
                 var model = new StoreInfoViewModel();
-                model.StoerId = GetCurrentUserId().Result;
+                model.StoreId = GetCurrentUserId().Result;
                 return View(model);
             }
         }

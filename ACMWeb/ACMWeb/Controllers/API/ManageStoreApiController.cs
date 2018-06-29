@@ -133,15 +133,42 @@ namespace ACMWeb.Controllers.API
         [Route("SaveCheckInForm")]
         public IActionResult SaveCheckInForm([FromBody]CheckInContractsViewModel model)
         {
-            return Ok();
-            //var result = _storeManager.SaveCheckInContract(model);
-            //if (result.Status)
-            //{ return Ok(result.Message); }
-            //else
-            //{
-            //   return BadRequest(result.Message);
-            //}
+            var result = _storeManager.SaveCheckInContract(model);
+            if (result.Status)
+            { return Ok(result.Message); }
+            else
+            {
+                return BadRequest(result.Message);
+            }
         }
-       
+        [HttpGet]
+        [Route("CheckInContractListing")]
+        public IActionResult CheckInContractListing()
+        {
+            var result = _storeManager.ManageContractList();
+            if (result.Status)
+            {
+                return Ok(result.Data);
+            }
+            else
+            {
+                return BadRequest(result.Message);
+            }
+        }
+        [HttpGet]
+        [Route("CheckInContractDetail/{storeId}")]
+        public IActionResult CheckInContractDetail(string storeId)
+        {
+            var result = _storeManager.CheckInContractDetail(storeId);
+            if (result.Status)
+            {
+                return Ok(result.Data);
+            }
+            else
+            {
+                return BadRequest(result.Message);
+            }
+        }
+
     }
 }

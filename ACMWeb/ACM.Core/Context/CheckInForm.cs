@@ -20,6 +20,6 @@ namespace ACM.Core.Context
         public string PersonalItemInVehicle { get; set; }
         public DateTime? CreatedOn { get; set; }
         public bool? IsActive { get; set; }
-        public long StoreId { get; set; }
+        public string StoreId { get; set; }
     }
 }
