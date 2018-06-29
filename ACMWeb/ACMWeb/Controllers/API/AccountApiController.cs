@@ -4,11 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using ACM.Core.Models;
 using ACM.Core.Models.AccountViewModels;
+using ACM.Core.Models.UserViewModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using TechnicalWeb.Filters;
+
 
 namespace ACMWeb.Controllers.API
 {
@@ -21,6 +23,7 @@ namespace ACMWeb.Controllers.API
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger _logger;
         private readonly RoleManager<IdentityRole> _roleManager;
+       
 
         JwtAuthentication _JwtAuthentication;
         public AccountApiController(UserManager<ApplicationUser> userManager,
@@ -58,8 +61,20 @@ namespace ACMWeb.Controllers.API
                         var role = _userManager.IsInRoleAsync(_userManager.Users.Where(e => e.Email == model.Email).FirstOrDefault(), "Admin").Result;
                         if (role)
                         {
+                            List<UserViewModel> userList = new List<UserViewModel>();
+                            var usr =  _userManager.GetUsersInRoleAsync("Store").Result;
+
+                            foreach (var item in usr.Where(e => e.AdminId == GetCurrentUserId().Result))
+                            {
+                                UserViewModel _model = new UserViewModel();
+                                _model.Name = item.Name;
+                                _model.Email = item.Email;
+                                _model.id = item.Id;
+                                _model.suspened = item.LockoutEnabled;
+                                userList.Add(_model);
+                            }
                             //return RedirectToAction(nameof(UserManagementController.Index), "UserManagement");
-                            return Ok(new { Status = true, id= user.Id,role = "Admin", token = _JwtAuthentication.BuildToken(model.Email, user.Name), message = "Login Sucessfully" });
+                            return Ok(new { Status = true, id= user.Id,role = "Admin", token = _JwtAuthentication.BuildToken(model.Email, user.Name), message = "Login Sucessfully", storeUserList= userList });
                         }
                         else
                         {
@@ -82,6 +97,13 @@ namespace ACMWeb.Controllers.API
 
             // If we got this far, something failed, redisplay form
             return StatusCode(401, new { Status = false, role = "", token = "", message = "please fill the required details" });
+        }
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
+        [NonAction]
+        public async Task<string> GetCurrentUserId()
+        {
+            ApplicationUser usr = await GetCurrentUserAsync();
+            return usr?.Id;
         }
 
         [HttpPost]

@@ -19,7 +19,7 @@ using TechnicalWeb.Filters;
 
 namespace ACMWeb.Controllers.API
 {
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+   // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Produces("application/json")]
     [Route("api/Store")]
     public class ManageStoreApiController : Controller
@@ -131,16 +131,16 @@ namespace ACMWeb.Controllers.API
         }
         [HttpPost]
         [Route("SaveCheckInForm")]
-        public async Task<IActionResult> SaveCheckInContract([FromBody]CheckInContractsViewModel _model)
+        public IActionResult SaveCheckInForm([FromBody]CheckInContractsViewModel model)
         {
-
-            var result = _storeManager.SaveCheckInContract(_model);
-            if (result.Status)
-            { return Ok(result.Message); }
-            else
-            {
-               return BadRequest(result.Message);
-            }
+            return Ok();
+            //var result = _storeManager.SaveCheckInContract(model);
+            //if (result.Status)
+            //{ return Ok(result.Message); }
+            //else
+            //{
+            //   return BadRequest(result.Message);
+            //}
         }
        
     }
