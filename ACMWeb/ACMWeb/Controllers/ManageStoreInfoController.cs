@@ -20,17 +20,17 @@ namespace ACMWeb.Controllers
     {
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly IStoreManager _manageStore;
+        private readonly IStoreManager _storeManager;
         private readonly IHostingEnvironment _hostingEnvironment;
         string webRootPath = "";
 
-        public ManageStoreInfoController(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager, IStoreManager manageStore,
+        public ManageStoreInfoController(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager, IStoreManager storeManager,
             IHostingEnvironment hostingEnvironment
 )
         {
             _roleManager = roleManager;
             _userManager = userManager;
-            _manageStore = manageStore; 
+            _storeManager = storeManager; 
              _hostingEnvironment = hostingEnvironment;
              webRootPath = _hostingEnvironment.WebRootPath;
 
@@ -45,7 +45,7 @@ namespace ACMWeb.Controllers
         public IActionResult Index()
         {
             //var user = GetCurrentUserId().Result;
-            var test = _manageStore.StoreLogo(GetCurrentUserId().Result);
+            var test = _storeManager.StoreLogo(GetCurrentUserId().Result);
             if (test.Status )
             {
                 ViewData["Url"] = System.IO.Path.Combine(webRootPath, "StoreLogo")+"\\";
@@ -85,7 +85,7 @@ namespace ACMWeb.Controllers
 
                 //set the image path
                 // string imgPath = Path.Combine(fullPath, imageName);
-                var result = _manageStore.SaveStoreLogo(model);
+                var result = _storeManager.SaveStoreLogo(model);
                 if (result.Status)
                 {
                    
@@ -111,17 +111,39 @@ namespace ACMWeb.Controllers
 
 
         }
-
-        public IActionResult ManageStoreContract()
+        public IActionResult ManageStoreContracts()
         {
-            return View( new RegisterStoreViewModel());
+            return View(new ManageContractViewModel());
         }
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public IActionResult ManageStoreContract(CheckInContractsViewModel model)
+        public IActionResult ManageStoreContracts(ManageContractViewModel model)
         {
             return View();
+        }
+        public IActionResult CheckInForm(int? id)
+        {
+            if (id.HasValue)
+            {
+                var result = _storeManager.CheckInContractDetail(id.Value.ToString());
+                return View(result.Data);
+            }
+            else
+            {
+                return View(new CheckInContractsViewModel());
+            }
+        }
+        public IActionResult CheckInFormList()
+        {
+
+            return View();
+        }
+        public IActionResult PartialList()
+        {
+
+            var result = _storeManager.ManageContractList();
+            return PartialView("_CheckIn", result.Data);
         }
     }
 }

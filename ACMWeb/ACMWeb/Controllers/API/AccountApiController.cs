@@ -66,14 +66,14 @@ namespace ACMWeb.Controllers.API
                             List<UserViewModel> userList = new List<UserViewModel>();
                             var usr =  _userManager.GetUsersInRoleAsync("Store").Result;
                             var logoList = _storeManager.StoreLogoList();
-                            foreach (var item in usr.Where(e => e.AdminId == GetCurrentUserId().Result))
+                            foreach (var item in usr.Where(e => e.AdminId == user.Id))
                             {
                                 UserViewModel _model = new UserViewModel();
                                 _model.Name = item.Name;
                                 _model.Email = item.Email;
                                 _model.id = item.Id;
                                 _model.suspened = item.LockoutEnabled;
-                                _model.Logo = logoList.Data.Where(k => k.StoreId == item.Id).FirstOrDefault().Logo;
+                                _model.Logo = logoList==null?null: logoList.Data.Where(k => k.StoreId == item.Id).FirstOrDefault().Logo;
                                 userList.Add(_model);
                             }
                             //return RedirectToAction(nameof(UserManagementController.Index), "UserManagement");

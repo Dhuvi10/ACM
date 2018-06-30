@@ -206,26 +206,33 @@ namespace ACMWeb.Controllers
         public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
-            if (ModelState.IsValid)
+            try
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Name = model.Name };
-                var result = await _manager.Register(model);
-                if (result.Succeeded)
+                if (ModelState.IsValid)
                 {
-                    _logger.LogInformation("User created a new account with password.");
+                    var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Name = model.Name };
+                    var result = await _manager.Register(model);
+                    if (result.Succeeded)
+                    {
+                        // _logger.LogInformation("User created a new account with password.");
 
-                    // var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    // var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
-                    /// await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
-                    var role = _roleManager.Roles.Where(e => e.Name == "Admin").FirstOrDefault();
-                    var user1 = _userManager.Users.Where(e => e.Email == model.Email).FirstOrDefault();
-                    await _userManager.AddToRoleAsync(user1, role.Name);
-                    await _signInManager.SignInAsync(user1, isPersistent: false);
-                    _logger.LogInformation("User created a new account with password.");
-                    //return Redirect("/UserMangement/Index");
-                    return RedirectToAction(nameof(UserManagementController.Index), "UserManagement");
+                        // var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                        // var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
+                        /// await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
+                        var role = _roleManager.Roles.Where(e => e.Name == "Admin").FirstOrDefault();
+                        var user1 = _userManager.Users.Where(e => e.Email == model.Email).FirstOrDefault();
+                        await _userManager.AddToRoleAsync(user1, role.Name);
+                        await _signInManager.SignInAsync(user1, isPersistent: false);
+                        //_logger.LogInformation("User created a new account with password.");
+                        //return Redirect("/UserMangement/Index");
+                        return RedirectToAction(nameof(UserManagementController.Index), "UserManagement");
+                    }
+                    AddErrors(result);
                 }
-                AddErrors(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation(ex.Message);
             }
 
             // If we got this far, something failed, redisplay form
@@ -237,7 +244,7 @@ namespace ACMWeb.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            _logger.LogInformation("User logged out.");
+           // _logger.LogInformation("User logged out.");
             return RedirectToAction(nameof(HomeController.Index), "Home");
 
         }
@@ -247,7 +254,7 @@ namespace ACMWeb.Controllers
         public async Task<IActionResult> LogoutGet()
         {
             await _signInManager.SignOutAsync();
-            _logger.LogInformation("User logged out.");
+           // _logger.LogInformation("User logged out.");
             return RedirectToAction(nameof(HomeController.Index), "Home");
 
         }

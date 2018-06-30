@@ -1,0 +1,60 @@
+﻿@model List<ACM.Core.Models.CheckInContractViewModels.CheckInContractsViewModel>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>SummeryOfTaskCompleted</th>
+            <th>Date</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            var test = item.CreatedOn.HasValue ? item.CreatedOn.Value.ToString("dd-MM-yyyy") : "NoDate";
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.EmailAddress</td>
+                <td>@item.SummeryOfTaskCompleted</td>
+
+                <td> @test</td>
+                <td><button onclick="PasswordPopup('@item.Id')" style="width:100px" data-toggle="modal" data-target="#myModal">Edit</button></td>
+                @*<td><a onclick="EditAdminUser('@item.Id');">Edit</a></td>*@
+            </tr>
+
+        }
+    </tbody>
+</table>
+<input id="userID" type="hidden" />
+<input id="status" type="hidden" />
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                @*<h4 class="modal-title">Modal Heading</h4>*@
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                Are you sure you want to  this user?
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button onclick="PasswordView();" style="width:100px" data-dismiss="modal">Yes</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="cancel()">Cancel</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@*@foreach (var item in Model)
+    {
+
+    }*@

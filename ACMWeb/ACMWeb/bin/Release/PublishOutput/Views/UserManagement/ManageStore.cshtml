@@ -1,0 +1,132 @@
+﻿@model List<ACM.Core.Models.UserViewModel.UserViewModel>
+@{
+    ViewData["Title"] = "User Management";
+    Layout = "_LoggedInLayout";
+}
+
+
+@*<h2>Manage Admin User</h2>*@
+<div class="row">
+@*<a asp-controller="campaign" asp-action="create"><i class="fas fa-plus"></i> Neu Kampagne</a>*@
+
+<div class="col-xs-12">
+
+    <div class="x_panel">
+
+        <div class="x_title">
+            @*<h2>Verwalten Kampagnen</h2>*@
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            @*@if (Model.Count == 0)
+            {
+                <h3>Keine Kampagne gefunden!</h3>
+            }*@
+            <div id="divList">
+
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+
+@section Scripts
+    {
+<script type="text/javascript">
+    $(function()
+    {
+    List();
+    });
+    function List() {
+        $.ajax({
+            method: "get",
+            url: "@Url.Action("ManageStorePartialList", "Usermanagement")",
+            success: function (result) {
+                $('#divList').html(result);
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+            }
+            function Save() {
+                  $("form").submit();
+
+            }
+        function StatusChangeddd(id, status) {
+            var stat = status == "Active" ? "Deactive" : "Active";
+            if (confirm("Are you sure you want to "+stat+" this?")) {
+                $.ajax({
+            method: "get",
+            url: "@Url.Action("PartialStatusChanged", "Usermanagement")",
+               data: { id: id, status: status},
+            success: function (result) {
+                $('#divList').html(result);
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+            }
+            else {
+                return false;
+            }
+        //alert(123)
+
+        }
+            function LoginStoreUser(email) {
+
+                 $.ajax({
+            method: "get",
+            url: "@Url.Action("LoginStoreUser", "Usermanagement")",
+                     data: { id: email},
+            success: function (result) {
+                if (result == "true") {
+                    window.location.href= "@Url.Action("ManageStore", "Usermanagement")";
+                }
+            },
+            error: function (err) {
+                console.log(err);
+            }
+           });
+            }
+            function EditStore(Id) {
+
+                window.location.href = "@Url.Action("CreateStoreUser", "Usermanagement")" + "/" + Id+"";
+
+          @*$.ajax({
+            method: "get",
+            url: "@Url.Action("CreateStoreUser", "Usermanagement")",
+               data: { id: id},
+            success: function (result) {
+                $('#divList').html(result);
+            },
+            error: function (err) {
+                console.log(err);
+            }
+           });*@
+
+        }
+        function DeleteStore(id) {
+
+            if (confirm("Are you sure you want to Delete this store?")) {
+                $.ajax({
+            method: "get",
+            url: "@Url.Action("DeleteStore", "Usermanagement")",
+               data: { id: id, status: status},
+            success: function (result) {
+                $('#divList').html(result);
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+            }
+            else {
+                return false;
+            }
+        //alert(123)
+
+    }
+</script>
+}

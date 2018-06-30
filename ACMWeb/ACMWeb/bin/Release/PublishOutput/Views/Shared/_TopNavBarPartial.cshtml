@@ -1,0 +1,47 @@
+﻿@*@using Microsoft.AspNetCore.Identity*@
+@*@using Context.Models*@
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<div class="nav_menu">
+    <nav>
+        @*<div class="nav toggle"> <a id="menu_toggle"><img src="~/images/menu-icon.png" /> </a> </div>*@
+        @*
+        <div class="search-bar top-search">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </div>*@
+        <ul class="nav navbar-nav navbar-right notification-area">
+            <li class="user-profile">
+                <img src="~/images/user-image.png" alt="">
+                <span class="">Hello</span>
+                <a aria-expanded="false" data-toggle="dropdown" class="dropdown-toggle" href="javascript:;">@UserManager.GetUserName(User)</a><br />
+                 
+                <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                    <li>
+                        <a href="@Url.Action("LogoutGet","Account")"><i class="fas fa-power-off"></i><strong> Logout</strong> </a>
+                    </li>
+                  
+                </ul>
+            </li>
+
+            @*<li role="presentation" class="dropdown notification-box">
+                <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false"> <i class="fa fa-bell"></i> <span class="badge">&nbsp;</span> </a>
+                <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                    <li> <a> <span class="image"><img src="~/images/user-image.png" alt="Profile Image" /></span> <span> <span>John Smith</span> <span class="time">3 mins ago</span> </span> <span class="message"> Film festivals used to be do-or-die moments for movie makers. They were where... </span> </a> </li>
+                    <li> <a> <span class="image"><img src="~/images/user-image.png" alt="Profile Image" /></span> <span> <span>John Smith</span> <span class="time">3 mins ago</span> </span> <span class="message"> Film festivals used to be do-or-die moments for movie makers. They were where... </span> </a> </li>
+                    <li> <a> <span class="image"><img src="~/images/user-image.png" alt="Profile Image" /></span> <span> <span>John Smith</span> <span class="time">3 mins ago</span> </span> <span class="message"> Film festivals used to be do-or-die moments for movie makers. They were where... </span> </a> </li>
+                    <li> <a> <span class="image"><img src="~/images/user-image.png" alt="Profile Image" /></span> <span> <span>John Smith</span> <span class="time">3 mins ago</span> </span> <span class="message"> Film festivals used to be do-or-die moments for movie makers. They were where... </span> </a> </li>
+                    <li>
+                        <div class="text-center"> <a> <strong>See All Alerts</strong> <i class="fa fa-angle-right"></i> </a> </div>
+                    </li>
+                </ul>
+            </li>*@
+        </ul>
+    </nav>
+</div>

@@ -1,0 +1,175 @@
+﻿@*@using Microsoft.AspNetCore.Mvc.Localization
+@using Web
+@inject IHtmlLocalizer<SharedResources> sharedLocalizer;*@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ACM</title>
+    <environment include="Development,Production">
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="~/css/bootstrap.min.css">
+        <link rel="stylesheet" href="~/css/fontawesome-all.css">
+        <link rel="stylesheet" href="~/css/carousel.css">
+        <link rel="stylesheet" href="~/css/custom.css">
+        <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,600,700" rel="stylesheet">
+    </environment>
+    <environment exclude="Development,Production">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+
+</head>
+<body>
+    <header>
+        <div class="top-bar">
+            <div class="container">
+                @*<b>
+                    @sharedLocalizer["SocialLinks"]                   
+                </b>
+                <ul class="social-links">
+                    <li class="px-1"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                    <li class="px-2"><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                    <li class="px-1"><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    <li>
+                        <a href="/?culture=de" style="margin-right:16px;">German</a>
+                        <a href="/?culture=en">English</a>
+                    </li>
+                </ul>*@
+            </div>
+        </div>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <strong style="font-size: 50px;"><a href="~/" class="navbar-brand">ACM </a></strong>
+                <button aria-label="Toggle navigation" aria-expanded="false" aria-controls="headNav" data-target="#headNav" data-toggle="collapse" type="button" class="navbar-toggler">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div id="headNav" class="collapse navbar-collapse justify-content-end">
+                    <ul class="navbar-nav">
+                        <li class="nav-item active">
+                            <a href="@Url.Action("Register","Account")" class="nav-link text-dark px-3">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="home" asp-action="about" class="nav-link text-dark px-3">About</a>
+                        </li>
+                        @*<li class="nav-item">
+                                <a asp-controller="Account" asp-action="Login" class="nav-link text-dark px-3">Login</a>
+                            </li>*@
+                        @await Html.PartialAsync("_LoginPartial")
+
+                        @*<li class="nav-item">
+                                <a href="#" class="nav-link text-dark px-3">Contact Us</a>
+                            </li>*@
+                    </ul>
+                    <form class="form-inline my-2 my-md-0 header-search">
+                        <label id="search-icon" class="border-left pl-3 py-3" for="Search">
+                            <i class="fa fa-search"></i>
+                        </label>
+                        <input id="search-form" autofocus="" required="" type="text" placeholder="Search" class="form-control">
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+    @RenderBody()
+    <footer>
+        @*<div class="bg-black">
+            <div class="container py-10">
+                <div class="row py-4">
+                    <div class="col-md-4 text-white">
+                        <h5 class="mb-4 mt-2 footer-heading">
+                            ABOUT ACM
+                        </h5>
+                        <p class="mb-4 text-justify">
+                            Etiam id scelerisque est, vel scelerisque elit. Etiam vitae consequat dui.
+                            Suspendisse in porta felis, a varius elit. Sed nec fringilla mauris. Pellentesque habitant morbi.
+                        </p>
+                    </div>
+                    <div class="col-md-3 offset-1 text-white">
+                        <h5 class="mb-4 mt-2 footer-heading">
+                            USEFUL LINKS
+                        </h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><a href="#" class="text-white">Support</a></li>
+                            <li class="mb-2"><a href="#" class="text-white">FAQ</a></li>
+                            <li class="mb-2"><a asp-controller="account" asp-action="login" class="text-white">Login</a></li>
+                            @*<li class="mb-2"><a href="#" class="text-white">Contact Us</a></li>
+                            <li class="mb-2"><a asp-controller="campaign" asp-action="index" class="text-white">Campaign Management</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 offset-1 text-white">
+                        <h5 class="mb-4 mt-2 footer-heading">
+                            CONTACT US
+                        </h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><a href="#" class="text-white"><i class="far fa-envelope mr-2"></i>contact@lacm.com</a></li>
+                            <li class="mb-2"><a href="#" class="text-white"><i class="fas fa-phone mr-2"></i>(+123) 456 - 7890 </a></li>
+                        </ul>
+                        <ul class="social-links list-inline">
+                            <li class="px-1 list-inline-item"><a href="#" class="text-white"><i class="fab fa-facebook-f"></i></a></li>
+                            <li class="px-2 list-inline-item"><a href="#" class="text-white"><i class="fab fa-google-plus-g"></i></a></li>
+                            <li class="px-1 list-inline-item"><a href="#" class="text-white"><i class="fab fa-twitter"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+        <div class="container-fluid bg-blue">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center py-3">
+                        <p class="text-white m-0"> &COPY; Copyright 2018 ACM - All Rights Reserved</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <environment include="Development,Production">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+        <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                var current = location.pathname;
+                $('#headNav li a').each(function () {
+                    var $this = $(this);
+                    // if the current path is like this link, make it active
+                    if (current.indexOf($this.attr('href')) !== -1) {
+                        $('#headNav>ul>li.active').removeClass("active");
+                        $this.parent().addClass('active');
+                    }
+                })
+            })
+
+            function logOut() {
+                document.getElementById("logOutForm").submit();
+                return false; // cancel the actual link
+            }
+
+        </script>
+
+        <script type='text/javascript'>
+            // When your page loads
+            $(function () {
+                // When the toggle areas in your navbar are clicked, toggle them
+                $("#search-button, #search-icon").click(function (e) {
+
+                    e.preventDefault();
+                    $("#search-button, #search-form").toggle();
+                });
+            })
+        </script>
+    </environment>
+    @RenderSection("Scripts", required: false)
+
+
+</body>
+</html>

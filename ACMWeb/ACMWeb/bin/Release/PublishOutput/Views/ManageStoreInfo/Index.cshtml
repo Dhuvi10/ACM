@@ -1,0 +1,85 @@
+﻿@model ACM.Core.Models.StoreInfoViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_LoggedInLayout";
+}
+<div class="row">
+    <div class="col-xs-12">
+
+        <div class="x_panel">
+
+            <div class="x_title">
+                <div class="signin-up-area">
+                    <div class="form-cont">
+                        <div class="form">
+                            <form asp-route-returnUrl="@ViewData["ReturnUrl"]" asp-action="Index" method="post">
+                                <input type="hidden" name="LogoId" value="@Model.LogoId" />
+                                <input type="hidden" id="Logo" name="Logo" value="@Model.Logo" />
+                                <input type="hidden" name="StoreId" value="@Model.StoreId" />
+                                <input type="hidden" id="LogoName" name="LogoName" value="@Model.LogoName" />
+                                @if (!string.IsNullOrWhiteSpace(Model.Logo))
+    {
+                            <div class="form-group">
+                                <label>Store Logo</label>
+                                <img src="~/StoreLogo/@Model.LogoName" alt="Logo" />
+                            </div>
+}
+                                <div class="upload-file text-center">
+                                    <input id="contactUpload" type="file" onchange="uploadContacts()" style="display:none" />
+                                    <span onclick='$("#contactUpload").click()' style="cursor:pointer">
+                                        <i class="fa fa-upload">  </i>Upload logo/replace existing logo<small>( Png)</small>
+                                    </span><br>
+                                    @*<button class="btn btn-save" type="submit"><i class="fa fa-save"></i>&nbsp; Save</button>*@
+                                </div>
+                            <button type="submit" class="btn btn-default">Save</button>
+                            <a href="@Url.Action("ManageStore","UserManagement")" class="btn btn-default">Cancel</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                </div></div></div>  </div>
+                @section Scripts {
+                    @await Html.PartialAsync("_ValidationScriptsPartial")
+                    <script>
+     function uploadContacts() {
+
+            var fileUpload = $("#contactUpload").get(0);
+            var file = fileUpload.files[0];
+            var fileName = file.name;
+            console.log("file.size");
+                        $('#LogoName').val(file.name);
+            var fileExt = fileName.substring(fileName.lastIndexOf('.') + 1);
+            //if (fileExt != 'png' && fileExt != 'xlsx' && fileExt != 'xml' && fileExt != 'csv') {
+            //    alert(fileExt + ' file is not supported');
+            //    return false;
+            //}
+            
+            var reader = new FileReader();
+            var test = "";
+
+            reader.readAsDataURL(file);
+                        reader.onload = function () {
+                            $('#Logo').val(reader.result);
+               // formData.append('ImgStr', reader.result);
+               @*$.ajax({
+                url: "@Url.Action("SaveImage")",
+                type: "POST",
+                contentType: false, // Not to set any content header
+                processData: false, // Not to process data
+                data: formData,
+            });*@
+            };
+            reader.onerror = function (error) {
+
+                console.log('Error: ', error);
+            };
+            // Create FormData object
+
+            //debugger;
+
+
+        }
+                    </script>
+                }
+

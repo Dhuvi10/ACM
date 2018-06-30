@@ -1,0 +1,63 @@
+﻿@{
+    ViewData["Title"] = "Add Role";
+    Layout = "_LoggedInLayout";
+}
+@model ACM.Core.Models.RoleViewModels.RoleViewModel
+
+@*<a asp-controller="campaign" asp-action="create"><i class="fas fa-plus"></i> Neu Kampagne</a>*@
+<div class="row">
+    <div class="col-xs-12">
+
+        <div class="x_panel">
+
+            <div class="x_title">
+                <h2>Verwalten Kampagnen</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                @*@if (Model.Count == 0)
+                    {
+                        <h3>Keine Kampagne gefunden!</h3>
+                    }*@
+
+                <div class="signin-up-area">
+                    <div class="form-cont">
+                        <div class="form">
+                            <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+                                <h4>@ViewData["Title"]</h4>
+                                <hr />
+                                <div asp-validation-summary="All" class="text-danger"></div>
+                                <div class="form-group">
+                                    <label asp-for="Name"></label>
+                                    <input asp-for="Name" class="form-control" />
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
+                                @*<div class="form-group">
+                                        <label asp-for="Email"></label>
+                                        <input asp-for="Email" class="form-control" />
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Password"></label>
+                                        <input asp-for="Password" class="form-control" />
+                                        <span asp-validation-for="Password" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="ConfirmPassword"></label>
+                                        <input asp-for="ConfirmPassword" class="form-control" />
+                                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                    </div>*@
+                                <button type="submit" class="btn btn-default">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
