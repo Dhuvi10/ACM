@@ -7,8 +7,8 @@ namespace ACM.Core.Interfaces
 {
    public interface IGalleryManager
     {
-        ResponseModel<string> AddGalleryImage(GalleryViewModel model, string serverPath);
-        ResponseModel<string> AddMultipleImages(List<GalleryViewModel> model, string serverPath);
+        ResponseModel<string> AddGalleryImage(GalleryViewModel model, string serverPath, string thumbPath);
+        ResponseModel<string> AddMultipleImages(List<GalleryViewModel> model, string serverPath, string thumbPath);
         ResponseModel<string> SetFrontImage(int Id, string storeId);
         ResponseModel<List<GalleryViewModel>> GalleryByStore(string storeId);
         ResponseModel<string> DeleteImages(List<long> Ids);

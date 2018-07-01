@@ -3,6 +3,7 @@
     ViewData["Title"] = "Index";
     Layout = "_LoggedInLayout";
 }
+
 <div class="row">
     @*<a asp-controller="campaign" asp-action="create"><i class="fas fa-plus"></i> Neu Kampagne</a>*@
     <div class="col-xs-12">
@@ -25,7 +26,12 @@
 </div>
 @section Scripts
     {
-<script type="text/javascript">
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#tbList').dataTable();
+        });
+    </script>
+    <script type="text/javascript">
    $(function()
     {
        CheckinList();
@@ -44,5 +50,6 @@
             }
             });
     }
-</script>
-        }
+
+    </script>
+}

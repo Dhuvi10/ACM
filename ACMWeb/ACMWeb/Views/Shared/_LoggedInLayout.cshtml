@@ -65,6 +65,7 @@
     </div>
 
     <environment include="Development,Production">
+
         <script src="~/css/Dashboard/js/jquery.min.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src="~/css/Dashboard/js/bootstrap.min.js"></script>
@@ -82,6 +83,15 @@
 
         <!-- Custom Theme Scripts -->
         <script src="~/css/Dashboard/js/custom.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script> // JQuery Reference
+
+        <script src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/plug-ins/9dcbecd42ad/integration/jqueryui/dataTables.jqueryui.js">
+        </script>
+        <link rel="stylesheet"
+              href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+        <link rel="stylesheet"
+              href="https://cdn.datatables.net/plug-ins/9dcbecd42ad/integration/jqueryui/dataTables.jqueryui.css">
         @RenderSection("Scripts", required: false)
 
         <script type="text/javascript">

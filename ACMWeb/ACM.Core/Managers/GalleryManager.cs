@@ -6,6 +6,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using System.IO;
+using System.DrawingCore;
+using ACM.Core.Utility;
+using System.DrawingCore.Imaging;
 
 namespace ACM.Core.Managers
 {
@@ -17,7 +20,7 @@ namespace ACM.Core.Managers
         {
             acmContext = _acmContext;
         }
-        public ResponseModel<string> AddGalleryImage(GalleryViewModel model,string serverPath)
+        public ResponseModel<string> AddGalleryImage(GalleryViewModel model,string serverPath,string thumbPath)
         {
             ResponseModel<string> response = new ResponseModel<string> { Data = "" };
             try
@@ -35,12 +38,32 @@ namespace ACM.Core.Managers
                 File.WriteAllBytes(path, imageBytes);
 
                 gallery.Image = FileName;
+                Image normalImage;
+                using (MemoryStream ms = new MemoryStream(imageBytes))
+                {
+                    normalImage = Image.FromStream(ms);
+                }
+                Bitmap bmp = new Bitmap(normalImage);
 
-               // System.Drawing.Image image = Image.FromFile(FileName);
-               // Image thumb = image.GetThumbnailImage(120, 120, () => false, IntPtr.Zero);
+                string base64ImageString = bmp.ToBase64String(ImageFormat.Png);
+                Bitmap bmpFromString = base64ImageString.Base64StringToBitmap();
+                
+                //Size thumbnailSize = ImageUtility.GetThumbnailSize(normalImage);
+
+                // Get thumbnail.
+                //  Image thumbnail = normalImage.GetThumbnailImage(thumbnailSize.Width,
+                //   thumbnailSize.Height, null, IntPtr.Zero);
+
+                // Image image = ImageUtility.GetReducedImage(120, 120, normalImage);
+                string thumbName = Guid.NewGuid().ToString() + "." + Convert.ToString(model.FileName.Split('.')[1]);
+                var outpath = Path.Combine(thumbPath, thumbName.ToString());
+                bmpFromString.Save(outpath, ImageFormat.Png);
+                // thumbnail.Save(outpath, ImageFormat.Jpeg);
+                gallery.ThumbnailImage = thumbName;
+                // Image thumb = image.GetThumbnailImage(120, 120, () => false, IntPtr.Zero);
                 //thumb.Save(Path.ChangeExtension(fileName, "thumb"));
 
-                gallery.ThumbnailImage = "";
+               // gallery.ThumbnailImage = "";
                 acmContext.Gallery.Add(gallery);
                 acmContext.SaveChanges();
                 response.Status=true;
@@ -54,7 +77,7 @@ namespace ACM.Core.Managers
             return response;
         }
 
-        public ResponseModel<string> AddMultipleImages(List<GalleryViewModel> models, string serverPath)
+        public ResponseModel<string> AddMultipleImages(List<GalleryViewModel> models, string serverPath, string thumbPath)
         {
             ResponseModel<string> response = new ResponseModel<string> { Data = "" };
             foreach (var item in models) 

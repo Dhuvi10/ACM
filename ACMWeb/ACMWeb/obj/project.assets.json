@@ -3941,7 +3941,8 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "2.1.1",
           "Microsoft.EntityFrameworkCore.SqlServer.Design": "1.1.5",
           "Microsoft.EntityFrameworkCore.Tools": "2.1.1",
-          "System.Drawing.Primitives": "4.3.0"
+          "System.Drawing.Primitives": "4.3.0",
+          "ZKWeb.System.Drawing": "4.0.1"
         },
         "compile": {
           "bin/placeholder/ACM.Core.dll": {}
