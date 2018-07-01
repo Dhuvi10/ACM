@@ -156,10 +156,24 @@ namespace ACMWeb.Controllers.API
             }
         }
         [HttpGet]
-        [Route("CheckInContractDetail/{storeId}")]
-        public IActionResult CheckInContractDetail(string storeId)
+        [Route("CheckInContractDetail/{contractId}")]
+        public IActionResult CheckInContractDetail(int contractId)
         {
-            var result = _storeManager.CheckInContractDetail(storeId);
+            var result = _storeManager.CheckInContractDetail(contractId);
+            if (result.Status)
+            {
+                return Ok(result.Data);
+            }
+            else
+            {
+                return BadRequest(result.Message);
+            }
+        }
+        [HttpGet]
+        [Route("CheckInContractListByStore")]
+        public IActionResult CheckInContractListByStore(string storeId)
+        {
+            var result = _storeManager.ContractListByStore(storeId);
             if (result.Status)
             {
                 return Ok(result.Data);

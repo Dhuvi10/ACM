@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using System.IO;
 
 namespace ACM.Core.Managers
 {
@@ -16,16 +17,47 @@ namespace ACM.Core.Managers
         {
             acmContext = _acmContext;
         }
-        public ResponseModel<string> AddGalleryImage(GalleryViewModel model)
+        public ResponseModel<string> AddGalleryImage(GalleryViewModel model,string serverPath)
         {
             ResponseModel<string> response = new ResponseModel<string> { Data = "" };
-            throw new NotImplementedException();
+            try
+            {
+                Gallery gallery = new Gallery();
+                gallery.CreatedOn = DateTime.Now;
+                gallery.IsActive = true;
+                gallery.IsMain = false;
+                gallery.StoreId = model.StoreId;
+
+                string FileName =  Guid.NewGuid().ToString() + "." + Convert.ToString(model.FileName.Split('.')[1]);
+                var path = Path.Combine(serverPath, FileName.ToString());
+                ////Convert Base64 Encoded string to Byte Array.
+                byte[] imageBytes = Convert.FromBase64String(model.Image);
+                File.WriteAllBytes(path, imageBytes);
+
+                gallery.Image = FileName;
+
+                Image image = Image.FromFile(FileName);
+                Image thumb = image.GetThumbnailImage(120, 120, () => false, IntPtr.Zero);
+                //thumb.Save(Path.ChangeExtension(fileName, "thumb"));
+
+                gallery.ThumbnailImage = "";
+                acmContext.Gallery.Add(gallery);
+                acmContext.SaveChanges();
+                response.Status=true;
+                response.Message = "success";
+            }
+            catch (Exception ex)
+            {
+                response.Status = false;
+                response.Message = ex.Message;
+            }
+            return response;
         }
 
-        public ResponseModel<string> AddMultipleImages(List<GalleryViewModel> models)
+        public ResponseModel<string> AddMultipleImages(List<GalleryViewModel> models, string serverPath)
         {
             ResponseModel<string> response = new ResponseModel<string> { Data = "" };
-            foreach (var item in models)
+            foreach (var item in models) 
             {
                 //FileName = examDetailModel.ExamSesson.Firstname + "-" + examDetailModel.ExamSesson.Lastname + "_" + Guid.NewGuid().ToString() + "." + Convert.ToString(model.FileName.Split('.')[1]);
                 //var path = Path.Combine(Serverpath, FileName.ToString());

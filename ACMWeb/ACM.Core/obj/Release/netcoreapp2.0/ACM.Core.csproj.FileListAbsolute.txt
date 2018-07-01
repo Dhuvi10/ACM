@@ -1,0 +1,11 @@
+E:\Projects\ACM\ACM\ACMWeb\ACM.Core\bin\Release\netcoreapp2.0\ACM.Core.deps.json
+E:\Projects\ACM\ACM\ACMWeb\ACM.Core\bin\Release\netcoreapp2.0\ACM.Core.runtimeconfig.json
+E:\Projects\ACM\ACM\ACMWeb\ACM.Core\bin\Release\netcoreapp2.0\ACM.Core.runtimeconfig.dev.json
+E:\Projects\ACM\ACM\ACMWeb\ACM.Core\bin\Release\netcoreapp2.0\ACM.Core.dll
+E:\Projects\ACM\ACM\ACMWeb\ACM.Core\bin\Release\netcoreapp2.0\ACM.Core.pdb
+E:\Projects\ACM\ACM\ACMWeb\ACM.Core\obj\Release\netcoreapp2.0\ACM.Core.csprojResolveAssemblyReference.cache
+E:\Projects\ACM\ACM\ACMWeb\ACM.Core\obj\Release\netcoreapp2.0\ACM.Core.csproj.CoreCompileInputs.cache
+E:\Projects\ACM\ACM\ACMWeb\ACM.Core\obj\Release\netcoreapp2.0\ACM.Core.AssemblyInfoInputs.cache
+E:\Projects\ACM\ACM\ACMWeb\ACM.Core\obj\Release\netcoreapp2.0\ACM.Core.AssemblyInfo.cs
+E:\Projects\ACM\ACM\ACMWeb\ACM.Core\obj\Release\netcoreapp2.0\ACM.Core.dll
+E:\Projects\ACM\ACM\ACMWeb\ACM.Core\obj\Release\netcoreapp2.0\ACM.Core.pdb

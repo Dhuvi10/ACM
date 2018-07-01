@@ -126,7 +126,7 @@ namespace ACMWeb.Controllers
         {
             if (id.HasValue)
             {
-                var result = _storeManager.CheckInContractDetail(id.Value.ToString());
+                var result = _storeManager.CheckInContractDetail(id.Value);
                 return View(result.Data);
             }
             else

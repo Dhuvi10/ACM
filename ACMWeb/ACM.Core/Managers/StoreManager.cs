@@ -217,12 +217,47 @@ namespace ACM.Core.Managers
             }
             return response;
         }
-        public ResponseModel<CheckInContractsViewModel> CheckInContractDetail(string storeId)
+
+        public ResponseModel<List<CheckInContractsViewModel>> ContractListByStore(string storeId)
+        {
+            ResponseModel<List<CheckInContractsViewModel>> response = new ResponseModel<List<CheckInContractsViewModel>> { Data = new List<CheckInContractsViewModel>() };
+            try
+            {
+                var _list = acmContext.CheckInForm.Where(k=>k.StoreId==storeId).Select(e => e).ToList();
+                foreach (var item in _list)
+                {
+                    CheckInContractsViewModel model = new CheckInContractsViewModel();
+                    model.Id = item.Id;
+                    model.SummeryOfTaskCompleted = item.SummeryOfTaskCompleted;
+                    model.EmailAddress = item.EmailAddress;
+                    model.Name = item.Name;
+                    model.Vin = item.Vin;
+                    model.Year = item.Year;
+                    model.PartsNeeded = item.PartsNeeded;
+                    model.PersonalItemInVehicle = item.PersonalItemInVehicle;
+                    model.PhoneNumber = item.PhoneNumber;
+                    model.OdoMeter = item.OdoMeter;
+                    model.Model = item.Model;
+                    model.Make = item.Make;
+                    model.CreatedOn = item.CreatedOn;
+                    model.IsActive = item.IsActive;
+                    response.Data.Add(model);
+                }
+                response.Status = true;
+            }
+            catch (Exception ex)
+            {
+                response.Status = false;
+                response.Message = ex.Message;
+            }
+            return response;
+        }
+        public ResponseModel<CheckInContractsViewModel> CheckInContractDetail(int contractId)
         {
             ResponseModel<CheckInContractsViewModel> model = new ResponseModel<CheckInContractsViewModel> { Data = new CheckInContractsViewModel() };
             try
             {
-                var _model = acmContext.CheckInForm.Where(e => e.StoreId == storeId).FirstOrDefault();
+                var _model = acmContext.CheckInForm.Where(e => e.Id == contractId).FirstOrDefault();
                 if (_model != null)
                 {
                     model.Data.Id = _model.Id;
