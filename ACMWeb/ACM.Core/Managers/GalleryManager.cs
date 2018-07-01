@@ -36,8 +36,8 @@ namespace ACM.Core.Managers
 
                 gallery.Image = FileName;
 
-                Image image = Image.FromFile(FileName);
-                Image thumb = image.GetThumbnailImage(120, 120, () => false, IntPtr.Zero);
+               // System.Drawing.Image image = Image.FromFile(FileName);
+               // Image thumb = image.GetThumbnailImage(120, 120, () => false, IntPtr.Zero);
                 //thumb.Save(Path.ChangeExtension(fileName, "thumb"));
 
                 gallery.ThumbnailImage = "";
