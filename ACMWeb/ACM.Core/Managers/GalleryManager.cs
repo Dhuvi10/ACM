@@ -48,22 +48,12 @@ namespace ACM.Core.Managers
                 string base64ImageString = bmp.ToBase64String(ImageFormat.Png);
                 Bitmap bmpFromString = base64ImageString.Base64StringToBitmap();
                 
-                //Size thumbnailSize = ImageUtility.GetThumbnailSize(normalImage);
-
-                // Get thumbnail.
-                //  Image thumbnail = normalImage.GetThumbnailImage(thumbnailSize.Width,
-                //   thumbnailSize.Height, null, IntPtr.Zero);
-
-                // Image image = ImageUtility.GetReducedImage(120, 120, normalImage);
-                string thumbName = Guid.NewGuid().ToString() + "." + Convert.ToString(model.FileName.Split('.')[1]);
+                string thumbName = Guid.NewGuid().ToString() + "." + Convert.ToString(ImageFormat.Png);
                 var outpath = Path.Combine(thumbPath, thumbName.ToString());
                 bmpFromString.Save(outpath, ImageFormat.Png);
                 // thumbnail.Save(outpath, ImageFormat.Jpeg);
                 gallery.ThumbnailImage = thumbName;
-                // Image thumb = image.GetThumbnailImage(120, 120, () => false, IntPtr.Zero);
-                //thumb.Save(Path.ChangeExtension(fileName, "thumb"));
-
-               // gallery.ThumbnailImage = "";
+                
                 acmContext.Gallery.Add(gallery);
                 acmContext.SaveChanges();
                 response.Status=true;
@@ -82,15 +72,7 @@ namespace ACM.Core.Managers
             ResponseModel<string> response = new ResponseModel<string> { Data = "" };
             foreach (var item in models) 
             {
-                //FileName = examDetailModel.ExamSesson.Firstname + "-" + examDetailModel.ExamSesson.Lastname + "_" + Guid.NewGuid().ToString() + "." + Convert.ToString(model.FileName.Split('.')[1]);
-                //var path = Path.Combine(Serverpath, FileName.ToString());
-                ////Convert Base64 Encoded string to Byte Array.
-                //byte[] imageBytes = Convert.FromBase64String(model.Filebase64);
-                //File.WriteAllBytes(path, imageBytes);
-
-                //Image image = Image.FromFile(fileName);
-                //Image thumb = image.GetThumbnailImage(120, 120, () => false, IntPtr.Zero);
-                //thumb.Save(Path.ChangeExtension(fileName, "thumb"));
+               
             }
             throw new NotImplementedException();
         }

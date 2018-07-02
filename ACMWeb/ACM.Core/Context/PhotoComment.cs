@@ -10,5 +10,7 @@ namespace ACM.Core.Context
         public string Comment { get; set; }
         public DateTime? CreatedOn { get; set; }
         public bool? IsActive { get; set; }
+
+        public Gallery Photo { get; set; }
     }
 }

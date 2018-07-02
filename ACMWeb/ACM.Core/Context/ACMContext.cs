@@ -6,6 +6,15 @@ namespace ACM.Core.Context
 {
     public partial class ACMContext : DbContext
     {
+        public ACMContext()
+        {
+        }
+
+        public ACMContext(DbContextOptions<ACMContext> options)
+            : base(options)
+        {
+        }
+
         public virtual DbSet<AspNetRoleClaims> AspNetRoleClaims { get; set; }
         public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
@@ -20,26 +29,22 @@ namespace ACM.Core.Context
         public virtual DbSet<StoreContracts> StoreContracts { get; set; }
         public virtual DbSet<StoreInfo> StoreInfo { get; set; }
 
-        public ACMContext(DbContextOptions<ACMContext> options)
-           : base(options)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Server=DESKTOP-9O0T7I3\\SQLEXPRESS;Database=ACM;Trusted_Connection=True;");
+            }
         }
-        //        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //        {
-        //            if (!optionsBuilder.IsConfigured)
-        //            {
-        ////#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-        //                optionsBuilder.UseSqlServer(@"Server=LAPTOP-1M4D2BPD\ROBIN;Database=ACM;MultipleActiveResultSets=true;user id=sa;password=123456");
-        //            }
-        //        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<AspNetRoleClaims>(entity =>
             {
-                entity.HasIndex(e => e.RoleId);
-
-                entity.Property(e => e.RoleId).IsRequired();
+                entity.Property(e => e.RoleId)
+                    .IsRequired()
+                    .HasMaxLength(450);
 
                 entity.HasOne(d => d.Role)
                     .WithMany(p => p.AspNetRoleClaims)
@@ -48,11 +53,6 @@ namespace ACM.Core.Context
 
             modelBuilder.Entity<AspNetRoles>(entity =>
             {
-                entity.HasIndex(e => e.NormalizedName)
-                    .HasName("RoleNameIndex")
-                    .IsUnique()
-                    .HasFilter("([NormalizedName] IS NOT NULL)");
-
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
                 entity.Property(e => e.Name).HasMaxLength(256);
@@ -62,9 +62,9 @@ namespace ACM.Core.Context
 
             modelBuilder.Entity<AspNetUserClaims>(entity =>
             {
-                entity.HasIndex(e => e.UserId);
-
-                entity.Property(e => e.UserId).IsRequired();
+                entity.Property(e => e.UserId)
+                    .IsRequired()
+                    .HasMaxLength(450);
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.AspNetUserClaims)
@@ -75,9 +75,9 @@ namespace ACM.Core.Context
             {
                 entity.HasKey(e => new { e.LoginProvider, e.ProviderKey });
 
-                entity.HasIndex(e => e.UserId);
-
-                entity.Property(e => e.UserId).IsRequired();
+                entity.Property(e => e.UserId)
+                    .IsRequired()
+                    .HasMaxLength(450);
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.AspNetUserLogins)
@@ -87,8 +87,6 @@ namespace ACM.Core.Context
             modelBuilder.Entity<AspNetUserRoles>(entity =>
             {
                 entity.HasKey(e => new { e.UserId, e.RoleId });
-
-                entity.HasIndex(e => e.RoleId);
 
                 entity.HasOne(d => d.Role)
                     .WithMany(p => p.AspNetUserRoles)
@@ -101,19 +99,11 @@ namespace ACM.Core.Context
 
             modelBuilder.Entity<AspNetUsers>(entity =>
             {
-                entity.HasIndex(e => e.NormalizedEmail)
-                    .HasName("EmailIndex");
-
-                entity.HasIndex(e => e.NormalizedUserName)
-                    .HasName("UserNameIndex")
-                    .IsUnique()
-                    .HasFilter("([NormalizedUserName] IS NOT NULL)");
-
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
-                entity.Property(e => e.Dob)
-                    .HasColumnName("DOB")
-                    .HasDefaultValueSql("('0001-01-01T00:00:00.000')");
+                entity.Property(e => e.AdminId).HasMaxLength(100);
+
+                entity.Property(e => e.Dob).HasColumnName("DOB");
 
                 entity.Property(e => e.Email).HasMaxLength(256);
 
@@ -149,6 +139,10 @@ namespace ACM.Core.Context
 
                 entity.Property(e => e.PhoneNumber).HasMaxLength(15);
 
+                entity.Property(e => e.StoreId)
+                    .IsRequired()
+                    .HasMaxLength(450);
+
                 entity.Property(e => e.Vin).HasMaxLength(50);
 
                 entity.Property(e => e.Year).HasMaxLength(10);
@@ -156,11 +150,21 @@ namespace ACM.Core.Context
 
             modelBuilder.Entity<Gallery>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.CreatedOn).HasColumnType("datetime");
 
                 entity.Property(e => e.Image).HasMaxLength(100);
+
+                entity.Property(e => e.StoreId)
+                    .IsRequired()
+                    .HasMaxLength(450);
+
+                entity.Property(e => e.ThumbnailImage).HasMaxLength(100);
+
+                entity.HasOne(d => d.Store)
+                    .WithMany(p => p.Gallery)
+                    .HasForeignKey(d => d.StoreId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Gallery_AspNetUsers");
             });
 
             modelBuilder.Entity<PhotoComment>(entity =>
@@ -168,24 +172,45 @@ namespace ACM.Core.Context
                 entity.Property(e => e.Comment).HasMaxLength(200);
 
                 entity.Property(e => e.CreatedOn).HasColumnType("datetime");
+
+                entity.HasOne(d => d.Photo)
+                    .WithMany(p => p.PhotoComment)
+                    .HasForeignKey(d => d.PhotoId)
+                    .HasConstraintName("FK_PhotoComment_Gallery");
             });
 
             modelBuilder.Entity<ProfileInfo>(entity =>
             {
                 entity.Property(e => e.CreatedOn).HasColumnType("datetime");
 
-                entity.Property(e => e.Photo).HasMaxLength(100);
+                entity.Property(e => e.Photo).HasMaxLength(200);
 
-                entity.Property(e => e.Signature).HasMaxLength(100);
+                entity.Property(e => e.Signature).HasMaxLength(200);
+
+                entity.Property(e => e.StoreId)
+                    .IsRequired()
+                    .HasMaxLength(450);
+
+                entity.HasOne(d => d.Store)
+                    .WithMany(p => p.ProfileInfo)
+                    .HasForeignKey(d => d.StoreId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ProfileInfo_AspNetUsers");
             });
 
             modelBuilder.Entity<StoreContracts>(entity =>
             {
-                entity.Property(e => e.CheckInContract).HasMaxLength(100);
-
-                entity.Property(e => e.CheckOutContract).HasMaxLength(100);
-
                 entity.Property(e => e.CreatedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.StoreId)
+                    .IsRequired()
+                    .HasMaxLength(450);
+
+                entity.HasOne(d => d.Store)
+                    .WithMany(p => p.StoreContracts)
+                    .HasForeignKey(d => d.StoreId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_StoreContracts_AspNetUsers");
             });
 
             modelBuilder.Entity<StoreInfo>(entity =>
@@ -194,15 +219,12 @@ namespace ACM.Core.Context
 
                 entity.Property(e => e.Logo).HasMaxLength(100);
 
-                entity.Property(e => e.StoreId)
-                    .IsRequired()
-                    .HasMaxLength(450);
+                entity.Property(e => e.StoreId).HasMaxLength(450);
 
                 entity.HasOne(d => d.Store)
                     .WithMany(p => p.StoreInfo)
                     .HasForeignKey(d => d.StoreId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_StoreInfo_StoreInfo");
+                    .HasConstraintName("FK_StoreInfo_AspNetUsers");
             });
         }
     }

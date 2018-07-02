@@ -28,7 +28,10 @@
     {
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#tbList').dataTable();
+            $('#tbList').dataTable({
+                "paging": false,
+                "ordering": false,
+                "info": false});
         });
     </script>
     <script type="text/javascript">
@@ -43,7 +46,13 @@
             success: function (result) {
                 debugger
                 console.log(result);
-            $('#divList').html(result);
+                $('#divList').html(result);
+                $('#tbList').dataTable({
+                    "paging": false,
+                    "ordering": false,
+                    "info": false
+
+                });
             },
             error: function (err) {
             console.log(err);
