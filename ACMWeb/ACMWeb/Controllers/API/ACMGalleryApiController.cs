@@ -13,12 +13,12 @@ namespace ACMWeb.Controllers.API
 {
     [Produces("application/json")]
     [Route("api/ACMGallery")]
-   // [ApiController]
+    // [ApiController]
     public class ACMGalleryApiController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
-       
+
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IUserManager _manager;
         private readonly IGalleryManager _galleryManager;
@@ -36,8 +36,63 @@ namespace ACMWeb.Controllers.API
             //var path = System.IO.Path.Combine(webRoot, "TestFiles");
             string serverPath = System.IO.Path.Combine(webRoot, "Gallery");
             string thumbPath = System.IO.Path.Combine(webRoot, "Thumbnail");
-            _galleryManager.AddGalleryImage(model, serverPath, thumbPath);
-            return Ok();
+            var result = _galleryManager.AddGalleryImage(model, serverPath, thumbPath);
+            if (result.Status)
+                return Ok(result.Message);
+            else
+                return BadRequest(result.Message);
+        }
+        [HttpPost]
+        [Route("AddMultipleImages")]
+        public IActionResult AddMultipleImages([FromBody]GalleryViewModel[] models)
+        {
+            var webRoot = _env.WebRootPath;
+            //var path = System.IO.Path.Combine(webRoot, "TestFiles");
+            string serverPath = System.IO.Path.Combine(webRoot, "Gallery");
+            string thumbPath = System.IO.Path.Combine(webRoot, "Thumbnail");
+            var result = _galleryManager.AddMultipleImages(models.ToList(), serverPath, thumbPath);
+            if (result.Status)
+                return Ok(result.Message);
+            else
+                return BadRequest(result.Message);
+        }
+        [HttpGet]
+        [Route("GalleryByStore/{storeId}")]
+        public IActionResult GalleryByStore(string storeId)
+        {
+           // var webRoot = _env.WebRootPath;
+            //var path = System.IO.Path.Combine(webRoot, "TestFiles");
+           // string serverPath = System.IO.Path.Combine(webRoot, "Gallery");
+           // string thumbPath = System.IO.Path.Combine(webRoot, "Thumbnail");
+            var result = _galleryManager.GalleryByStore(storeId);
+            if (result.Status)
+                return Ok(result.Data);
+            else
+                return BadRequest(result.Message);
+        }
+        [HttpPost]
+        [Route("DeleteImages")]
+        public IActionResult DeleteImages([FromBody]List<long> Ids)
+        {
+             var webRoot = _env.WebRootPath;
+            //var path = System.IO.Path.Combine(webRoot, "TestFiles");
+             string serverPath = System.IO.Path.Combine(webRoot, "Gallery");
+             string thumbPath = System.IO.Path.Combine(webRoot, "Thumbnail");
+            var result = _galleryManager.DeleteImages(Ids, serverPath, thumbPath);
+            if (result.Status)
+                return Ok(result.Message);
+            else
+                return BadRequest(result.Message);
+        }
+        [HttpGet]
+        [Route("SetFrontImage/{Id}/{storeId}")]
+        public IActionResult SetFrontImage(int Id, string storeId)
+        {
+            var result = _galleryManager.SetFrontImage(Id,storeId);
+            if (result.Status)
+                return Ok(result.Message);
+            else
+                return BadRequest(result.Message);
         }
     }
 }

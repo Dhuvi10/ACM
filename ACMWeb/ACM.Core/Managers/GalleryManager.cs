@@ -20,7 +20,7 @@ namespace ACM.Core.Managers
         {
             acmContext = _acmContext;
         }
-        public ResponseModel<string> AddGalleryImage(GalleryViewModel model,string serverPath,string thumbPath)
+        public ResponseModel<string> AddGalleryImage(GalleryViewModel model, string serverPath, string thumbPath)
         {
             ResponseModel<string> response = new ResponseModel<string> { Data = "" };
             try
@@ -31,9 +31,8 @@ namespace ACM.Core.Managers
                 gallery.IsMain = false;
                 gallery.StoreId = model.StoreId;
 
-                string FileName =  Guid.NewGuid().ToString() + "." + Convert.ToString(model.FileName.Split('.')[1]);
+                string FileName = Guid.NewGuid().ToString() + "." + Convert.ToString(model.FileName.Split('.')[1]);
                 var path = Path.Combine(serverPath, FileName.ToString());
-                ////Convert Base64 Encoded string to Byte Array.
                 byte[] imageBytes = Convert.FromBase64String(model.Image);
                 File.WriteAllBytes(path, imageBytes);
 
@@ -47,16 +46,16 @@ namespace ACM.Core.Managers
 
                 string base64ImageString = bmp.ToBase64String(ImageFormat.Png);
                 Bitmap bmpFromString = base64ImageString.Base64StringToBitmap();
-                
+
                 string thumbName = Guid.NewGuid().ToString() + "." + Convert.ToString(ImageFormat.Png);
                 var outpath = Path.Combine(thumbPath, thumbName.ToString());
                 bmpFromString.Save(outpath, ImageFormat.Png);
                 // thumbnail.Save(outpath, ImageFormat.Jpeg);
                 gallery.ThumbnailImage = thumbName;
-                
+
                 acmContext.Gallery.Add(gallery);
                 acmContext.SaveChanges();
-                response.Status=true;
+                response.Status = true;
                 response.Message = "success";
             }
             catch (Exception ex)
@@ -70,20 +69,73 @@ namespace ACM.Core.Managers
         public ResponseModel<string> AddMultipleImages(List<GalleryViewModel> models, string serverPath, string thumbPath)
         {
             ResponseModel<string> response = new ResponseModel<string> { Data = "" };
-            foreach (var item in models) 
+            try
             {
-               
+                foreach (var model in models)
+                {
+                    Gallery gallery = new Gallery();
+                    gallery.CreatedOn = DateTime.Now;
+                    gallery.IsActive = true;
+                    gallery.IsMain = model.IsMain;
+                    gallery.StoreId = model.StoreId;
+
+                    string FileName = Guid.NewGuid().ToString() + "." + Convert.ToString(model.FileName.Split('.')[1]);
+                    var path = Path.Combine(serverPath, FileName.ToString());
+                    byte[] imageBytes = Convert.FromBase64String(model.Image);
+                    File.WriteAllBytes(path, imageBytes);
+
+                    gallery.Image = FileName;
+                    Image normalImage;
+                    using (MemoryStream ms = new MemoryStream(imageBytes))
+                    {
+                        normalImage = Image.FromStream(ms);
+                    }
+                    Bitmap bmp = new Bitmap(normalImage);
+
+                    string base64ImageString = bmp.ToBase64String(ImageFormat.Png);
+                    Bitmap bmpFromString = base64ImageString.Base64StringToBitmap();
+
+                    string thumbName = Guid.NewGuid().ToString() + "." + Convert.ToString(ImageFormat.Png);
+                    var outpath = Path.Combine(thumbPath, thumbName.ToString());
+                    bmpFromString.Save(outpath, ImageFormat.Png);
+                    // thumbnail.Save(outpath, ImageFormat.Jpeg);
+                    gallery.ThumbnailImage = thumbName;
+
+                    acmContext.Gallery.Add(gallery);
+                }
+                acmContext.SaveChanges();
+                response.Status = true;
+                response.Message = "success";
             }
-            throw new NotImplementedException();
+            catch (Exception ex)
+            {
+                response.Status = false;
+                response.Message = ex.Message;
+            }
+            return response;
+
         }
 
-        public ResponseModel<string> DeleteImages(List<long> Ids)
+        public ResponseModel<string> DeleteImages(List<long> Ids, string serverPath, string thumbPath)
         {
             ResponseModel<string> response = new ResponseModel<string> { Data = "" };
             try
             {
                 var removalList = acmContext.Gallery.Where(x => Ids.Contains(x.Id))
                 .ToList();
+                foreach (var item in removalList)
+                {
+                    var thumbnailImage = Path.Combine(thumbPath, item.ThumbnailImage.ToString());                   
+                    if (System.IO.File.Exists(thumbnailImage))
+                    {
+                        System.IO.File.Delete(thumbnailImage);
+                    }
+                    var galleryImage = Path.Combine(thumbPath, item.Image.ToString());
+                    if (System.IO.File.Exists(galleryImage))
+                    {
+                        System.IO.File.Delete(galleryImage);
+                    }
+                }
                 acmContext.Gallery.RemoveRange(removalList);
                 response.Message = "success";
                 response.Status = true;
@@ -98,10 +150,30 @@ namespace ACM.Core.Managers
 
         public ResponseModel<List<GalleryViewModel>> GalleryByStore(string storeId)
         {
-            throw new NotImplementedException();
+            ResponseModel<List<GalleryViewModel>> response = new ResponseModel<List<GalleryViewModel>>() { Data = new List<GalleryViewModel>() };
+            try
+            {
+                var model = acmContext.Gallery.Where(x => x.StoreId == storeId).Select(x => new GalleryViewModel
+                {
+                    StoreId = x.StoreId,
+                    CreatedOn = x.CreatedOn,
+                    Id = x.Id,
+                    Image = x.Image,
+                    IsActive = x.IsActive,
+                    ThumbnailImage = x.ThumbnailImage
+                }).ToList();
+                response.Data = model;
+                response.Status = true;
+            }
+            catch (Exception ex)
+            {
+                response.Message = ex.Message;
+                response.Status = false;
+            }
+            return response;
         }
 
-        public ResponseModel<string> SetFrontImage(int Id,string storeId)
+        public ResponseModel<string> SetFrontImage(int Id, string storeId)
         {
             ResponseModel<string> response = new ResponseModel<string> { Data = "" };
             //var allImages= acmContext.Gallery.Where(x => x.StoreId == storeId).ToList();
