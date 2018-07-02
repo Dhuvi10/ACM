@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@ViewData["Title"] - Schlanke Kampagne</title>
+    <title>@ViewData["Title"] - ACM</title>
     <environment include="Development,Production">
         <!-- Required meta tags -->
         <meta charset="utf-8">
@@ -65,7 +65,6 @@
     </div>
 
     <environment include="Development,Production">
-
         <script src="~/css/Dashboard/js/jquery.min.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src="~/css/Dashboard/js/bootstrap.min.js"></script>
@@ -83,10 +82,12 @@
 
         <!-- Custom Theme Scripts -->
         <script src="~/css/Dashboard/js/custom.min.js"></script>
-        @*<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>*@ 
+
+        @*<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>*@
 
         <script src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css">
+
         @RenderSection("Scripts", required: false)
 
         <script type="text/javascript">

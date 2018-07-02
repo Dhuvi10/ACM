@@ -117,7 +117,7 @@ namespace ACM.Core.Managers
             return response;
         }
 
-        public ResponseModel<CheckInContractsViewModel> SaveCheckInContract(CheckInContractsViewModel _model)
+        public ResponseModel<CheckInContractsViewModel> SaveCheckInForm(CheckInContractsViewModel _model)
         {
             ResponseModel<CheckInContractsViewModel> response = new ResponseModel<CheckInContractsViewModel> { Data = new CheckInContractsViewModel() };
             try
@@ -284,6 +284,44 @@ namespace ACM.Core.Managers
                 model.Message = ex.Message;
             }
             return model;
+        }
+
+        public ResponseModel<ManageContractViewModel> SaveContract(ManageContractViewModel model)
+        {
+            ResponseModel<ManageContractViewModel> response = new ResponseModel<ManageContractViewModel>();
+            try
+            {
+                var _model = acmContext.StoreContracts.Where(e => e.Id == model.id).FirstOrDefault();
+                if (model != null)
+                {
+                    _model.CheckInContract = model.CheckInContract;
+                    _model.CheckOutContract = model.CheckOutContract;
+                    _model.CreatedOn = model.CreatedDate;
+                    _model.StoreId = model.storeId;
+                    acmContext.SaveChanges();
+                    response.Status = true;
+                }
+                else
+                {
+                    StoreContracts storeModel = new StoreContracts();
+                    storeModel.CheckInContract = model.CheckInContract;
+                    storeModel.CheckOutContract = model.CheckOutContract;
+                    storeModel.CreatedOn = model.CreatedDate;
+
+                    acmContext.Add(storeModel);
+                    acmContext.SaveChanges();
+                    response.Data = null;
+                    response.Status = true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                response.Data = null;
+                response.Status = false;
+                response.Message = ex.Message;
+            }
+            return response;
         }
     }
 }

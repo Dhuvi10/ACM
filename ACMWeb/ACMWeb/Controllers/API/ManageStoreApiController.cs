@@ -133,7 +133,7 @@ namespace ACMWeb.Controllers.API
         [Route("SaveCheckInForm")]
         public IActionResult SaveCheckInForm([FromBody]CheckInContractsViewModel model)
         {
-            var result = _storeManager.SaveCheckInContract(model);
+            var result = _storeManager.SaveCheckInForm(model);
             if (result.Status)
             { return Ok(result.Message); }
             else

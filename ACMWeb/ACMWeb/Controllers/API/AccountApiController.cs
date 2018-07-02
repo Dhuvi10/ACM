@@ -73,7 +73,8 @@ namespace ACMWeb.Controllers.API
                                 _model.Email = item.Email;
                                 _model.id = item.Id;
                                 _model.suspened = item.LockoutEnabled;
-                                _model.Logo = logoList==null?null: logoList.Data.Where(k => k.StoreId == item.Id).FirstOrDefault().Logo;
+                               // if(logoList.c)
+                                _model.Logo = logoList==null?null: logoList.Data.Where(k => k.StoreId == item.Id).FirstOrDefault()?.Logo;
                                 userList.Add(_model);
                             }
                             //return RedirectToAction(nameof(UserManagementController.Index), "UserManagement");
