@@ -9,12 +9,13 @@ namespace ACM.Core.Interfaces
         ResponseModel<StoreInfoViewModel> StoreLogo(string userId);
         ResponseModel<StoreInfoViewModel> SaveStoreLogo(StoreInfoViewModel model);
 
-        ResponseModel<CheckInContractsViewModel> SaveCheckInContract(CheckInContractsViewModel model);
+        ResponseModel<CheckInContractsViewModel> SaveCheckInForm(CheckInContractsViewModel model);
         ResponseModel<List<CheckInContractsViewModel>> ManageContractList();
         ResponseModel<List<StoreLogo>> StoreLogoList();
         ResponseModel<CheckInContractsViewModel> CheckInContractDetail(int contractId);
 
         ResponseModel<List<CheckInContractsViewModel>> ContractListByStore(string storeId);
+        ResponseModel<ManageContractViewModel> SaveContract(ManageContractViewModel model);
 
         //      ResponseModel<List<CampaignVM>> CampaignList(string userId);
         //      ResponseModel<CampaignVM> EditCampaigns(int Id);

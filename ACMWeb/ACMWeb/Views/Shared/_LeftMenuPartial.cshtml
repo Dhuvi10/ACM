@@ -1,5 +1,5 @@
 ﻿@*@using Microsoft.AspNetCore.Identity
-@using Context.Models*@
+    @using Context.Models*@
 
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
@@ -18,33 +18,26 @@
     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
         <div class="menu_section">
             <ul class="nav side-menu">
-                @*<li><a asp-controller="dashboard" asp-action="index"><i class="fas fa-tachometer-alt"></i> &nbsp;Dashboard</a> </li>
-                    if (User.IsInRole("Admin"))
-                    {*@
-                <li><a asp-controller="UserManagement" asp-action="Index">@*<i class="fas fa-users"></i>*@&nbsp;&nbsp;Manage Admin User</a> </li>
-                <li><a asp-controller="UserManagement" asp-action="CreateAdminUser">@*<i class="fas fa-chart-bar"></i>*@&nbsp;&nbsp; Create Admin User</a> </li>
-                @*}*@
-                <li>
-                    <a asp-controller="UserManagement" asp-action="ManageStore">@*<i class="fas fa-users"></i>*@&nbsp;&nbsp;Manage Store User @*<span class="fas fa-chevron-right"></span>*@ </a>
-
-                    @*<ul id="demo" class="nav child_menu collapse" >
-                            <li>  <a asp-controller="UserManagement" asp-action="ManageStore">@*<i class="fas fa-users"></i>*&nbsp;&nbsp;Manage Store User  </a></li>
-                            <li><a asp-controller="UserManagement" asp-action="CreateStoreUser">@*<i class="fas fa-users"></i>&nbsp;&nbsp; Create Store User</a> </li>
-                            <li><a asp-controller="ManageStoreInfo" asp-action="Index">@*<i class="fas fa-users"></i>&nbsp;&nbsp; Manage Store Logo</a> </li>
-                            <li><a asp-controller="ManageStoreInfo" asp-action="ManageStoreContract">@*<i class="fas fa-users"></i>&nbsp;&nbsp;Manage Store Contracts</a> </li>
-                        </ul>*@
-                </li>
-                <li><a asp-controller="UserManagement" asp-action="CreateStoreUser">@*<i class="fas fa-users"></i>&nbsp;&nbsp;*@ Create Store User</a> </li>
-                <li><a asp-controller="ManageStoreInfo" asp-action="Index">@*<i class="fas fa-users"></i>&nbsp;&nbsp;*@ Manage Store Logo</a> </li>
-                <li><a asp-controller="ManageStoreInfo" asp-action="ManageStoreContracts">@*<i class="fas fa-users"></i>&nbsp;&nbsp;*@Manage Store Contracts</a> </li>
-                <li><a asp-controller="ManageStoreInfo" asp-action="CheckInFormList">@*<i class="fas fa-users"></i>&nbsp;&nbsp;*@Customers</a> </li>
-
+                @*<li><a asp-controller="dashboard" asp-action="index"><i class="fas fa-tachometer-alt"></i> &nbsp;Dashboard</a> </li>*@
+                @if (User.IsInRole("Admin"))
+                {
+                    <li><a asp-controller="UserManagement" asp-action="Index">@*<i class="fas fa-users"></i>*@&nbsp;&nbsp;Manage Admin User</a> </li>
+                    <li><a asp-controller="UserManagement" asp-action="CreateAdminUser">@*<i class="fas fa-chart-bar"></i>*@&nbsp;&nbsp; Create Admin User</a> </li>
+                    <li><a asp-controller="UserManagement" asp-action="ManageStore">@*<i class="fas fa-users"></i>*@&nbsp;&nbsp;Manage Store User @*<span class="fas fa-chevron-right"></span>*@ </a></li>
+                    <li><a asp-controller="UserManagement" asp-action="CreateStoreUser">@*<i class="fas fa-users"></i>&nbsp;&nbsp;*@ Create Store User</a> </li>
+                }
+                @if (User.IsInRole("Store"))
+                {
+                    <li><a asp-controller="ManageStoreInfo" asp-action="Index">@*<i class="fas fa-users"></i>&nbsp;&nbsp;*@ Manage Store Logo</a> </li>
+                    <li><a asp-controller="ManageStoreInfo" asp-action="ManageStoreContracts">@*<i class="fas fa-users"></i>&nbsp;&nbsp;*@Manage Store Contracts</a> </li>
+                    <li><a asp-controller="ManageStoreInfo" asp-action="CheckInFormList">@*<i class="fas fa-users"></i>&nbsp;&nbsp;*@Customers</a> </li>
+                }
                 @*<li><a><i class="fas fa-cog"></i> Settings</a> </li>*@
 
                 @*<li>
-                        <a href="~/hangfire/recurring"><i class="fas"></i>Send Mails</a>
+            <a href="~/hangfire/recurring"><i class="fas"></i>Send Mails</a>
 
-                    </li>*@
+        </li>*@
             </ul>
         </div>
     </div>

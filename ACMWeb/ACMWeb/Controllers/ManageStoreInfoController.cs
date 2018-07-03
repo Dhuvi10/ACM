@@ -120,6 +120,7 @@ namespace ACMWeb.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult ManageStoreContracts(ManageContractViewModel model)
         {
+            var result = _storeManager.SaveContract(model);
             return View();
         }
         public IActionResult CheckInForm(int? id)

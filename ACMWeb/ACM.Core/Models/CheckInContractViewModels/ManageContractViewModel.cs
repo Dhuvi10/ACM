@@ -11,5 +11,9 @@ namespace ACM.Core.Models.CheckInContractViewModels
         public string CheckInContract { get; set; }
         [Display(Name = "CheckOut Contract")]
         public string CheckOutContract { get; set; }
+
+        public int id { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public string storeId { get; set; }
     }
 }
