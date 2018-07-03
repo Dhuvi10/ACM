@@ -288,15 +288,15 @@ namespace ACM.Core.Managers
 
         public ResponseModel<ManageContractViewModel> SaveContract(ManageContractViewModel model)
         {
-            ResponseModel<ManageContractViewModel> response = new ResponseModel<ManageContractViewModel>();
+            ResponseModel<ManageContractViewModel> response = new ResponseModel<ManageContractViewModel> { Data = new ManageContractViewModel() };
             try
             {
                 var _model = acmContext.StoreContracts.Where(e => e.Id == model.id).FirstOrDefault();
-                if (model != null)
+                if (_model != null)
                 {
                     _model.CheckInContract = model.CheckInContract;
                     _model.CheckOutContract = model.CheckOutContract;
-                    _model.CreatedOn = model.CreatedDate;
+                    _model.CreatedOn = DateTime.Now;
                     _model.StoreId = model.storeId;
                     acmContext.SaveChanges();
                     response.Status = true;
@@ -306,8 +306,8 @@ namespace ACM.Core.Managers
                     StoreContracts storeModel = new StoreContracts();
                     storeModel.CheckInContract = model.CheckInContract;
                     storeModel.CheckOutContract = model.CheckOutContract;
-                    storeModel.CreatedOn = model.CreatedDate;
-
+                    storeModel.CreatedOn = DateTime.Now;
+                    storeModel.StoreId = model.storeId;
                     acmContext.Add(storeModel);
                     acmContext.SaveChanges();
                     response.Data = null;
@@ -323,5 +323,37 @@ namespace ACM.Core.Managers
             }
             return response;
         }
+
+        public ResponseModel<ManageContractViewModel> EditContract(string id)
+        {
+            ResponseModel<ManageContractViewModel> response = new ResponseModel<ManageContractViewModel> { Data = new ManageContractViewModel() };
+            try
+            {
+              
+                var model = acmContext.StoreContracts.Where(e => e.StoreId == id).FirstOrDefault();
+
+                if (model != null)
+                {
+                    response.Data.CheckInContract = model.CheckInContract;
+                    response.Data.CheckOutContract = model.CheckOutContract;
+                    response.Data.storeId = model.StoreId;
+                    response.Status = true;
+                }
+                else
+                {                  
+                    response.Data = null;
+                    response.Status = true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                response.Data = null;
+                response.Status = false;
+                response.Message = ex.Message;
+            }
+            return response;
+        }
+
     }
 }

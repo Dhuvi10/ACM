@@ -16,11 +16,7 @@ namespace ACMWeb.Controllers.API
     // [ApiController]
     public class ACMGalleryApiController : ControllerBase
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
-
-        private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly IUserManager _manager;
+        
         private readonly IGalleryManager _galleryManager;
         private IHostingEnvironment _env;
         public ACMGalleryApiController(IGalleryManager galleryManager, IHostingEnvironment env)

@@ -16,14 +16,7 @@ namespace ACM.Core.Interfaces
 
         ResponseModel<List<CheckInContractsViewModel>> ContractListByStore(string storeId);
         ResponseModel<ManageContractViewModel> SaveContract(ManageContractViewModel model);
-
-        //      ResponseModel<List<CampaignVM>> CampaignList(string userId);
-        //      ResponseModel<CampaignVM> EditCampaigns(int Id);
-        //ResponseModel<List<CampaignVM>> CampaignListToMail();
-        //ResponseModel<bool> UnsubscribeEmail(int ContactId);
-        //ResponseModel<CampaignVM> GetCampaignByKey(string key);
-        //ResponseModel<List<Contacts>> ContactList(string userId);
-        //      APIResponse SaveCampaignContacts(CampaignVM campaignVM);
+        ResponseModel<ManageContractViewModel> EditContract(string id);
 
 
     }

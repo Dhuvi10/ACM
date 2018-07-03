@@ -30,9 +30,9 @@ namespace ACMWeb.Controllers
         {
             _roleManager = roleManager;
             _userManager = userManager;
-            _storeManager = storeManager; 
-             _hostingEnvironment = hostingEnvironment;
-             webRootPath = _hostingEnvironment.WebRootPath;
+            _storeManager = storeManager;
+            _hostingEnvironment = hostingEnvironment;
+            webRootPath = _hostingEnvironment.WebRootPath;
 
         }
         private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
@@ -46,10 +46,10 @@ namespace ACMWeb.Controllers
         {
             //var user = GetCurrentUserId().Result;
             var test = _storeManager.StoreLogo(GetCurrentUserId().Result);
-            if (test.Status )
+            if (test.Status)
             {
-                ViewData["Url"] = System.IO.Path.Combine(webRootPath, "StoreLogo")+"\\";
-                return View( test.Data);
+                ViewData["Url"] = System.IO.Path.Combine(webRootPath, "StoreLogo") + "\\";
+                return View(test.Data);
             }
             else
             {
@@ -88,12 +88,12 @@ namespace ACMWeb.Controllers
                 var result = _storeManager.SaveStoreLogo(model);
                 if (result.Status)
                 {
-                   
+
                     byte[] imageBytes = Convert.FromBase64String(model.Logo);
 
                     MemoryStream ms = new MemoryStream(imageBytes);
                     Image image = Image.FromStream(ms);
-                    image.Save(PathWithFolderName+"//"+model.LogoName);
+                    image.Save(PathWithFolderName + "//" + model.LogoName);
                     return RedirectToAction("index");
 
                 }
@@ -101,25 +101,36 @@ namespace ACMWeb.Controllers
                 {
                     return View();
                 }
-               
+
             }
             catch (Exception ex)
             {
 
-                return View("Error", new ErrorViewModel{ RequestId = ex.Message });
+                return View("Error", new ErrorViewModel { RequestId = ex.Message });
             }
 
 
         }
         public IActionResult ManageStoreContracts()
         {
-            return View(new ManageContractViewModel());
+
+            var result = _storeManager.EditContract(GetCurrentUserId().Result);
+            if (result.Status)
+            {
+                return View(result.Data);
+            }
+            else
+            {
+                return View(new ManageContractViewModel());
+            }
+
         }
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public IActionResult ManageStoreContracts(ManageContractViewModel model)
         {
+            model.storeId = GetCurrentUserId().Result;
             var result = _storeManager.SaveContract(model);
             return View();
         }
@@ -127,17 +138,28 @@ namespace ACMWeb.Controllers
         {
             if (id.HasValue)
             {
-                var result = _storeManager.CheckInContractDetail(id.Value);
-                return View(result.Data);
+               var result = _storeManager.CheckInContractDetail(id.Value);
+              return View(result.Data);
             }
             else
             {
                 return View(new CheckInContractsViewModel());
             }
         }
+        [HttpPost]
+               
+        public IActionResult CheckInForm(CheckInContractsViewModel model)
+        {
+            model.StoreId = GetCurrentUserId().Result;
+           // var result = _storeManager.SaveCheckInForm(model);
+            //  return View(result.Data);
+
+            
+            return View();
+            
+        }
         public IActionResult CheckInFormList()
         {
-
             return View();
         }
         public IActionResult PartialList()

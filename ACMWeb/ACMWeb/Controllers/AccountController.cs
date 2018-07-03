@@ -88,41 +88,47 @@ namespace ACMWeb.Controllers
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var user = _userManager.Users.Where(e => e.Email == model.Email).FirstOrDefault();
-              
-                if (user.LockoutEnabled)
+                if (user != null)
                 {
-                    //var result = await _manager.UserLogin(model, returnUrl);
-                   var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
-                    if (result.Succeeded)
+                    if (user.LockoutEnabled)
                     {
+                        //var result = await _manager.UserLogin(model, returnUrl);
+                        var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
+                        if (result.Succeeded)
+                        {
 
 
-                        _logger.LogInformation("User logged in.");
-                        //return Redirect("UserMangement");
-                        if (await _userManager.IsInRoleAsync(_userManager.Users.Where(e => e.Email == model.Email).FirstOrDefault(), "Admin"))
-                        {
-                            return RedirectToAction(nameof(UserManagementController.Index), "UserManagement");
+                            _logger.LogInformation("User logged in.");
+                            //return Redirect("UserMangement");
+                            if (await _userManager.IsInRoleAsync(_userManager.Users.Where(e => e.Email == model.Email).FirstOrDefault(), "Admin"))
+                            {
+                                return RedirectToAction(nameof(UserManagementController.Index), "UserManagement");
+                            }
+                            else
+                            {
+                                return RedirectToAction(nameof(UserManagementController.ManageStore), "UserManagement");
+                            }
                         }
-                        else
-                        {
-                            return RedirectToAction(nameof(UserManagementController.ManageStore), "UserManagement");
-                        }
+
+                    }
+                    else
+                    {
+                        _logger.LogWarning("User account locked out.");
+                        return RedirectToAction(nameof(Lockout));
                     }
 
                 }
                 else
                 {
-                    _logger.LogWarning("User account locked out.");
-                    return RedirectToAction(nameof(Lockout));
+                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    return View(model);
                 }
-
             }
             else
             {
                 ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                 return View(model);
             }
-
             // If we got this far, something failed, redisplay form
             return View(model);
         }
