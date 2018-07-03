@@ -41,18 +41,18 @@ namespace ACM.Core.Managers
                 using (MemoryStream ms = new MemoryStream(imageBytes))
                 {
                     normalImage = Image.FromStream(ms);
+
+                    Bitmap bmp = new Bitmap(normalImage);
+
+                    string base64ImageString = bmp.ToBase64String(ImageFormat.Png);
+                    Bitmap bmpFromString = base64ImageString.Base64StringToBitmap();
+
+                    string thumbName = Guid.NewGuid().ToString() + "." + Convert.ToString(ImageFormat.Png);
+                    var outpath = Path.Combine(thumbPath, thumbName.ToString());
+                    bmpFromString.Save(outpath, ImageFormat.Png);
+                    // thumbnail.Save(outpath, ImageFormat.Jpeg);
+                    gallery.ThumbnailImage = thumbName;
                 }
-                Bitmap bmp = new Bitmap(normalImage);
-
-                string base64ImageString = bmp.ToBase64String(ImageFormat.Png);
-                Bitmap bmpFromString = base64ImageString.Base64StringToBitmap();
-
-                string thumbName = Guid.NewGuid().ToString() + "." + Convert.ToString(ImageFormat.Png);
-                var outpath = Path.Combine(thumbPath, thumbName.ToString());
-                bmpFromString.Save(outpath, ImageFormat.Png);
-                // thumbnail.Save(outpath, ImageFormat.Jpeg);
-                gallery.ThumbnailImage = thumbName;
-
                 acmContext.Gallery.Add(gallery);
                 acmContext.SaveChanges();
                 response.Status = true;
