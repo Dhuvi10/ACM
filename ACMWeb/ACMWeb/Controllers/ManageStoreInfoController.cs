@@ -150,11 +150,17 @@ namespace ACMWeb.Controllers
                
         public IActionResult CheckInForm(CheckInContractsViewModel model)
         {
-            model.StoreId = GetCurrentUserId().Result;
-           // var result = _storeManager.SaveCheckInForm(model);
-            //  return View(result.Data);
+            if (ModelState.IsValid)
+            {
+                model.StoreId = GetCurrentUserId().Result;
+                 var result = _storeManager.SaveCheckInForm(model);
+                return View(result.Data);
+            }
 
-            
+            else
+            {
+              //  ModelState.
+            }
             return View();
             
         }
@@ -168,5 +174,6 @@ namespace ACMWeb.Controllers
             var result = _storeManager.ManageContractList();
             return PartialView("_CheckIn", result.Data);
         }
+
     }
 }
