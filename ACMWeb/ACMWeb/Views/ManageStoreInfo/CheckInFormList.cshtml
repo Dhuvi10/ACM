@@ -58,6 +58,20 @@
             }
         });
     }
+    function EditCheckInForm(id) {
+                   window.location.href = "@Url.Action("CheckInForm", "ManageStoreInfo")" + "/" + id+"";
+          @*$.ajax({
+            method: "get",
+            url: "@Url.Action("EditAdminUser", "Usermanagement")",
+               data: { id: id},
+            success: function (result) {
+                $('#divList').html(result);
+            },
+            error: function (err) {
+                console.log(err);
+            }
+           });*@
 
+    }
 </script>
 }

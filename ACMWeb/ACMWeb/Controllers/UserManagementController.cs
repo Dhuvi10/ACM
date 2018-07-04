@@ -165,7 +165,7 @@ namespace ACMWeb.Controllers
             List<UserViewModel> userList = new List<UserViewModel>();
             var user = await _userManager.GetUsersInRoleAsync("Store");
 
-            foreach (var item in user.Where(e=>e.AdminId==GetCurrentUserId().Result))
+            foreach (var item in user)
             {
                 UserViewModel model = new UserViewModel();
                 model.Name = item.Name;

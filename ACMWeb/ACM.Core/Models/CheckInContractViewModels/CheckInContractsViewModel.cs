@@ -10,7 +10,7 @@ namespace ACM.Core.Models.CheckInContractViewModels
     {
         public long Id { get; set; }
         [Required]
-        [Display(Name="")]
+        [Display(Name = "Name")]
         public string Name { get; set; }
         [Required]
         [Display(Name = "Phone Number")]
@@ -25,7 +25,6 @@ namespace ACM.Core.Models.CheckInContractViewModels
         [Required]
         [Display(Name = "Make")]
         public string Make { get; set; }
-
         [Required]
         [Display(Name = "Models")]
         public string Models { get; set; }
@@ -49,9 +48,8 @@ namespace ACM.Core.Models.CheckInContractViewModels
         public string PersonalItemInVehicle { get; set; }
         public DateTime? CreatedOn { get; set; }
         public bool? IsActive { get; set; }
-       
+
         public string StoreId { get; set; }
 
     }
-
 }
