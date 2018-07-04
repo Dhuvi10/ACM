@@ -161,7 +161,7 @@ namespace ACMWeb.Controllers
             {
               //  ModelState.
             }
-            return View();
+            return View(model);
             
         }
         public IActionResult CheckInFormList()

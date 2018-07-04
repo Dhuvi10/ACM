@@ -323,7 +323,6 @@ namespace ACM.Core.Managers
             }
             return response;
         }
-
         public ResponseModel<ManageContractViewModel> EditContract(string id)
         {
             ResponseModel<ManageContractViewModel> response = new ResponseModel<ManageContractViewModel> { Data = new ManageContractViewModel() };

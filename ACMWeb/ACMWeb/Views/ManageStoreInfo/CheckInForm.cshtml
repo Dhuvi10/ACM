@@ -8,12 +8,13 @@
 
         <div class="x_panel">
 
-            <div class="x_title">
+            @*<div class="x_title">*@
                 <div class="signin-up-area">
                     <div class="form-cont">
                         <div class="form">
                             <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
                                 <input asp-for="Id" type="hidden" class="form-control" />
+                                @*<div asp-validation-summary="All" class="text-danger"></div>*@
                                 <h1 class="h3 mb-5 font-weight-bold"><span> @ViewData["Title"]</span></h1>
                                 <div class="form-group">
                                     <label asp-for="Name"></label>
@@ -86,7 +87,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            @*</div>*@
         </div>
     </div>
 </div>
