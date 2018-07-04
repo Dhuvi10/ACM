@@ -12,6 +12,8 @@ namespace ACM.Core.Interfaces
         ResponseModel<string> SetFrontImage(int Id, string storeId);
         ResponseModel<List<GalleryViewModel>> GalleryByStore(string storeId);
         ResponseModel<string> DeleteImages(List<long> Ids, string serverPath, string thumbPath);
-        
+        ResponseModel<List<GalleryViewModel>> GalleryByCheckinForm(int checkInId);
+       
+
     }
 }

@@ -90,5 +90,16 @@ namespace ACMWeb.Controllers.API
             else
                 return BadRequest(result.Message);
         }
+        [HttpGet]
+        [Route("GalleryByCheckIn/{checkInId}")]
+        public IActionResult GalleryByCheckIn(int checkInId)
+        {
+
+            var result = _galleryManager.GalleryByCheckinForm(checkInId);
+            if (result.Status)
+                return Ok(result.Data);
+            else
+                return BadRequest(result.Message);
+        }
     }
 }

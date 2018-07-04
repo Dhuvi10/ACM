@@ -107,6 +107,8 @@ namespace ACMWeb
             services.AddTransient<JwtAuthentication, JwtAuthentication>();
             services.AddTransient<IGalleryManager, GalleryManager>();
             services.AddTransient<IProfileManager, ProfileInfoManager>();
+            services.AddTransient<IPhotoCommentManager, PhotoCommentManager>();
+           
             services.Configure<SecurityStampValidatorOptions>(options =>
             {
                 // enables immediate logout, after updating the user's stat.
