@@ -49,6 +49,7 @@ namespace ACM.Core.Managers
                     Comment = x.Comment,
                     CreatedOn=x.CreatedOn??DateTime.Now,
                     PhotoId=x.PhotoId??0
+                    
                 }).ToList();
 
                 response.Data = list;

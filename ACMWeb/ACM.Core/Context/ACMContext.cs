@@ -29,14 +29,14 @@ namespace ACM.Core.Context
         public virtual DbSet<StoreContracts> StoreContracts { get; set; }
         public virtual DbSet<StoreInfo> StoreInfo { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer("Server=DESKTOP-9O0T7I3\\SQLEXPRESS;Database=ACM;Trusted_Connection=True;");
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    if (!optionsBuilder.IsConfigured)
+        //    {
+        //        optionsBuilder.UseSqlServer("Server=DESKTOP-9O0T7I3\\SQLEXPRESS;Database=ACM;Trusted_Connection=True;");
 
-            }
-        }
+        //    }
+        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
