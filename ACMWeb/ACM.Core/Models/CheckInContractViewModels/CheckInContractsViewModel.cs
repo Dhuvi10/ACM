@@ -25,15 +25,12 @@ namespace ACM.Core.Models.CheckInContractViewModels
         [Required]
         [Display(Name = "Make")]
         public string Make { get; set; }
-<<<<<<< HEAD
-        public string Models { get; set; }
-=======
+
         [Required]
         [Display(Name = "Models")]
         public string Models { get; set; }
         [Required]
         [Display(Name = "Vin")]
->>>>>>> 17bac5ee45b11e92c9bcc16d61aef04de1f2323a
         public string Vin { get; set; }
         [Required]
         [Display(Name = "Odo Meter")]

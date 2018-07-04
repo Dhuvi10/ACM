@@ -33,11 +33,8 @@ namespace ACM.Core.Context
         {
             if (!optionsBuilder.IsConfigured)
             {
-<<<<<<< HEAD
                 optionsBuilder.UseSqlServer("Server=DESKTOP-9O0T7I3\\SQLEXPRESS;Database=ACM;Trusted_Connection=True;");
-=======
-         optionsBuilder.UseSqlServer("Server=DESKTOP-9O0T7I3\\SQLEXPRESS;Database=ACM;Trusted_Connection=True;");
->>>>>>> 17bac5ee45b11e92c9bcc16d61aef04de1f2323a
+
             }
         }
 

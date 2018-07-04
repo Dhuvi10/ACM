@@ -10,7 +10,6 @@ namespace ACM.Core.Context
             Gallery = new HashSet<Gallery>();
             ProfileInfo = new HashSet<ProfileInfo>();
         }
-
         public long Id { get; set; }
         public string Name { get; set; }
         public string PhoneNumber { get; set; }

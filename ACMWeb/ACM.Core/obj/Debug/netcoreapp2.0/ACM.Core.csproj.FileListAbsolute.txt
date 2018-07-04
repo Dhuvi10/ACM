@@ -91,3 +91,4 @@ E:\Projects\ACM\July4\ACM\ACMWeb\ACM.Core\obj\Debug\netcoreapp2.0\ACM.Core.pdb
 =======
 G:\Robin\3Jul\ACM\ACMWeb\ACM.Core\obj\Debug\netcoreapp2.0\ACM.Core.csprojAssemblyReference.cache
 >>>>>>> 17bac5ee45b11e92c9bcc16d61aef04de1f2323a
+E:\Projects\ACM\July4\ACM\ACMWeb\ACM.Core\obj\Debug\netcoreapp2.0\ACM.Core.csprojResolveAssemblyReference.cache
