@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
-namespace ACM.Core.Context
+namespace ACM.Core.Models
 {
-    public partial class ProfileInfo
+   public class ProfileViewModel
     {
         public long Id { get; set; }
         public long CheckInId { get; set; }
@@ -12,6 +13,5 @@ namespace ACM.Core.Context
         public DateTime? CreatedOn { get; set; }
         public bool? IsActive { get; set; }
 
-        public CheckInForm CheckIn { get; set; }
     }
 }

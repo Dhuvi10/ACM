@@ -1,23 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace ACM.Core.Context
+namespace ACMWeb.Models
 {
-    public partial class CheckInForm
+    public class CheckInViewModel
     {
-        public CheckInForm()
-        {
-            Gallery = new HashSet<Gallery>();
-            ProfileInfo = new HashSet<ProfileInfo>();
-        }
-
         public long Id { get; set; }
         public string Name { get; set; }
         public string PhoneNumber { get; set; }
         public string EmailAddress { get; set; }
         public string Year { get; set; }
         public string Make { get; set; }
-        public string Models { get; set; }
+        public string ModelDet { get; set; }
         public string Vin { get; set; }
         public string OdoMeter { get; set; }
         public string SummeryOfTaskCompleted { get; set; }
@@ -28,7 +24,5 @@ namespace ACM.Core.Context
         public bool? IsActive { get; set; }
         public string StoreId { get; set; }
 
-        public ICollection<Gallery> Gallery { get; set; }
-        public ICollection<ProfileInfo> ProfileInfo { get; set; }
     }
 }

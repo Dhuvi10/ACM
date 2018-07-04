@@ -33,7 +33,6 @@ namespace ACM.Core.Context
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseSqlServer("Server=DESKTOP-9O0T7I3\\SQLEXPRESS;Database=ACM;Trusted_Connection=True;");
             }
         }
@@ -88,10 +87,6 @@ namespace ACM.Core.Context
             {
                 entity.HasKey(e => new { e.UserId, e.RoleId });
 
-                entity.HasOne(d => d.Role)
-                    .WithMany(p => p.AspNetUserRoles)
-                    .HasForeignKey(d => d.RoleId);
-
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.AspNetUserRoles)
                     .HasForeignKey(d => d.UserId);
@@ -131,7 +126,7 @@ namespace ACM.Core.Context
 
                 entity.Property(e => e.Make).HasMaxLength(50);
 
-                entity.Property(e => e.Model).HasMaxLength(50);
+                entity.Property(e => e.Models).HasMaxLength(50);
 
                 entity.Property(e => e.Name).HasMaxLength(50);
 
@@ -160,6 +155,12 @@ namespace ACM.Core.Context
 
                 entity.Property(e => e.ThumbnailImage).HasMaxLength(100);
 
+                entity.HasOne(d => d.CheckIn)
+                    .WithMany(p => p.Gallery)
+                    .HasForeignKey(d => d.CheckInId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Gallery_CheckInForm");
+
                 entity.HasOne(d => d.Store)
                     .WithMany(p => p.Gallery)
                     .HasForeignKey(d => d.StoreId)
@@ -187,15 +188,11 @@ namespace ACM.Core.Context
 
                 entity.Property(e => e.Signature).HasMaxLength(200);
 
-                entity.Property(e => e.StoreId)
-                    .IsRequired()
-                    .HasMaxLength(450);
-
-                entity.HasOne(d => d.Store)
+                entity.HasOne(d => d.CheckIn)
                     .WithMany(p => p.ProfileInfo)
-                    .HasForeignKey(d => d.StoreId)
+                    .HasForeignKey(d => d.CheckInId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_ProfileInfo_AspNetUsers");
+                    .HasConstraintName("FK_ProfileInfo_CheckInForm");
             });
 
             modelBuilder.Entity<StoreContracts>(entity =>

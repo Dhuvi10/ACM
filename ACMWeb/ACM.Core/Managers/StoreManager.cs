@@ -135,7 +135,7 @@ namespace ACM.Core.Managers
                     model.PersonalItemInVehicle = _model.PersonalItemInVehicle;
                     model.PhoneNumber = _model.PhoneNumber;
                     model.OdoMeter = _model.OdoMeter;
-                    model.Model = _model.Model;
+                    model.Models = _model.Models;
                     model.Make = _model.Make;
                     model.CreatedOn = DateTime.Now;
                     model.IsActive = _model.IsActive;
@@ -158,7 +158,7 @@ namespace ACM.Core.Managers
                     modelCheckInForm.PersonalItemInVehicle = _model.PersonalItemInVehicle;
                     modelCheckInForm.PhoneNumber = _model.PhoneNumber;
                     modelCheckInForm.OdoMeter = _model.OdoMeter;
-                    modelCheckInForm.Model = _model.Model;
+                    modelCheckInForm.Models = _model.Models;
                     modelCheckInForm.Make = _model.Make;
                     modelCheckInForm.CreatedOn = DateTime.Now;
                     modelCheckInForm.IsActive = _model.IsActive;
@@ -202,7 +202,7 @@ namespace ACM.Core.Managers
                     model.PersonalItemInVehicle = item.PersonalItemInVehicle;
                     model.PhoneNumber = item.PhoneNumber;
                     model.OdoMeter = item.OdoMeter;
-                    model.Model = item.Model;
+                    model.Models = item.Models;
                     model.Make = item.Make;
                     model.CreatedOn = item.CreatedOn;
                     model.IsActive = item.IsActive;
@@ -237,7 +237,7 @@ namespace ACM.Core.Managers
                     model.PersonalItemInVehicle = item.PersonalItemInVehicle;
                     model.PhoneNumber = item.PhoneNumber;
                     model.OdoMeter = item.OdoMeter;
-                    model.Model = item.Model;
+                    model.Models = item.Models;
                     model.Make = item.Make;
                     model.CreatedOn = item.CreatedOn;
                     model.IsActive = item.IsActive;
@@ -270,7 +270,7 @@ namespace ACM.Core.Managers
                     model.Data.PersonalItemInVehicle = _model.PersonalItemInVehicle;
                     model.Data.PhoneNumber = _model.PhoneNumber;
                     model.Data.OdoMeter = _model.OdoMeter;
-                    model.Data.Model = _model.Model;
+                    model.Data.Models = _model.Models;
                     model.Data.Make = _model.Make;
                     model.Data.CreatedOn = _model.CreatedOn;
                     model.Data.IsActive = _model.IsActive;

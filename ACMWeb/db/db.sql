@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  Database [ACM]    Script Date: 7/3/2018 12:29:45 AM ******/
+/****** Object:  Database [ACM]    Script Date: 7/4/2018 10:46:32 PM ******/
 CREATE DATABASE [ACM]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -97,7 +97,7 @@ ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET QUERY_OPTIMIZER_HOTFIXES =
 GO
 USE [ACM]
 GO
-/****** Object:  Table [dbo].[AspNetRoleClaims]    Script Date: 7/3/2018 12:29:46 AM ******/
+/****** Object:  Table [dbo].[AspNetRoleClaims]    Script Date: 7/4/2018 10:46:32 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -113,7 +113,7 @@ CREATE TABLE [dbo].[AspNetRoleClaims](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AspNetRoles]    Script Date: 7/3/2018 12:29:47 AM ******/
+/****** Object:  Table [dbo].[AspNetRoles]    Script Date: 7/4/2018 10:46:33 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -129,7 +129,7 @@ CREATE TABLE [dbo].[AspNetRoles](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AspNetUserClaims]    Script Date: 7/3/2018 12:29:47 AM ******/
+/****** Object:  Table [dbo].[AspNetUserClaims]    Script Date: 7/4/2018 10:46:33 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -145,7 +145,7 @@ CREATE TABLE [dbo].[AspNetUserClaims](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AspNetUserLogins]    Script Date: 7/3/2018 12:29:47 AM ******/
+/****** Object:  Table [dbo].[AspNetUserLogins]    Script Date: 7/4/2018 10:46:33 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -162,7 +162,7 @@ CREATE TABLE [dbo].[AspNetUserLogins](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AspNetUserRoles]    Script Date: 7/3/2018 12:29:47 AM ******/
+/****** Object:  Table [dbo].[AspNetUserRoles]    Script Date: 7/4/2018 10:46:33 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -177,7 +177,7 @@ CREATE TABLE [dbo].[AspNetUserRoles](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AspNetUsers]    Script Date: 7/3/2018 12:29:47 AM ******/
+/****** Object:  Table [dbo].[AspNetUsers]    Script Date: 7/4/2018 10:46:33 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -207,7 +207,7 @@ CREATE TABLE [dbo].[AspNetUsers](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AspNetUserTokens]    Script Date: 7/3/2018 12:29:47 AM ******/
+/****** Object:  Table [dbo].[AspNetUserTokens]    Script Date: 7/4/2018 10:46:33 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -225,7 +225,7 @@ CREATE TABLE [dbo].[AspNetUserTokens](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CheckInForm]    Script Date: 7/3/2018 12:29:47 AM ******/
+/****** Object:  Table [dbo].[CheckInForm]    Script Date: 7/4/2018 10:46:33 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -237,7 +237,7 @@ CREATE TABLE [dbo].[CheckInForm](
 	[EmailAddress] [nvarchar](50) NULL,
 	[Year] [nvarchar](10) NULL,
 	[Make] [nvarchar](50) NULL,
-	[Model] [nvarchar](50) NULL,
+	[Models] [nvarchar](50) NULL,
 	[Vin] [nvarchar](50) NULL,
 	[OdoMeter] [nvarchar](50) NULL,
 	[SummeryOfTaskCompleted] [nvarchar](max) NULL,
@@ -253,7 +253,7 @@ CREATE TABLE [dbo].[CheckInForm](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Gallery]    Script Date: 7/3/2018 12:29:47 AM ******/
+/****** Object:  Table [dbo].[Gallery]    Script Date: 7/4/2018 10:46:33 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -266,13 +266,14 @@ CREATE TABLE [dbo].[Gallery](
 	[CreatedOn] [datetime] NULL,
 	[IsMain] [bit] NULL,
 	[ThumbnailImage] [nvarchar](100) NULL,
+	[CheckInId] [bigint] NOT NULL,
  CONSTRAINT [PK_Gallery] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[PhotoComment]    Script Date: 7/3/2018 12:29:47 AM ******/
+/****** Object:  Table [dbo].[PhotoComment]    Script Date: 7/4/2018 10:46:34 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -289,14 +290,14 @@ CREATE TABLE [dbo].[PhotoComment](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ProfileInfo]    Script Date: 7/3/2018 12:29:47 AM ******/
+/****** Object:  Table [dbo].[ProfileInfo]    Script Date: 7/4/2018 10:46:34 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[ProfileInfo](
 	[Id] [bigint] IDENTITY(1,1) NOT NULL,
-	[StoreId] [nvarchar](450) NOT NULL,
+	[CheckInId] [bigint] NOT NULL,
 	[Signature] [nvarchar](200) NULL,
 	[Photo] [nvarchar](200) NULL,
 	[CreatedOn] [datetime] NULL,
@@ -307,7 +308,7 @@ CREATE TABLE [dbo].[ProfileInfo](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[StoreContracts]    Script Date: 7/3/2018 12:29:47 AM ******/
+/****** Object:  Table [dbo].[StoreContracts]    Script Date: 7/4/2018 10:46:34 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -325,7 +326,7 @@ CREATE TABLE [dbo].[StoreContracts](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[StoreInfo]    Script Date: 7/3/2018 12:29:48 AM ******/
+/****** Object:  Table [dbo].[StoreInfo]    Script Date: 7/4/2018 10:46:34 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -360,12 +361,6 @@ ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[AspNetUserLogins] CHECK CONSTRAINT [FK_AspNetUserLogins_AspNetUsers_UserId]
 GO
-ALTER TABLE [dbo].[AspNetUserRoles]  WITH CHECK ADD  CONSTRAINT [FK_AspNetUserRoles_AspNetRoles_RoleId] FOREIGN KEY([RoleId])
-REFERENCES [dbo].[AspNetRoles] ([Id])
-ON DELETE CASCADE
-GO
-ALTER TABLE [dbo].[AspNetUserRoles] CHECK CONSTRAINT [FK_AspNetUserRoles_AspNetRoles_RoleId]
-GO
 ALTER TABLE [dbo].[AspNetUserRoles]  WITH CHECK ADD  CONSTRAINT [FK_AspNetUserRoles_AspNetUsers_UserId] FOREIGN KEY([UserId])
 REFERENCES [dbo].[AspNetUsers] ([Id])
 ON DELETE CASCADE
@@ -383,15 +378,20 @@ REFERENCES [dbo].[AspNetUsers] ([Id])
 GO
 ALTER TABLE [dbo].[Gallery] CHECK CONSTRAINT [FK_Gallery_AspNetUsers]
 GO
+ALTER TABLE [dbo].[Gallery]  WITH CHECK ADD  CONSTRAINT [FK_Gallery_CheckInForm] FOREIGN KEY([CheckInId])
+REFERENCES [dbo].[CheckInForm] ([Id])
+GO
+ALTER TABLE [dbo].[Gallery] CHECK CONSTRAINT [FK_Gallery_CheckInForm]
+GO
 ALTER TABLE [dbo].[PhotoComment]  WITH CHECK ADD  CONSTRAINT [FK_PhotoComment_Gallery] FOREIGN KEY([PhotoId])
 REFERENCES [dbo].[Gallery] ([Id])
 GO
 ALTER TABLE [dbo].[PhotoComment] CHECK CONSTRAINT [FK_PhotoComment_Gallery]
 GO
-ALTER TABLE [dbo].[ProfileInfo]  WITH CHECK ADD  CONSTRAINT [FK_ProfileInfo_AspNetUsers] FOREIGN KEY([StoreId])
-REFERENCES [dbo].[AspNetUsers] ([Id])
+ALTER TABLE [dbo].[ProfileInfo]  WITH CHECK ADD  CONSTRAINT [FK_ProfileInfo_CheckInForm] FOREIGN KEY([CheckInId])
+REFERENCES [dbo].[CheckInForm] ([Id])
 GO
-ALTER TABLE [dbo].[ProfileInfo] CHECK CONSTRAINT [FK_ProfileInfo_AspNetUsers]
+ALTER TABLE [dbo].[ProfileInfo] CHECK CONSTRAINT [FK_ProfileInfo_CheckInForm]
 GO
 ALTER TABLE [dbo].[StoreContracts]  WITH CHECK ADD  CONSTRAINT [FK_StoreContracts_AspNetUsers] FOREIGN KEY([StoreId])
 REFERENCES [dbo].[AspNetUsers] ([Id])

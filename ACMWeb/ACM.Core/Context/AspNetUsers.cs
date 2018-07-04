@@ -12,7 +12,6 @@ namespace ACM.Core.Context
             AspNetUserRoles = new HashSet<AspNetUserRoles>();
             AspNetUserTokens = new HashSet<AspNetUserTokens>();
             Gallery = new HashSet<Gallery>();
-            ProfileInfo = new HashSet<ProfileInfo>();
             StoreContracts = new HashSet<StoreContracts>();
             StoreInfo = new HashSet<StoreInfo>();
         }
@@ -41,7 +40,6 @@ namespace ACM.Core.Context
         public ICollection<AspNetUserRoles> AspNetUserRoles { get; set; }
         public ICollection<AspNetUserTokens> AspNetUserTokens { get; set; }
         public ICollection<Gallery> Gallery { get; set; }
-        public ICollection<ProfileInfo> ProfileInfo { get; set; }
         public ICollection<StoreContracts> StoreContracts { get; set; }
         public ICollection<StoreInfo> StoreInfo { get; set; }
     }

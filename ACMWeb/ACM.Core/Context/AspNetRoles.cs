@@ -8,7 +8,6 @@ namespace ACM.Core.Context
         public AspNetRoles()
         {
             AspNetRoleClaims = new HashSet<AspNetRoleClaims>();
-            AspNetUserRoles = new HashSet<AspNetUserRoles>();
         }
 
         public string Id { get; set; }
@@ -17,6 +16,5 @@ namespace ACM.Core.Context
         public string NormalizedName { get; set; }
 
         public ICollection<AspNetRoleClaims> AspNetRoleClaims { get; set; }
-        public ICollection<AspNetUserRoles> AspNetUserRoles { get; set; }
     }
 }

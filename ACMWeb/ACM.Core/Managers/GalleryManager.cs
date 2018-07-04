@@ -199,5 +199,29 @@ namespace ACM.Core.Managers
             }
             return response;
         }
+        public ResponseModel<List<GalleryViewModel>> GalleryByCheckinForm(int checkInId)
+        {
+            ResponseModel<List<GalleryViewModel>> response = new ResponseModel<List<GalleryViewModel>>() { Data = new List<GalleryViewModel>() };
+            try
+            {
+                var model = acmContext.Gallery.Where(x => x.CheckInId == checkInId).Select(x => new GalleryViewModel
+                {
+                    StoreId = x.StoreId,
+                    CreatedOn = x.CreatedOn,
+                    Id = x.Id,
+                    Image = x.Image,
+                    IsActive = x.IsActive,
+                    ThumbnailImage = x.ThumbnailImage
+                }).ToList();
+                response.Data = model;
+                response.Status = true;
+            }
+            catch (Exception ex)
+            {
+                response.Message = ex.Message;
+                response.Status = false;
+            }
+            return response;
+        }
     }
 }
