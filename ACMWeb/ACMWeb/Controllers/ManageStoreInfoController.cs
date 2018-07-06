@@ -171,7 +171,7 @@ namespace ACMWeb.Controllers
         public IActionResult PartialList()
         {
 
-            var result = _storeManager.ManageContractList();
+            var result = _storeManager.ManageContractList(false);
             return PartialView("_CheckIn", result.Data);
         }
 

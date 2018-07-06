@@ -122,7 +122,7 @@ namespace ACM.Core.Context
             modelBuilder.Entity<CheckInForm>(entity =>
             {
                 entity.Property(e => e.CreatedOn).HasColumnType("datetime");
-
+                entity.Property(e => e.CheckOutDate).HasColumnType("datetime");
                 entity.Property(e => e.EmailAddress).HasMaxLength(50);
 
                 entity.Property(e => e.Make).HasMaxLength(50);

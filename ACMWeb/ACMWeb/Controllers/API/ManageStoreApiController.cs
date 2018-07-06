@@ -139,8 +139,8 @@ namespace ACMWeb.Controllers.API
         public IActionResult GetStoreLogo(string storeId)
         {
             var result = _storeManager.StoreLogo(storeId);
-            if(result.Status)
-            { 
+            if (result.Status)
+            {
                 return Ok(result);
             }
             else
@@ -180,25 +180,56 @@ namespace ACMWeb.Controllers.API
         public IActionResult SaveCheckInForm([FromBody]CheckInContractsViewModel model)
         {
             var result = _storeManager.SaveCheckInForm(model);
-           // CheckInContractsViewModel obj= result.Data
+            // CheckInContractsViewModel obj= result.Data
             if (result.Status)
             {
-                return Ok(new { status=result.Status,Data=new{ StoreId=result.Data.StoreId,Id=result.Data.Id}
-            });
+                return Ok(new
+                {
+                    status = result.Status,
+                    Data = new { StoreId = result.Data.StoreId, Id = result.Data.Id }
+                });
             }
             else
             {
-                return StatusCode(404,result);
+                return StatusCode(404, result);
             }
         }
         [HttpGet]
         [Route("CheckInContractListing")]
         public IActionResult CheckInContractListing()
         {
-            var result = _storeManager.ManageContractList();
+            var result = _storeManager.ManageContractList(false);
             if (result.Status)
             {
                 return Ok(result);
+            }
+            else
+            {
+                return StatusCode(404, result);
+            }
+        }
+        [HttpGet]
+        [Route("History")]
+        public IActionResult CheckOutHistory()
+        {
+            var result = _storeManager.ManageContractList(true);
+            if (result.Status)
+            {
+                return Ok(new { status = result.Status, Data = result.Data.OrderByDescending(x => x.CheckOutDate) });
+            }
+            else
+            {
+                return StatusCode(404, result);
+            }
+        }
+        [HttpGet]
+        [Route("Checkout/{checkInId}")]
+        public IActionResult CheckOutForm(int checkInId)
+        {
+            var result = _storeManager.CheckOutForm(checkInId);
+            if (result.Status)
+            {
+                return Ok(new { Status = result.Status, Message = result.Message, Data = new { Id = result.Data.Id, CheckOutDate = result.Data.CheckOutDate } });
             }
             else
             {

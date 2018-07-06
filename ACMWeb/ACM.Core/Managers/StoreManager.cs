@@ -142,6 +142,7 @@ namespace ACM.Core.Managers
                     model.Make = _model.Make;
                     model.CreatedOn = DateTime.Now;
                     model.IsActive = _model.IsActive;
+                    model.IsCheckOut = false;
                     model.StoreId = _model.StoreId;
                     acmContext.SaveChanges();
 
@@ -168,6 +169,7 @@ namespace ACM.Core.Managers
                     modelCheckInForm.CreatedOn = DateTime.Now;
                     modelCheckInForm.IsActive = _model.IsActive;
                     modelCheckInForm.StoreId = _model.StoreId;
+                    modelCheckInForm.IsCheckOut = false;
                     acmContext.Add(modelCheckInForm);
                     acmContext.SaveChanges();
                     _model.Id = modelCheckInForm.Id;
@@ -189,13 +191,40 @@ namespace ACM.Core.Managers
             // return responseModel;
 
         }
+        public ResponseModel<CheckInContractsViewModel> CheckOutForm(int contractId)
+        {
+            ResponseModel<CheckInContractsViewModel> response = new ResponseModel<CheckInContractsViewModel> { Data = new CheckInContractsViewModel() };
+            try
+            {
+                var model = acmContext.CheckInForm.Where(e => e.Id == contractId).FirstOrDefault();
+                if (model != null)
+                {
+                    model.Id = contractId;
+                    model.IsCheckOut = true;
+                    model.CheckOutDate = DateTime.Now;
+                    acmContext.SaveChanges();
 
-        public ResponseModel<List<CheckInContractsViewModel>> ManageContractList()
+                    // response.Data = list;
+                    response.Data = new CheckInContractsViewModel() { Id=model.Id,CheckOutDate=model.CheckOutDate};
+                    response.Message = "CheckOut successfully";
+                    response.Status = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Data = null;
+                response.Status = false;
+                response.Message = ex.Message;
+            }
+
+            return response;
+        }
+        public ResponseModel<List<CheckInContractsViewModel>> ManageContractList(bool isCheckOut)
         {
             ResponseModel<List<CheckInContractsViewModel>> response = new ResponseModel<List<CheckInContractsViewModel>> { Data = new List<CheckInContractsViewModel>() };
             try
             {
-                var _list = acmContext.CheckInForm.Select(e => e).ToList();
+                var _list = acmContext.CheckInForm.Where(x=>x.IsCheckOut== isCheckOut).Select(e => e).ToList();
                 foreach (var item in _list)
                 {
                     CheckInContractsViewModel model = new CheckInContractsViewModel();
@@ -214,6 +243,11 @@ namespace ACM.Core.Managers
                     model.Make = item.Make;
                     model.CreatedOn = item.CreatedOn;
                     model.IsActive = item.IsActive;
+                    if (isCheckOut)
+                    {
+                        model.IsCheckOut = item.IsCheckOut;
+                        model.CheckOutDate = item.CheckOutDate;
+                    }
                     response.Data.Add(model);
                 }
                 response.Status = true;

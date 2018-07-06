@@ -27,3 +27,17 @@ G:\Robin\jul6\ACM\ACMWeb\ACMWeb\obj\Release\netcoreapp2.0\ACMWeb.AssemblyInfo.cs
 G:\Robin\jul6\ACM\ACMWeb\ACMWeb\obj\Release\netcoreapp2.0\ACMWeb.csproj.CopyComplete
 G:\Robin\jul6\ACM\ACMWeb\ACMWeb\obj\Release\netcoreapp2.0\ACMWeb.dll
 G:\Robin\jul6\ACM\ACMWeb\ACMWeb\obj\Release\netcoreapp2.0\ACMWeb.pdb
+E:\Projects\ACM\July7\ACM\ACMWeb\ACMWeb\bin\Release\netcoreapp2.0\ACMWeb.deps.json
+E:\Projects\ACM\July7\ACM\ACMWeb\ACMWeb\bin\Release\netcoreapp2.0\ACMWeb.runtimeconfig.json
+E:\Projects\ACM\July7\ACM\ACMWeb\ACMWeb\bin\Release\netcoreapp2.0\ACMWeb.runtimeconfig.dev.json
+E:\Projects\ACM\July7\ACM\ACMWeb\ACMWeb\bin\Release\netcoreapp2.0\ACMWeb.dll
+E:\Projects\ACM\July7\ACM\ACMWeb\ACMWeb\bin\Release\netcoreapp2.0\ACMWeb.pdb
+E:\Projects\ACM\July7\ACM\ACMWeb\ACMWeb\bin\Release\netcoreapp2.0\ACM.Core.dll
+E:\Projects\ACM\July7\ACM\ACMWeb\ACMWeb\bin\Release\netcoreapp2.0\ACM.Core.pdb
+E:\Projects\ACM\July7\ACM\ACMWeb\ACMWeb\obj\Release\netcoreapp2.0\ACMWeb.csprojResolveAssemblyReference.cache
+E:\Projects\ACM\July7\ACM\ACMWeb\ACMWeb\obj\Release\netcoreapp2.0\ACMWeb.csproj.CoreCompileInputs.cache
+E:\Projects\ACM\July7\ACM\ACMWeb\ACMWeb\obj\Release\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+E:\Projects\ACM\July7\ACM\ACMWeb\ACMWeb\obj\Release\netcoreapp2.0\ACMWeb.AssemblyInfoInputs.cache
+E:\Projects\ACM\July7\ACM\ACMWeb\ACMWeb\obj\Release\netcoreapp2.0\ACMWeb.AssemblyInfo.cs
+E:\Projects\ACM\July7\ACM\ACMWeb\ACMWeb\obj\Release\netcoreapp2.0\ACMWeb.dll
+E:\Projects\ACM\July7\ACM\ACMWeb\ACMWeb\obj\Release\netcoreapp2.0\ACMWeb.pdb

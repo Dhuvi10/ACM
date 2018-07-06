@@ -50,6 +50,8 @@ namespace ACM.Core.Models.CheckInContractViewModels
         public bool? IsActive { get; set; }
 
         public string StoreId { get; set; }
+        public bool? IsCheckOut { get; set; }
+        public DateTime? CheckOutDate { get; set; }
 
     }
 }

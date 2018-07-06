@@ -26,6 +26,8 @@ namespace ACM.Core.Context
         public DateTime? CreatedOn { get; set; }
         public bool? IsActive { get; set; }
         public string StoreId { get; set; }
+        public bool? IsCheckOut { get; set; }
+        public DateTime? CheckOutDate { get; set; }
 
         public ICollection<Gallery> Gallery { get; set; }
         public ICollection<ProfileInfo> ProfileInfo { get; set; }
