@@ -11162,30 +11162,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Vikas\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
+    "C:\\Users\\Ragini\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
-    "restoreSettings": {
-      "hideWarningsAndErrors": true
-    },
     "restore": {
-      "projectUniqueName": "E:\\Projects\\ACM\\July4\\ACM\\ACMWeb\\ACMWeb\\ACMWeb.csproj",
+      "projectUniqueName": "G:\\Robin\\jul6\\ACM\\ACMWeb\\ACMWeb\\ACMWeb.csproj",
       "projectName": "ACMWeb",
-      "projectPath": "E:\\Projects\\ACM\\July4\\ACM\\ACMWeb\\ACMWeb\\ACMWeb.csproj",
-      "packagesPath": "C:\\Users\\Vikas\\.nuget\\packages\\",
-      "outputPath": "E:\\Projects\\ACM\\July4\\ACM\\ACMWeb\\ACMWeb\\obj\\",
+      "projectPath": "G:\\Robin\\jul6\\ACM\\ACMWeb\\ACMWeb\\ACMWeb.csproj",
+      "packagesPath": "C:\\Users\\Ragini\\.nuget\\packages\\",
+      "outputPath": "G:\\Robin\\jul6\\ACM\\ACMWeb\\ACMWeb\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Vikas\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
+        "C:\\Users\\Ragini\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"
@@ -11197,8 +11191,8 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "E:\\Projects\\ACM\\July4\\ACM\\ACMWeb\\ACM.Core\\ACM.Core.csproj": {
-              "projectPath": "E:\\Projects\\ACM\\July4\\ACM\\ACMWeb\\ACM.Core\\ACM.Core.csproj"
+            "G:\\Robin\\jul6\\ACM\\ACMWeb\\ACM.Core\\ACM.Core.csproj": {
+              "projectPath": "G:\\Robin\\jul6\\ACM\\ACMWeb\\ACM.Core\\ACM.Core.csproj"
             }
           }
         }

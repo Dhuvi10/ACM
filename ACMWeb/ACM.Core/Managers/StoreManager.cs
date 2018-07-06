@@ -146,6 +146,7 @@ namespace ACM.Core.Managers
                     acmContext.SaveChanges();
 
                     // response.Data = list;
+                    response.Data = _model;
                     response.Message = "Record updated successfully";
                     response.Status = true;
                 }
@@ -163,13 +164,15 @@ namespace ACM.Core.Managers
                     modelCheckInForm.OdoMeter = _model.OdoMeter;
                     modelCheckInForm.Models = _model.Models;
                     modelCheckInForm.Make = _model.Make;
-                    model.CustomerPartSupplied = _model.CustomerPartSupplied;
+                    modelCheckInForm.CustomerPartSupplied = _model.CustomerPartSupplied;
                     modelCheckInForm.CreatedOn = DateTime.Now;
                     modelCheckInForm.IsActive = _model.IsActive;
                     modelCheckInForm.StoreId = _model.StoreId;
                     acmContext.Add(modelCheckInForm);
                     acmContext.SaveChanges();
-                    response.Data = null;
+                    _model.Id = modelCheckInForm.Id;
+                    _model.StoreId = modelCheckInForm.StoreId;
+                    response.Data = _model;
                     response.Message = "Record saved successfully";
                     response.Status = true;
                 }

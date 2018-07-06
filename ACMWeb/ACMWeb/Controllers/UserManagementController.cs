@@ -382,7 +382,7 @@ namespace ACMWeb.Controllers
             }
             else
             {
-                return RedirectToAction(nameof(HomeController.Index), "Home");
+                return RedirectToAction(nameof(AccountController.Login), "Account");
             }
         }
 

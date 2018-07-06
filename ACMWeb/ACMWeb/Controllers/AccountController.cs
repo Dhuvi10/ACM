@@ -250,8 +250,8 @@ namespace ACMWeb.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-           // _logger.LogInformation("User logged out.");
-            return RedirectToAction(nameof(HomeController.Index), "Home");
+            // _logger.LogInformation("User logged out.");
+            return RedirectToAction(nameof(AccountController.Login), "Account");
 
         }
 
@@ -261,7 +261,7 @@ namespace ACMWeb.Controllers
         {
             await _signInManager.SignOutAsync();
            // _logger.LogInformation("User logged out.");
-            return RedirectToAction(nameof(HomeController.Index), "Home");
+            return RedirectToAction(nameof(AccountController.Login), "Account");
 
         }
 
@@ -391,7 +391,7 @@ namespace ACMWeb.Controllers
             }
             else
             {
-                return RedirectToAction(nameof(HomeController.Index), "Home");
+                return RedirectToAction(nameof(AccountController.Login), "Account");
             }
         }
 

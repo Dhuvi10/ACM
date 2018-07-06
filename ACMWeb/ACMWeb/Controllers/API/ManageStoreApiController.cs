@@ -134,6 +134,20 @@ namespace ACMWeb.Controllers.API
             }
 
         }
+        [HttpGet]
+        [Route("StoreLogo/{storeId}")]
+        public IActionResult GetStoreLogo(string storeId)
+        {
+            var result = _storeManager.StoreLogo(storeId);
+            if(result.Status)
+            { 
+                return Ok(result);
+            }
+            else
+            {
+                return StatusCode(404, result);
+            }
+        }
         [HttpPost]
         [Route("StoreLogo")]
         public IActionResult StoreLogo([FromBody]StoreInfoViewModel model)
@@ -166,9 +180,11 @@ namespace ACMWeb.Controllers.API
         public IActionResult SaveCheckInForm([FromBody]CheckInContractsViewModel model)
         {
             var result = _storeManager.SaveCheckInForm(model);
+           // CheckInContractsViewModel obj= result.Data
             if (result.Status)
             {
-                return Ok(result);
+                return Ok(new { status=result.Status,Data=new{ StoreId=result.Data.StoreId,Id=result.Data.Id}
+            });
             }
             else
             {

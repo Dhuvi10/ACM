@@ -23,23 +23,27 @@
                 {
                     <li><a asp-controller="UserManagement" asp-action="Index">@*<i class="fas fa-users"></i>*@&nbsp;&nbsp;Manage Admin User</a> </li>
                     <li><a asp-controller="UserManagement" asp-action="CreateAdminUser">@*<i class="fas fa-chart-bar"></i>*@&nbsp;&nbsp; Create Admin User</a> </li>
-                    <li><a asp-controller="UserManagement" asp-action="ManageStore">@*<i class="fas fa-users"></i>*@&nbsp;&nbsp;Manage Store User @*<span class="fas fa-chevron-right"></span>*@ </a></li>
                     <li><a asp-controller="UserManagement" asp-action="CreateStoreUser">@*<i class="fas fa-users"></i>&nbsp;&nbsp;*@ Create Store User</a> </li>
                 }
-                @if (User.IsInRole("Store"))
+                @if (User.IsInRole("Admin") || User.IsInRole("Store"))
                 {
-                    <li><a asp-controller="ManageStoreInfo" asp-action="Index">@*<i class="fas fa-users"></i>&nbsp;&nbsp;*@ Manage Store Logo</a> </li>
-                    <li><a asp-controller="ManageStoreInfo" asp-action="ManageStoreContracts">@*<i class="fas fa-users"></i>&nbsp;&nbsp;*@Manage Store Contracts</a> </li>
-                    <li><a asp-controller="ManageStoreInfo" asp-action="CheckInFormList">@*<i class="fas fa-users"></i>&nbsp;&nbsp;*@Customers</a> </li>
-                    <li><a asp-controller="ManageStoreInfo" asp-action="CheckInForm">@*<i class="fas fa-users"></i>&nbsp;&nbsp;*@Checkin Form</a> </li>
+                    <li><a asp-controller="UserManagement" asp-action="ManageStore">@*<i class="fas fa-users"></i>*@&nbsp;&nbsp;Manage Store User @*<span class="fas fa-chevron-right"></span>*@ </a></li>
                 }
-                @*<li><a><i class="fas fa-cog"></i> Settings</a> </li>*@
 
-                @*<li>
-            <a href="~/hangfire/recurring"><i class="fas"></i>Send Mails</a>
+                    @if (User.IsInRole("Store"))
+                    {
+                        <li><a asp-controller="ManageStoreInfo" asp-action="Index">@*<i class="fas fa-users"></i>&nbsp;&nbsp;*@ Manage Store Logo</a> </li>
+                        <li><a asp-controller="ManageStoreInfo" asp-action="ManageStoreContracts">@*<i class="fas fa-users"></i>&nbsp;&nbsp;*@Manage Store Contracts</a> </li>
+                        <li><a asp-controller="ManageStoreInfo" asp-action="CheckInFormList">@*<i class="fas fa-users"></i>&nbsp;&nbsp;*@Customers</a> </li>
+                        <li><a asp-controller="ManageStoreInfo" asp-action="CheckInForm">@*<i class="fas fa-users"></i>&nbsp;&nbsp;*@Checkin Form</a> </li>
+                    }
+                    @*<li><a><i class="fas fa-cog"></i> Settings</a> </li>*@
 
-        </li>*@
-            </ul>
+                    @*<li>
+                <a href="~/hangfire/recurring"><i class="fas"></i>Send Mails</a>
+
+            </li>*@
+                </ul>
         </div>
     </div>
     <!-- /sidebar menu -->
