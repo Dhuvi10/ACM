@@ -23,21 +23,27 @@ namespace ACM.Core.Managers
             try
             {
                 ProfileInfo info = new ProfileInfo();
+                string photoName = null;
+                string signName = null;
                 info.CreatedOn = DateTime.Now;
                 info.IsActive = true;
                 info.CheckInId = model.CheckInId;
-
-                string photoName = Guid.NewGuid().ToString() + "." + Convert.ToString(ImageFormat.Jpeg);
-                var path = Path.Combine(imagePath, photoName.ToString());
-                byte[] imageBytes = Convert.FromBase64String(model.Photo);
-                File.WriteAllBytes(path, imageBytes);
+                if (!string.IsNullOrEmpty(model.Photo))
+                {
+                    photoName = Guid.NewGuid().ToString() + "." + Convert.ToString(ImageFormat.Jpeg);
+                    var path = Path.Combine(imagePath, photoName.ToString());
+                    byte[] imageBytes = Convert.FromBase64String(model.Photo);
+                    File.WriteAllBytes(path, imageBytes);
+                }
                 info.Photo = photoName;
-
-                string signName = Guid.NewGuid().ToString() + "." + Convert.ToString(ImageFormat.Png);
-                var _signPath = Path.Combine(signPath, signName.ToString());
-                byte[] _imageBytes = Convert.FromBase64String(model.Signature);
-                File.WriteAllBytes(_signPath, _imageBytes);
-                info.Photo = signName;
+                if (!string.IsNullOrEmpty(model.Signature))
+                {
+                    signName = Guid.NewGuid().ToString() + "." + Convert.ToString(ImageFormat.Png);
+                    var _signPath = Path.Combine(signPath, signName.ToString());
+                    byte[] _imageBytes = Convert.FromBase64String(model.Signature);
+                    File.WriteAllBytes(_signPath, _imageBytes);
+                }
+                info.Signature = signName;
 
                 acmContext.ProfileInfo.Add(info);
                 acmContext.SaveChanges();

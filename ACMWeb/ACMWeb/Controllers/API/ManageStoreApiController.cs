@@ -22,7 +22,7 @@ using TechnicalWeb.Filters;
 
 namespace ACMWeb.Controllers.API
 {
-   // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Produces("application/json")]
     [Route("api/Store")]
     public class ManageStoreApiController : Controller
@@ -38,7 +38,7 @@ namespace ACMWeb.Controllers.API
         public ManageStoreApiController(UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             ILogger<AccountController> logger, IUserManager manager, IHostingEnvironment env,
-        RoleManager<IdentityRole> roleManager, JwtAuthentication JwtAuthentication,IStoreManager storeManager)
+        RoleManager<IdentityRole> roleManager, JwtAuthentication JwtAuthentication, IStoreManager storeManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -69,7 +69,7 @@ namespace ACMWeb.Controllers.API
                 }
                 return Ok(new { Status = true, AdminUser = userList });
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return StatusCode(404, new { Status = false, message = ex.Message });
             }
@@ -104,7 +104,7 @@ namespace ACMWeb.Controllers.API
             {
                 List<UserViewModel> userList = new List<UserViewModel>();
                 var user = await _userManager.GetUsersInRoleAsync("Store");
-               
+
                 foreach (var item in user.Where(e => e.AdminId == id))
                 {
                     UserViewModel model = new UserViewModel();
@@ -121,7 +121,7 @@ namespace ACMWeb.Controllers.API
                 List<UserViewModel> userList = new List<UserViewModel>();
                 var user = await _userManager.GetUsersInRoleAsync("Store");
 
-                foreach (var item in user.Where(e => e.AdminId!=null))
+                foreach (var item in user.Where(e => e.AdminId != null))
                 {
                     UserViewModel model = new UserViewModel();
                     model.Name = item.Name;
@@ -140,7 +140,7 @@ namespace ACMWeb.Controllers.API
         {
             var webRoot = _env.WebRootPath;
             var PathWithFolderName = System.IO.Path.Combine(webRoot, "StoreLogo");
-            model.Logo = model.Logo.Split(',')[1];
+            //model.Logo = model.Logo.Split(',')[1];
             if (string.IsNullOrWhiteSpace(model.Logo))
                 return Content("file not selected");
 
@@ -154,11 +154,11 @@ namespace ACMWeb.Controllers.API
                 MemoryStream ms = new MemoryStream(imageBytes);
                 Image image = Image.FromStream(ms);
                 image.Save(PathWithFolderName + "//" + model.LogoName);
-                return Ok(result.Data);
+                return Ok(result);
             }
             else
             {
-                return BadRequest(result.Message);
+                return StatusCode(404, result);
             }
         }
         [HttpPost]
@@ -167,10 +167,12 @@ namespace ACMWeb.Controllers.API
         {
             var result = _storeManager.SaveCheckInForm(model);
             if (result.Status)
-            { return Ok(result.Message); }
+            {
+                return Ok(result);
+            }
             else
             {
-                return BadRequest(result.Message);
+                return StatusCode(404,result);
             }
         }
         [HttpGet]
@@ -180,11 +182,11 @@ namespace ACMWeb.Controllers.API
             var result = _storeManager.ManageContractList();
             if (result.Status)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
             else
             {
-                return BadRequest(result.Message);
+                return StatusCode(404, result);
             }
         }
         [HttpGet]
@@ -194,11 +196,11 @@ namespace ACMWeb.Controllers.API
             var result = _storeManager.CheckInContractDetail(contractId);
             if (result.Status)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
             else
             {
-                return BadRequest(result.Message);
+                return StatusCode(404, result);
             }
         }
         [HttpGet]
@@ -208,11 +210,11 @@ namespace ACMWeb.Controllers.API
             var result = _storeManager.ContractListByStore(storeId);
             if (result.Status)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
             else
             {
-                return BadRequest(result.Message);
+                return StatusCode(404, result);
             }
         }
 

@@ -31,9 +31,9 @@ namespace ACMWeb.Controllers.API
             string signPath = System.IO.Path.Combine(webRoot, "Sign");
             var result = _profileManager.AddProfileDetail(model, photoPath, signPath);
             if (result.Status)
-                return Ok(result.Message);
+                return Ok(result);
             else
-                return BadRequest(result.Message);
+                return StatusCode(404, result);
         }
         [HttpPost]
         [Route("UpdateCheckInProfile")]
@@ -45,9 +45,9 @@ namespace ACMWeb.Controllers.API
             string signPath = System.IO.Path.Combine(webRoot, "Sign");
             var result = _profileManager.AddProfileDetail(model, photoPath, signPath);
             if (result.Status)
-                return Ok(result.Message);
+                return Ok(result);
             else
-                return BadRequest(result.Message);
+                return StatusCode(404, result);
         }
         [HttpGet]
         [Route("CheckInProfile/{checkInId}")]
@@ -55,9 +55,9 @@ namespace ACMWeb.Controllers.API
         {
             var result = _profileManager.ProfileDetailById(checkInId);
             if (result.Status)
-                return Ok(result.Data);
+                return Ok(result);
             else
-                return BadRequest(result.Message);
+                return StatusCode(404, result);
         }
     }
 }

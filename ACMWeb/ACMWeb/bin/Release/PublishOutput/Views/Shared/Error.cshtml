@@ -1,0 +1,26 @@
+﻿@model ErrorViewModel
+@{
+    ViewData["Title"] = "Error";
+}
+
+
+
+<div class="signin-up-area">
+    <div class="form-cont">
+        <div class="form">
+            <h1 class="text-danger">Error.</h1>
+            <h2 class="h3 mb-5 font-weight-bold">
+                An error was made during your request
+            </h2>
+           
+            @if (Model.ShowRequestId)
+    {
+        <p>
+            <strong>Request ID:</strong> <code>@Model.RequestId</code>
+           
+        </p>
+}
+        </div>
+    </div>
+</div>
+

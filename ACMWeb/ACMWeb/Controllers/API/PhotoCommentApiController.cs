@@ -24,9 +24,9 @@ namespace ACMWeb.Controllers.API
         {
             var result = _commentManager.AddPhotoComment(model);
             if (result.Status)
-                return Ok(result.Message);
+                return Ok(result);
             else
-                return BadRequest(result.Message);
+                return StatusCode(404, result);
         }
         [HttpGet]
         [Route("PhotoComment")]
@@ -36,7 +36,7 @@ namespace ACMWeb.Controllers.API
             if (result.Status)
                 return Ok(new { PhotoId=photoId,Comments=result.Data.Select(x=>new { Comment = x.Comment, CreatedOn= x.CreatedOn}).ToList()});
             else
-                return BadRequest(result.Message);
+                return StatusCode(404, result);
         }
     }
 }

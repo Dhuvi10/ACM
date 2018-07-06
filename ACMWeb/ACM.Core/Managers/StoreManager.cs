@@ -93,6 +93,7 @@ namespace ACM.Core.Managers
 
                     // response.Data = list;
                     response.Status = true;
+                    response.Message="success";
                 }
                 else
                 {
@@ -103,6 +104,7 @@ namespace ACM.Core.Managers
                     acmContext.Add(storeModel);
                     acmContext.SaveChanges();
                     response.Data = null;
+                    response.Message = "success";
                     response.Status = true;
                 }
 
@@ -134,6 +136,7 @@ namespace ACM.Core.Managers
                     model.PartsNeeded = _model.PartsNeeded;
                     model.PersonalItemInVehicle = _model.PersonalItemInVehicle;
                     model.PhoneNumber = _model.PhoneNumber;
+                    model.CustomerPartSupplied = _model.CustomerPartSupplied;
                     model.OdoMeter = _model.OdoMeter;
                     model.Models = _model.Models;
                     model.Make = _model.Make;
@@ -160,6 +163,7 @@ namespace ACM.Core.Managers
                     modelCheckInForm.OdoMeter = _model.OdoMeter;
                     modelCheckInForm.Models = _model.Models;
                     modelCheckInForm.Make = _model.Make;
+                    model.CustomerPartSupplied = _model.CustomerPartSupplied;
                     modelCheckInForm.CreatedOn = DateTime.Now;
                     modelCheckInForm.IsActive = _model.IsActive;
                     modelCheckInForm.StoreId = _model.StoreId;
@@ -200,6 +204,7 @@ namespace ACM.Core.Managers
                     model.Year = item.Year;
                     model.PartsNeeded = item.PartsNeeded;
                     model.PersonalItemInVehicle = item.PersonalItemInVehicle;
+                    model.CustomerPartSupplied = item.CustomerPartSupplied;
                     model.PhoneNumber = item.PhoneNumber;
                     model.OdoMeter = item.OdoMeter;
                     model.Models = item.Models;
@@ -235,12 +240,14 @@ namespace ACM.Core.Managers
                     model.Year = item.Year;
                     model.PartsNeeded = item.PartsNeeded;
                     model.PersonalItemInVehicle = item.PersonalItemInVehicle;
+                    model.CustomerPartSupplied = item.CustomerPartSupplied;
                     model.PhoneNumber = item.PhoneNumber;
                     model.OdoMeter = item.OdoMeter;
                     model.Models = item.Models;
                     model.Make = item.Make;
                     model.CreatedOn = item.CreatedOn;
                     model.IsActive = item.IsActive;
+                    model.StoreId = item.StoreId;
                     response.Data.Add(model);
                 }
                 response.Status = true;
@@ -268,6 +275,7 @@ namespace ACM.Core.Managers
                     model.Data.Year = _model.Year;
                     model.Data.PartsNeeded = _model.PartsNeeded;
                     model.Data.PersonalItemInVehicle = _model.PersonalItemInVehicle;
+                    model.Data.CustomerPartSupplied = _model.CustomerPartSupplied;
                     model.Data.PhoneNumber = _model.PhoneNumber;
                     model.Data.OdoMeter = _model.OdoMeter;
                     model.Data.Models = _model.Models;

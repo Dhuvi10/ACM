@@ -16,5 +16,6 @@ namespace ACM.Core.Models
         public DateTime? CreatedOn { get; set; }
         public bool? IsMain { get; set; }
         public string FileName { get; set; }
+        public long CheckInId { get; set; }
     }
 }

@@ -34,9 +34,9 @@ namespace ACMWeb.Controllers.API
             string thumbPath = System.IO.Path.Combine(webRoot, "Thumbnail");
             var result = _galleryManager.AddGalleryImage(model, serverPath, thumbPath);
             if (result.Status)
-                return Ok(result.Message);
+                return Ok(result);
             else
-                return BadRequest(result.Message);
+                return StatusCode(404, result);
         }
         [HttpPost]
         [Route("AddMultipleImages")]
@@ -48,9 +48,9 @@ namespace ACMWeb.Controllers.API
             string thumbPath = System.IO.Path.Combine(webRoot, "Thumbnail");
             var result = _galleryManager.AddMultipleImages(models.ToList(), serverPath, thumbPath);
             if (result.Status)
-                return Ok(result.Message);
+                return Ok(result);
             else
-                return BadRequest(result.Message);
+                return StatusCode(404, result);
         }
         [HttpGet]
         [Route("GalleryByStore/{storeId}")]
@@ -62,9 +62,9 @@ namespace ACMWeb.Controllers.API
            // string thumbPath = System.IO.Path.Combine(webRoot, "Thumbnail");
             var result = _galleryManager.GalleryByStore(storeId);
             if (result.Status)
-                return Ok(result.Data);
+                return Ok(result);
             else
-                return BadRequest(result.Message);
+                return StatusCode(404, result);
         }
         [HttpPost]
         [Route("DeleteImages")]
@@ -76,9 +76,9 @@ namespace ACMWeb.Controllers.API
              string thumbPath = System.IO.Path.Combine(webRoot, "Thumbnail");
             var result = _galleryManager.DeleteImages(Ids, serverPath, thumbPath);
             if (result.Status)
-                return Ok(result.Message);
+                return Ok(result);
             else
-                return BadRequest(result.Message);
+                return StatusCode(404, result);
         }
         [HttpGet]
         [Route("SetFrontImage/{Id}/{storeId}")]
@@ -86,9 +86,9 @@ namespace ACMWeb.Controllers.API
         {
             var result = _galleryManager.SetFrontImage(Id,storeId);
             if (result.Status)
-                return Ok(result.Message);
+                return Ok(result);
             else
-                return BadRequest(result.Message);
+                return StatusCode(404, result);
         }
         [HttpGet]
         [Route("GalleryByCheckIn/{checkInId}")]
@@ -96,9 +96,9 @@ namespace ACMWeb.Controllers.API
         {
             var result = _galleryManager.GalleryByCheckinForm(checkInId);
             if (result.Status)
-                return Ok(result.Data);
+                return Ok(result);
             else
-                return BadRequest(result.Message);
+                return StatusCode(404, result);
         }
     }
 }

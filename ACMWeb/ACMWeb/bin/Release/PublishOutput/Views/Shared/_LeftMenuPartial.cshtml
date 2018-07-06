@@ -1,0 +1,47 @@
+﻿@*@using Microsoft.AspNetCore.Identity
+    @using Context.Models*@
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+<div class="left_col scroll-view">
+    <div class="navbar nav_title" style="border: 0; font-size: 50px;"> <strong><a href="~/dashboard" class="site_title">@*<img src="~/images/logo.png" />*@ ACM</a></strong> </div>
+    <div class="clearfix"></div>
+
+    <!-- menu profile quick info -->
+    <div class="profile">
+        <div class="profile_pic"> @*<img src="~/images/user-image.png" alt="..." class="img-circle profile_img">*@ </div>
+        <div class="profile_info">
+            <h2>@UserManager.GetUserName(User)</h2>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+        <div class="menu_section">
+            <ul class="nav side-menu">
+                @*<li><a asp-controller="dashboard" asp-action="index"><i class="fas fa-tachometer-alt"></i> &nbsp;Dashboard</a> </li>*@
+                @if (User.IsInRole("Admin"))
+                {
+                    <li><a asp-controller="UserManagement" asp-action="Index">@*<i class="fas fa-users"></i>*@&nbsp;&nbsp;Manage Admin User</a> </li>
+                    <li><a asp-controller="UserManagement" asp-action="CreateAdminUser">@*<i class="fas fa-chart-bar"></i>*@&nbsp;&nbsp; Create Admin User</a> </li>
+                    <li><a asp-controller="UserManagement" asp-action="ManageStore">@*<i class="fas fa-users"></i>*@&nbsp;&nbsp;Manage Store User @*<span class="fas fa-chevron-right"></span>*@ </a></li>
+                    <li><a asp-controller="UserManagement" asp-action="CreateStoreUser">@*<i class="fas fa-users"></i>&nbsp;&nbsp;*@ Create Store User</a> </li>
+                }
+                @if (User.IsInRole("Store"))
+                {
+                    <li><a asp-controller="ManageStoreInfo" asp-action="Index">@*<i class="fas fa-users"></i>&nbsp;&nbsp;*@ Manage Store Logo</a> </li>
+                    <li><a asp-controller="ManageStoreInfo" asp-action="ManageStoreContracts">@*<i class="fas fa-users"></i>&nbsp;&nbsp;*@Manage Store Contracts</a> </li>
+                    <li><a asp-controller="ManageStoreInfo" asp-action="CheckInFormList">@*<i class="fas fa-users"></i>&nbsp;&nbsp;*@Customers</a> </li>
+                    <li><a asp-controller="ManageStoreInfo" asp-action="CheckInForm">@*<i class="fas fa-users"></i>&nbsp;&nbsp;*@Checkin Form</a> </li>
+                }
+                @*<li><a><i class="fas fa-cog"></i> Settings</a> </li>*@
+
+                @*<li>
+            <a href="~/hangfire/recurring"><i class="fas"></i>Send Mails</a>
+
+        </li>*@
+            </ul>
+        </div>
+    </div>
+    <!-- /sidebar menu -->
+
+</div>

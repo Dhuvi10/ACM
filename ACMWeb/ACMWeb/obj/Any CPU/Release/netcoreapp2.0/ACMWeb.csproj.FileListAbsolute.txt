@@ -11,3 +11,4 @@ E:\Projects\ACM\July4\ACM\ACMWeb\ACMWeb\obj\Any CPU\Release\netcoreapp2.0\ACMWeb
 E:\Projects\ACM\July4\ACM\ACMWeb\ACMWeb\obj\Any CPU\Release\netcoreapp2.0\ACMWeb.AssemblyInfo.cs
 E:\Projects\ACM\July4\ACM\ACMWeb\ACMWeb\obj\Any CPU\Release\netcoreapp2.0\ACMWeb.dll
 E:\Projects\ACM\July4\ACM\ACMWeb\ACMWeb\obj\Any CPU\Release\netcoreapp2.0\ACMWeb.pdb
+E:\Projects\ACM\July4\ACM\ACMWeb\ACMWeb\obj\Any CPU\Release\netcoreapp2.0\ACMWeb.csprojResolveAssemblyReference.cache

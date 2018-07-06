@@ -1,0 +1,71 @@
+﻿@model RegisterViewModel
+@{
+    ViewData["Title"] = "Create Admin User";
+  
+}
+<div class="signin-up-area">
+    <div class="form-cont">
+        <div class="form">
+            <form  asp-action="CreateAdminUser" method="post">
+                @*<div asp-validation-summary="All" class="text-danger"></div>*@
+                <input asp-for="id" type="hidden" class="form-control" />
+                <h1 class="h3 mb-5 font-weight-bold"><span> @ViewData["Title"]</span></h1>
+                <div class="form-group">
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password"></label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ConfirmPassword"></label>
+                    <input asp-for="ConfirmPassword" class="form-control" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
+                @*<div class="form-group">
+                <label asp-for="Role"></label>
+                @Html.DropDownListFor(m => m.Role, Model.roleList, new { @class = "form-control" })
+                <span asp-validation-for="Role" class="text-danger"></span>
+            </div>*@
+                <button class="btn btn-default" data-toggle="modal" data-target="#myModal">Save</button>
+                <a href="@Url.Action("Index","UserManagement")" class="btn btn-default">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                @*<h4 class="modal-title">Modal Heading</h4>*@
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                Are you sure you wish to save these changes?
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button onclick=" Save();" style="width:100px" data-dismiss="modal">Yes</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="cancel()">Cancel</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

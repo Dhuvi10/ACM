@@ -52,7 +52,9 @@ namespace ACM.Core.Managers
                     bmpFromString.Save(outpath, ImageFormat.Png);
                     // thumbnail.Save(outpath, ImageFormat.Jpeg);
                     gallery.ThumbnailImage = thumbName;
+                    
                 }
+                gallery.CheckInId = model.CheckInId;
                 acmContext.Gallery.Add(gallery);
                 acmContext.SaveChanges();
                 response.Status = true;
@@ -85,23 +87,24 @@ namespace ACM.Core.Managers
                     File.WriteAllBytes(path, imageBytes);
 
                     gallery.Image = FileName;
-                    Image normalImage;
-                    using (MemoryStream ms = new MemoryStream(imageBytes))
-                    {
-                        normalImage = Image.FromStream(ms);
-                    }
-                    Bitmap bmp = new Bitmap(normalImage);
+                    //Image normalImage;
+                    //using (MemoryStream ms = new MemoryStream(imageBytes))
+                    //{
+                    //    normalImage = Image.FromStream(ms);
+                    //}
+                    //Bitmap bmp = new Bitmap(normalImage);
 
-                    string base64ImageString = bmp.ToBase64String(ImageFormat.Png);
-                    Bitmap bmpFromString = base64ImageString.Base64StringToBitmap();
+                    //string base64ImageString = bmp.ToBase64String(ImageFormat.Png);
+                    //Bitmap bmpFromString = base64ImageString.Base64StringToBitmap();
 
-                    string thumbName = Guid.NewGuid().ToString() + "." + Convert.ToString(ImageFormat.Png);
-                    var outpath = Path.Combine(thumbPath, thumbName.ToString());
-                    bmpFromString.Save(outpath, ImageFormat.Png);
+                    //string thumbName = Guid.NewGuid().ToString() + "." + Convert.ToString(ImageFormat.Png);
+                    //var outpath = Path.Combine(thumbPath, thumbName.ToString());
+                    //bmpFromString.Save(outpath, ImageFormat.Png);
                     // thumbnail.Save(outpath, ImageFormat.Jpeg);
-                    gallery.ThumbnailImage = thumbName;
-
+                    gallery.ThumbnailImage = null;
+                    gallery.CheckInId = model.CheckInId;
                     acmContext.Gallery.Add(gallery);
+                    
                 }
                 acmContext.SaveChanges();
                 response.Status = true;
@@ -156,6 +159,7 @@ namespace ACM.Core.Managers
                 var model = acmContext.Gallery.Where(x => x.StoreId == storeId).Select(x => new GalleryViewModel
                 {
                     StoreId = x.StoreId,
+                    CheckInId=x.CheckInId,
                     CreatedOn = x.CreatedOn,
                     Id = x.Id,
                     Image = x.Image,
@@ -211,6 +215,7 @@ namespace ACM.Core.Managers
                     Id = x.Id,
                     Image = x.Image,
                     IsActive = x.IsActive,
+                    CheckInId=x.CheckInId,
                     ThumbnailImage = x.ThumbnailImage
                 }).ToList();
                 response.Data = model;
