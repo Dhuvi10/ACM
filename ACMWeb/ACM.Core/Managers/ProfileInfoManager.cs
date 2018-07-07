@@ -32,7 +32,8 @@ namespace ACM.Core.Managers
                 {
                     photoName = Guid.NewGuid().ToString() + "." + Convert.ToString(ImageFormat.Jpeg);
                     var path = Path.Combine(imagePath, photoName.ToString());
-                    byte[] imageBytes = Convert.FromBase64String(model.Photo);
+                    string image64Base = model.Photo.Replace("\r", "").Replace("\n", "");
+                    byte[] imageBytes = Convert.FromBase64String(image64Base);
                     File.WriteAllBytes(path, imageBytes);
                 }
                 info.Photo = photoName;
@@ -40,7 +41,8 @@ namespace ACM.Core.Managers
                 {
                     signName = Guid.NewGuid().ToString() + "." + Convert.ToString(ImageFormat.Png);
                     var _signPath = Path.Combine(signPath, signName.ToString());
-                    byte[] _imageBytes = Convert.FromBase64String(model.Signature);
+                    string sign64Base = model.Signature.Replace("\r", "").Replace("\n", "");
+                    byte[] _imageBytes = Convert.FromBase64String(sign64Base);
                     File.WriteAllBytes(_signPath, _imageBytes);
                 }
                 info.Signature = signName;
@@ -103,7 +105,8 @@ namespace ACM.Core.Managers
 
                         string photoName = Guid.NewGuid().ToString() + "." + Convert.ToString(ImageFormat.Jpeg);
                         var path = Path.Combine(imagePath, photoName.ToString());
-                        byte[] imageBytes = Convert.FromBase64String(model.Photo);
+                        string Photo64Base = model.Photo.Replace("\r", "").Replace("\n", "");
+                        byte[] imageBytes = Convert.FromBase64String(Photo64Base);
                         File.WriteAllBytes(path, imageBytes);
                         details.Photo = photoName;
                        
@@ -118,7 +121,8 @@ namespace ACM.Core.Managers
 
                         string signName = Guid.NewGuid().ToString() + "." + Convert.ToString(ImageFormat.Png);
                         var _signPath = Path.Combine(signPath, signName.ToString());
-                        byte[] _imageBytes = Convert.FromBase64String(model.Signature);
+                        string Signature64Base = model.Signature.Replace("\r", "").Replace("\n", "");
+                        byte[] _imageBytes = Convert.FromBase64String(Signature64Base);
                         File.WriteAllBytes(_signPath, _imageBytes);
                         details.Photo = signName;
                     }

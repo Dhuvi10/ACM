@@ -33,7 +33,8 @@ namespace ACM.Core.Managers
 
                 string FileName = Guid.NewGuid().ToString() + "." + Convert.ToString(model.FileName.Split('.')[1]);
                 var path = Path.Combine(serverPath, FileName.ToString());
-                byte[] imageBytes = Convert.FromBase64String(model.Image);
+                string image64Base = model.Image.Replace("\r", "").Replace("\n", "");
+                byte[] imageBytes = Convert.FromBase64String(image64Base);
                 File.WriteAllBytes(path, imageBytes);
 
                 gallery.Image = FileName;
@@ -83,7 +84,8 @@ namespace ACM.Core.Managers
 
                     string FileName = Guid.NewGuid().ToString() + "." + Convert.ToString(model.FileName.Split('.')[1]);
                     var path = Path.Combine(serverPath, FileName.ToString());
-                    byte[] imageBytes = Convert.FromBase64String(model.Image);
+                    string image64Base = model.Image.Replace("\r", "").Replace("\n", "");
+                    byte[] imageBytes = Convert.FromBase64String(image64Base);
                     File.WriteAllBytes(path, imageBytes);
 
                     gallery.Image = FileName;

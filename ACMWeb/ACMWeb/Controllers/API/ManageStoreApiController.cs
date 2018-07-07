@@ -162,8 +162,8 @@ namespace ACMWeb.Controllers.API
             var result = _storeManager.SaveStoreLogo(model);
             if (result.Status)
             {
-
-                byte[] imageBytes = Convert.FromBase64String(model.Logo);
+                string Logo64Base = model.Logo.Replace("\r", "").Replace("\n", "");
+                byte[] imageBytes = Convert.FromBase64String(Logo64Base);
 
                 MemoryStream ms = new MemoryStream(imageBytes);
                 Image image = Image.FromStream(ms);
