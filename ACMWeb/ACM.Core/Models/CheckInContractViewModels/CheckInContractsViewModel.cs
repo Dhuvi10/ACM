@@ -52,6 +52,8 @@ namespace ACM.Core.Models.CheckInContractViewModels
         public string StoreId { get; set; }
         public bool? IsCheckOut { get; set; }
         public DateTime? CheckOutDate { get; set; }
+        public string CreatedDate { get; set; }
+        public string DateCheckOut { get; set; }
 
     }
 }

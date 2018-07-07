@@ -242,11 +242,13 @@ namespace ACM.Core.Managers
                     model.Models = item.Models;
                     model.Make = item.Make;
                     model.CreatedOn = item.CreatedOn;
+                    model.CreatedDate = item.CreatedOn.ToString();
                     model.IsActive = item.IsActive;
                     if (isCheckOut)
                     {
                         model.IsCheckOut = item.IsCheckOut;
                         model.CheckOutDate = item.CheckOutDate;
+                        model.DateCheckOut = item.CheckOutDate.ToString();
                     }
                     response.Data.Add(model);
                 }
@@ -265,7 +267,7 @@ namespace ACM.Core.Managers
             ResponseModel<List<CheckInContractsViewModel>> response = new ResponseModel<List<CheckInContractsViewModel>> { Data = new List<CheckInContractsViewModel>() };
             try
             {
-                var _list = acmContext.CheckInForm.Where(k=>k.StoreId==storeId).Select(e => e).ToList();
+                var _list = acmContext.CheckInForm.Where(k=>k.StoreId==storeId && k.IsCheckOut==false).Select(e => e).ToList();
                 foreach (var item in _list)
                 {
                     CheckInContractsViewModel model = new CheckInContractsViewModel();
@@ -283,6 +285,7 @@ namespace ACM.Core.Managers
                     model.Models = item.Models;
                     model.Make = item.Make;
                     model.CreatedOn = item.CreatedOn;
+                    model.CreatedDate = item.CreatedOn.ToString();
                     model.IsActive = item.IsActive;
                     model.StoreId = item.StoreId;
                     response.Data.Add(model);
@@ -319,6 +322,7 @@ namespace ACM.Core.Managers
                     model.Data.Make = _model.Make;
                     model.Data.CreatedOn = _model.CreatedOn;
                     model.Data.IsActive = _model.IsActive;
+                    model.Data.CreatedDate = _model.CreatedOn.ToString();
                     model.Data.StoreId = _model.StoreId;
                 }
                 model.Status = true;
