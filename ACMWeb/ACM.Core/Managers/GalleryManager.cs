@@ -9,6 +9,7 @@ using System.IO;
 using System.DrawingCore;
 using ACM.Core.Utility;
 using System.DrawingCore.Imaging;
+using FreeImageAPI;
 
 namespace ACM.Core.Managers
 {
@@ -38,21 +39,12 @@ namespace ACM.Core.Managers
                 File.WriteAllBytes(path, imageBytes);
 
                 gallery.Image = FileName;
-                Image normalImage;
                 using (MemoryStream ms = new MemoryStream(imageBytes))
-                {
-                    normalImage = Image.FromStream(ms);
-
-                    Bitmap bmp = new Bitmap(normalImage);
-
-                    string base64ImageString = bmp.ToBase64String(ImageFormat.Png);
-                    Bitmap bmpFromString = base64ImageString.Base64StringToBitmap();
-
-                    string thumbName = Guid.NewGuid().ToString() + "." + Convert.ToString(ImageFormat.Png);
-                    var outpath = Path.Combine(thumbPath, thumbName.ToString());
-                    bmpFromString.Save(outpath, ImageFormat.Png);
-                    // thumbnail.Save(outpath, ImageFormat.Jpeg);
-                    gallery.ThumbnailImage = thumbName;
+                {                  
+                   // string thumbName = Guid.NewGuid().ToString() + "." + Convert.ToString(ImageFormat.Png);
+                    var outpath = Path.Combine(thumbPath, FileName.ToString());
+                    ImageUtility.Thumbnail(path, outpath);
+                    gallery.ThumbnailImage = FileName;
                     
                 }
                 gallery.CheckInId = model.CheckInId;
@@ -68,7 +60,7 @@ namespace ACM.Core.Managers
             }
             return response;
         }
-
+        
         public ResponseModel<string> AddMultipleImages(List<GalleryViewModel> models, string serverPath, string thumbPath)
         {
             ResponseModel<string> response = new ResponseModel<string> { Data = "" };
@@ -89,21 +81,11 @@ namespace ACM.Core.Managers
                     File.WriteAllBytes(path, imageBytes);
 
                     gallery.Image = FileName;
-                    //Image normalImage;
-                    //using (MemoryStream ms = new MemoryStream(imageBytes))
-                    //{
-                    //    normalImage = Image.FromStream(ms);
-                    //}
-                    //Bitmap bmp = new Bitmap(normalImage);
-
-                    //string base64ImageString = bmp.ToBase64String(ImageFormat.Png);
-                    //Bitmap bmpFromString = base64ImageString.Base64StringToBitmap();
-
-                    //string thumbName = Guid.NewGuid().ToString() + "." + Convert.ToString(ImageFormat.Png);
-                    //var outpath = Path.Combine(thumbPath, thumbName.ToString());
-                    //bmpFromString.Save(outpath, ImageFormat.Png);
-                    // thumbnail.Save(outpath, ImageFormat.Jpeg);
-                    gallery.ThumbnailImage = null;
+                    
+                    var outpath = Path.Combine(thumbPath, FileName.ToString());
+                    
+                    ImageUtility.Thumbnail(path, outpath);
+                    gallery.ThumbnailImage = FileName;
                     gallery.CheckInId = model.CheckInId;
                     acmContext.Gallery.Add(gallery);
                     

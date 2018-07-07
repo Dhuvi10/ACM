@@ -2,6 +2,36 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v2.0": {
+      "FreeImage-dotnet-core/4.3.6": {
+        "type": "package",
+        "dependencies": {
+          "System.Drawing-dotnet-core": "1.2.3"
+        },
+        "compile": {
+          "lib/netstandard2.0/FreeImage-dotnet-core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/FreeImage-dotnet-core.dll": {}
+        },
+        "runtimeTargets": {
+          "runtimes/osx.10.10-x64/native/FreeImage.dylib": {
+            "assetType": "native",
+            "rid": "osx.10.10-x64"
+          },
+          "runtimes/ubuntu.16.04-x64/native/FreeImage.so": {
+            "assetType": "native",
+            "rid": "ubuntu.16.04-x64"
+          },
+          "runtimes/win7-x64/native/FreeImage.dll": {
+            "assetType": "native",
+            "rid": "win7-x64"
+          },
+          "runtimes/win7-x86/native/FreeImage.dll": {
+            "assetType": "native",
+            "rid": "win7-x86"
+          }
+        }
+      },
       "Microsoft.AspNetCore.Antiforgery/2.1.1": {
         "type": "package",
         "dependencies": {
@@ -1902,6 +1932,18 @@
           "ref/netstandard1.5/_._": {}
         }
       },
+      "System.Drawing-dotnet-core/1.2.3": {
+        "type": "package",
+        "dependencies": {
+          "System.Drawing.Primitives": "4.3.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/System.Drawing-dotnet-core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Drawing-dotnet-core.dll": {}
+        }
+      },
       "System.Drawing.Primitives/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -2971,6 +3013,30 @@
     }
   },
   "libraries": {
+    "FreeImage-dotnet-core/4.3.6": {
+      "sha512": "/BJLq4W1cE633ahRLBNRY2GI89rxzFznsCiWjB7H4FP0V1nGjS0XsI+ALzGXHuRdIGvcxKkpZObKs74qUmx/JA==",
+      "type": "package",
+      "path": "freeimage-dotnet-core/4.3.6",
+      "files": [
+        "freeimage-dotnet-core.4.3.6.nupkg.sha512",
+        "freeimage-dotnet-core.nuspec",
+        "lib/net40/FreeImage-dotnet-core.dll",
+        "lib/net45/FreeImage-dotnet-core.dll",
+        "lib/net451/FreeImage-dotnet-core.dll",
+        "lib/net452/FreeImage-dotnet-core.dll",
+        "lib/net46/FreeImage-dotnet-core.dll",
+        "lib/net461/FreeImage-dotnet-core.dll",
+        "lib/netstandard1.3/FreeImage-dotnet-core.dll",
+        "lib/netstandard1.4/FreeImage-dotnet-core.dll",
+        "lib/netstandard1.5/FreeImage-dotnet-core.dll",
+        "lib/netstandard1.6/FreeImage-dotnet-core.dll",
+        "lib/netstandard2.0/FreeImage-dotnet-core.dll",
+        "runtimes/osx.10.10-x64/native/FreeImage.dylib",
+        "runtimes/ubuntu.16.04-x64/native/FreeImage.so",
+        "runtimes/win7-x64/native/FreeImage.dll",
+        "runtimes/win7-x86/native/FreeImage.dll"
+      ]
+    },
     "Microsoft.AspNetCore.Antiforgery/2.1.1": {
       "sha512": "BKDp2thf1k3Q2XBSIxC0TvHLvGFOr3ga3DdsxOJNTQ2MEvCuqlNFAoBxXIXWtvP9EHNfLbmKA0+VF7nBqXTlYg==",
       "type": "package",
@@ -5851,6 +5917,22 @@
         "ref/xamarinwatchos10/_._",
         "system.diagnostics.tracing.4.3.0.nupkg.sha512",
         "system.diagnostics.tracing.nuspec"
+      ]
+    },
+    "System.Drawing-dotnet-core/1.2.3": {
+      "sha512": "XqfSnTiMhpX/S14v9luajRgG8hFS//sa2QWK3yrTPx3veFMjL0IuAZ5cV0qPEdWQnCtR0kzjKz6W7Wt15KftMA==",
+      "type": "package",
+      "path": "system.drawing-dotnet-core/1.2.3",
+      "files": [
+        "lib/netstandard1.1/System.Drawing-dotnet-core.dll",
+        "lib/netstandard1.2/System.Drawing-dotnet-core.dll",
+        "lib/netstandard1.3/System.Drawing-dotnet-core.dll",
+        "lib/netstandard1.4/System.Drawing-dotnet-core.dll",
+        "lib/netstandard1.5/System.Drawing-dotnet-core.dll",
+        "lib/netstandard1.6/System.Drawing-dotnet-core.dll",
+        "lib/netstandard2.0/System.Drawing-dotnet-core.dll",
+        "system.drawing-dotnet-core.1.2.3.nupkg.sha512",
+        "system.drawing-dotnet-core.nuspec"
       ]
     },
     "System.Drawing.Primitives/4.3.0": {
@@ -8761,6 +8843,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
+      "FreeImage-dotnet-core >= 4.3.6",
       "Microsoft.AspNetCore.Identity >= 2.1.1",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 2.1.1",
       "Microsoft.AspNetCore.Mvc >= 2.1.1",
@@ -8819,6 +8902,10 @@
     "frameworks": {
       "netcoreapp2.0": {
         "dependencies": {
+          "FreeImage-dotnet-core": {
+            "target": "Package",
+            "version": "[4.3.6, )"
+          },
           "Microsoft.AspNetCore.Identity": {
             "target": "Package",
             "version": "[2.1.1, )"

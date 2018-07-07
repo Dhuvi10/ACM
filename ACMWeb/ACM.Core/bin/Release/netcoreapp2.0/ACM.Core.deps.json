@@ -1,13 +1,14 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "66d65a53da8aae9b4efeef4792f0c6f3a36cf644"
+    "signature": "3c1786abef50ad29e7aeba0d49809bee19384866"
   },
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v2.0": {
       "ACM.Core/1.0.0": {
         "dependencies": {
+          "FreeImage-dotnet-core": "4.3.6",
           "Microsoft.AspNetCore.Identity": "2.1.1",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "2.1.1",
           "Microsoft.AspNetCore.Mvc": "2.1.1",
@@ -19,6 +20,32 @@
         },
         "runtime": {
           "ACM.Core.dll": {}
+        }
+      },
+      "FreeImage-dotnet-core/4.3.6": {
+        "dependencies": {
+          "System.Drawing-dotnet-core": "1.2.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/FreeImage-dotnet-core.dll": {}
+        },
+        "runtimeTargets": {
+          "runtimes/osx.10.10-x64/native/FreeImage.dylib": {
+            "rid": "osx.10.10-x64",
+            "assetType": "native"
+          },
+          "runtimes/ubuntu.16.04-x64/native/FreeImage.so": {
+            "rid": "ubuntu.16.04-x64",
+            "assetType": "native"
+          },
+          "runtimes/win7-x64/native/FreeImage.dll": {
+            "rid": "win7-x64",
+            "assetType": "native"
+          },
+          "runtimes/win7-x86/native/FreeImage.dll": {
+            "rid": "win7-x86",
+            "assetType": "native"
+          }
         }
       },
       "Microsoft.AspNetCore.Antiforgery/2.1.1": {
@@ -1186,6 +1213,14 @@
           "System.Runtime": "4.3.0"
         }
       },
+      "System.Drawing-dotnet-core/1.2.3": {
+        "dependencies": {
+          "System.Drawing.Primitives": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Drawing-dotnet-core.dll": {}
+        }
+      },
       "System.Drawing.Primitives/4.3.0": {
         "dependencies": {
           "System.Runtime": "4.3.0",
@@ -1901,6 +1936,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "FreeImage-dotnet-core/4.3.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/BJLq4W1cE633ahRLBNRY2GI89rxzFznsCiWjB7H4FP0V1nGjS0XsI+ALzGXHuRdIGvcxKkpZObKs74qUmx/JA==",
+      "path": "freeimage-dotnet-core/4.3.6",
+      "hashPath": "freeimage-dotnet-core.4.3.6.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Antiforgery/2.1.1": {
       "type": "package",
@@ -2790,6 +2832,13 @@
       "sha512": "sha512-rswfv0f/Cqkh78rA5S8eN8Neocz234+emGCtTF3lxPY96F+mmmUen6tbn0glN6PMvlKQb9bPAY5e9u7fgPTkKw==",
       "path": "system.diagnostics.tracing/4.3.0",
       "hashPath": "system.diagnostics.tracing.4.3.0.nupkg.sha512"
+    },
+    "System.Drawing-dotnet-core/1.2.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-XqfSnTiMhpX/S14v9luajRgG8hFS//sa2QWK3yrTPx3veFMjL0IuAZ5cV0qPEdWQnCtR0kzjKz6W7Wt15KftMA==",
+      "path": "system.drawing-dotnet-core/1.2.3",
+      "hashPath": "system.drawing-dotnet-core.1.2.3.nupkg.sha512"
     },
     "System.Drawing.Primitives/4.3.0": {
       "type": "package",
