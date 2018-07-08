@@ -198,15 +198,15 @@ namespace ACMWeb.Controllers.API
         [Route("CheckInContractListing")]
         public IActionResult CheckInContractListing()
         {
-            var result = _storeManager.ManageContractList(false);
-            if (result.Status)
-            {
-                return Ok(result);
-            }
-            else
-            {
-                return StatusCode(404, result);
-            }
+          //  var result = _storeManager.ContractListByStore(storeId);
+            //if (result.Status)
+            //{
+               return Ok();
+            //}
+            //else
+            //{
+            //    return StatusCode(404, result);
+            //}
         }
         [HttpGet]
         [Route("History/{storeid}")]

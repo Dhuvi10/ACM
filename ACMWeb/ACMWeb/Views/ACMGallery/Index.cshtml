@@ -1,0 +1,89 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "_LoggedInLayout";
+}
+
+<div class="row">
+   
+    <div class="col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+               
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                
+                <div id="divList">
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts
+    {
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $('#tbList').dataTable({
+            "paging": false,
+            "ordering": false,
+            "info": false
+        });
+    });
+    </script>
+    <script type="text/javascript">
+    $(function () {
+        GalleryList();
+    });
+        function GalleryList() {
+           var Id= '@ViewData["id"]';
+        $.ajax({
+            method: "get",
+            data: { id: Id},
+            url: "@Url.Action("GalleryList", "ACMGallery")",
+            success: function (result) {
+                debugger
+                console.log(result);
+                 if (result!=null) {
+                     $('#divList').html(result);
+                     //$('#tbList').dataTable({
+                     //    "paging": false,
+                     //    "ordering": false,
+                     //    "info": false
+                     //});  
+                    }
+                 if(result.data.length==0) {
+                     
+                     window.location.href = "@Url.Action("AddGallery", "ACMGallery")" + "/" + Id+"";
+
+                    }
+               
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    }
+    function EditCheckInForm(id) {
+                   window.location.href = "@Url.Action("CheckInForm", "ManageStoreInfo")" + "/" + id+"";
+          @*$.ajax({
+            method: "get",
+            url: "@Url.Action("EditAdminUser", "Usermanagement")",
+               data: { id: id},
+            success: function (result) {
+                $('#divList').html(result);
+            },
+            error: function (err) {
+                console.log(err);
+            }
+           });*@
+
+    }
+    function AddEditGarllery(id) {
+        window.location.href = "@Url.Action("AddGallery", "ManageStoreInfo")" + "/" + id + "";
+    }
+   
+
+    </script>
+}
+
