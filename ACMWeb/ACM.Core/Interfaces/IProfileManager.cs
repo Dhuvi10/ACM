@@ -7,9 +7,9 @@ namespace ACM.Core.Interfaces
 {
    public interface IProfileManager
     {
-        ResponseModel<string> AddProfileDetail(ProfileViewModel model, string imagePath, string signPath);
+        ResponseModel<ProfileViewModel> AddProfileDetail(ProfileViewModel model, string imagePath, string signPath);
 
-        ResponseModel<string> UpdateProfileDetail(ProfileViewModel model, string imagePath, string signPath);
+        ResponseModel<ProfileViewModel> UpdateProfileDetail(ProfileViewModel model, string imagePath, string signPath);
 
         ResponseModel<ProfileViewModel> ProfileDetailById(long checkInId);
     }

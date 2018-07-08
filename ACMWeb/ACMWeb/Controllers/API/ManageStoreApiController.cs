@@ -177,16 +177,19 @@ namespace ACMWeb.Controllers.API
         }
         [HttpPost]
         [Route("SaveCheckInForm")]
-        public IActionResult SaveCheckInForm([FromBody]CheckInContractsViewModel model)
+        public IActionResult SaveCheckInForm([FromBody]ContractViewModel model)
         {
-            var result = _storeManager.SaveCheckInForm(model);
+            var webRoot = _env.WebRootPath;
+            string photoPath = System.IO.Path.Combine(webRoot, "Photo");
+            string signPath = System.IO.Path.Combine(webRoot, "Sign");
+            var result = _storeManager.SaveCheckInForm(model,photoPath,signPath);
             // CheckInContractsViewModel obj= result.Data
             if (result.Status)
             {
                 return Ok(new
                 {
                     status = result.Status,
-                    Data = new { StoreId = result.Data.StoreId, Id = result.Data.Id }
+                    Data = new { StoreId = result.Data.CheckInModel.StoreId, Id = result.Data.CheckInModel.Id,Signature=result.Data.ProfileModel.Signature }
                 });
             }
             else

@@ -17,9 +17,9 @@ namespace ACM.Core.Managers
         {
             acmContext = _acmContext;
         }
-        public ResponseModel<string> AddProfileDetail(ProfileViewModel model, string imagePath, string signPath)
+        public ResponseModel<ProfileViewModel> AddProfileDetail(ProfileViewModel model, string imagePath, string signPath)
         {
-            ResponseModel<string> response = new ResponseModel<string> { Data = "" };
+            ResponseModel<ProfileViewModel> response = new ResponseModel<ProfileViewModel> { Data = new ProfileViewModel() };
             try
             {
                 ProfileInfo info = new ProfileInfo();
@@ -49,6 +49,13 @@ namespace ACM.Core.Managers
 
                 acmContext.ProfileInfo.Add(info);
                 acmContext.SaveChanges();
+                ProfileViewModel _profile = new ProfileViewModel();
+                _profile.CheckInId = info.CheckInId;
+                _profile.CreatedOn = info.CreatedOn;
+                _profile.IsActive = info.IsActive;
+                _profile.Photo = info.Photo;
+                _profile.Signature = info.Signature;
+                response.Data = _profile;
                 response.Status = true;
                 response.Message = "success";
 
@@ -85,12 +92,12 @@ namespace ACM.Core.Managers
             return response;
         }
 
-        public ResponseModel<string> UpdateProfileDetail(ProfileViewModel model, string imagePath, string signPath)
+        public ResponseModel<ProfileViewModel> UpdateProfileDetail(ProfileViewModel model, string imagePath, string signPath)
         {
-            ResponseModel<string> response = new ResponseModel<string> { Data = "" };
+            ResponseModel<ProfileViewModel> response = new ResponseModel<ProfileViewModel> { Data = new ProfileViewModel() };
             try
             {
-                var details = acmContext.ProfileInfo.Where(x => x.Id == model.Id).FirstOrDefault();
+                var details = acmContext.ProfileInfo.Where(x => x.CheckInId == model.CheckInId).FirstOrDefault();
                 if (details != null)
                 {
                     details.IsActive = model.IsActive;
@@ -127,6 +134,14 @@ namespace ACM.Core.Managers
                         details.Photo = signName;
                     }
                     acmContext.SaveChanges();
+                    ProfileViewModel _profile = new ProfileViewModel();
+                    _profile.CheckInId = details.CheckInId;
+                    _profile.CreatedOn = details.CreatedOn;
+                    _profile.IsActive = details.IsActive;
+                    _profile.Photo = details.Photo;
+                    _profile.Signature = details.Signature;
+                    response.Data = _profile;
+                    response.Message = "Success";
                     response.Status = true;
                 }
             }

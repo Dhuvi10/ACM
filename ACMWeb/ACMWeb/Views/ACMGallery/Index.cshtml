@@ -4,15 +4,15 @@
 }
 
 <div class="row">
-   
+
     <div class="col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-               
+
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                
+
                 <div id="divList">
                 </div>
 
@@ -23,13 +23,13 @@
 @section Scripts
     {
     <script type="text/javascript">
-    $(document).ready(function () {
-        $('#tbList').dataTable({
-            "paging": false,
-            "ordering": false,
-            "info": false
+        $(document).ready(function () {
+            $('#tbList').dataTable({
+                "paging": false,
+                "ordering": false,
+                "info": false
+            });
         });
-    });
     </script>
     <script type="text/javascript">
     $(function () {
@@ -50,14 +50,14 @@
                      //    "paging": false,
                      //    "ordering": false,
                      //    "info": false
-                     //});  
+                     //});
                     }
                  if(result.data.length==0) {
-                     
+
                      window.location.href = "@Url.Action("AddGallery", "ACMGallery")" + "/" + Id+"";
 
                     }
-               
+
             },
             error: function (err) {
                 console.log(err);
@@ -81,9 +81,23 @@
     }
     function AddEditGarllery(id) {
         window.location.href = "@Url.Action("AddGallery", "ManageStoreInfo")" + "/" + id + "";
-    }
-   
+        }
+        function DisplayImageInPopup(mainImage) {
+            debugger;
+            var modal = document.getElementById('myPopUpModal');
+            //var img = document.getElementById('myImg');
+            var modalImg = document.getElementById("img01");
+            modal.style.display = "block";
+            modalImg.src = "http://localhost:5200"+mainImage;
+            //captionText.innerHTML = this.alt;
+        }
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
 
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
     </script>
 }
 

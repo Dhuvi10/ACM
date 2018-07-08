@@ -46,7 +46,8 @@ namespace ACMWeb.Controllers
         public IActionResult Index()
         {
             //var user = GetCurrentUserId().Result;
-            var test = _storeManager.StoreLogo(GetCurrentUserId().Result);
+            var test = _storeManager.WebStoreLogo(GetCurrentUserId().Result);
+            //var test = _storeManager.StoreLogo(GetCurrentUserId().Result);
             if (test.Status)
             {
                 ViewData["Url"] = System.IO.Path.Combine(webRootPath, "StoreLogo") + "\\";
@@ -153,9 +154,15 @@ namespace ACMWeb.Controllers
         {
             if (ModelState.IsValid)
             {
+                ContractViewModel _model = new ContractViewModel();
+                _model.CheckInModel = model;
+                ProfileViewModel profileModel = new ProfileViewModel();
+                profileModel.Signature = null;
+                profileModel.Photo = null;
+                _model.ProfileModel = profileModel;
                 model.StoreId = GetCurrentUserId().Result;
-                 var result = _storeManager.SaveCheckInForm(model);
-                return View(result.Data);
+                 var result = _storeManager.SaveCheckInForm(_model,null,null);
+                return View(result.Data.CheckInModel);
             }
 
             else

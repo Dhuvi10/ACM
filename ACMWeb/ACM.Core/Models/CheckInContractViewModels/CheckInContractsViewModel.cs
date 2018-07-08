@@ -54,6 +54,6 @@ namespace ACM.Core.Models.CheckInContractViewModels
         public DateTime? CheckOutDate { get; set; }
         public string CreatedDate { get; set; }
         public string DateCheckOut { get; set; }
-
+        public string Signature { get; set; }
     }
 }

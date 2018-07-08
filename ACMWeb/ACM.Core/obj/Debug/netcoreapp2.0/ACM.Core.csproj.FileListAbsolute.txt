@@ -20,3 +20,14 @@ G:\Robin\jul6\ACM\ACMWeb\ACM.Core\obj\Debug\netcoreapp2.0\ACM.Core.AssemblyInfoI
 G:\Robin\jul6\ACM\ACMWeb\ACM.Core\obj\Debug\netcoreapp2.0\ACM.Core.AssemblyInfo.cs
 G:\Robin\jul6\ACM\ACMWeb\ACM.Core\obj\Debug\netcoreapp2.0\ACM.Core.dll
 G:\Robin\jul6\ACM\ACMWeb\ACM.Core\obj\Debug\netcoreapp2.0\ACM.Core.pdb
+E:\Projects\ACM\july8\ACM\ACMWeb\ACM.Core\bin\Debug\netcoreapp2.0\ACM.Core.deps.json
+E:\Projects\ACM\july8\ACM\ACMWeb\ACM.Core\bin\Debug\netcoreapp2.0\ACM.Core.runtimeconfig.json
+E:\Projects\ACM\july8\ACM\ACMWeb\ACM.Core\bin\Debug\netcoreapp2.0\ACM.Core.runtimeconfig.dev.json
+E:\Projects\ACM\july8\ACM\ACMWeb\ACM.Core\bin\Debug\netcoreapp2.0\ACM.Core.dll
+E:\Projects\ACM\july8\ACM\ACMWeb\ACM.Core\bin\Debug\netcoreapp2.0\ACM.Core.pdb
+E:\Projects\ACM\july8\ACM\ACMWeb\ACM.Core\obj\Debug\netcoreapp2.0\ACM.Core.csprojResolveAssemblyReference.cache
+E:\Projects\ACM\july8\ACM\ACMWeb\ACM.Core\obj\Debug\netcoreapp2.0\ACM.Core.csproj.CoreCompileInputs.cache
+E:\Projects\ACM\july8\ACM\ACMWeb\ACM.Core\obj\Debug\netcoreapp2.0\ACM.Core.AssemblyInfoInputs.cache
+E:\Projects\ACM\july8\ACM\ACMWeb\ACM.Core\obj\Debug\netcoreapp2.0\ACM.Core.AssemblyInfo.cs
+E:\Projects\ACM\july8\ACM\ACMWeb\ACM.Core\obj\Debug\netcoreapp2.0\ACM.Core.dll
+E:\Projects\ACM\july8\ACM\ACMWeb\ACM.Core\obj\Debug\netcoreapp2.0\ACM.Core.pdb

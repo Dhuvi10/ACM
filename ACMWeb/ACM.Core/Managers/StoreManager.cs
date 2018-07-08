@@ -13,10 +13,11 @@ namespace ACM.Core.Managers
     public class StoreManager : IStoreManager
     {
         private ACMContext acmContext;
-
-        public StoreManager(ACMContext _acmContext)
+        private IProfileManager profileManager;
+        public StoreManager(ACMContext _acmContext, IProfileManager _profileManager)
         {
             acmContext = _acmContext;
+            profileManager = _profileManager;
         }
         public ResponseModel<List<StoreLogo>> StoreLogoList()
         {
@@ -121,34 +122,44 @@ namespace ACM.Core.Managers
             return response;
         }
 
-        public ResponseModel<CheckInContractsViewModel> SaveCheckInForm(CheckInContractsViewModel _model)
+        public ResponseModel<ContractViewModel> SaveCheckInForm(ContractViewModel _model, string imagePath, string signPath)
         {
-            ResponseModel<CheckInContractsViewModel> response = new ResponseModel<CheckInContractsViewModel> { Data = new CheckInContractsViewModel() };
+
+            ResponseModel<ContractViewModel> response = new ResponseModel<ContractViewModel> { Data = new ContractViewModel() };
             try
             {
-                var model = acmContext.CheckInForm.Where(e => e.Id == _model.Id).FirstOrDefault();
+                var model = acmContext.CheckInForm.Where(e => e.Id == _model.CheckInModel.Id).FirstOrDefault();
                 if (model != null)
                 {
-                    model.Id = _model.Id;
-                    model.SummeryOfTaskCompleted = _model.SummeryOfTaskCompleted;
-                    model.EmailAddress = _model.EmailAddress;
-                    model.Name = _model.Name;
-                    model.Vin = _model.Vin;
-                    model.Year = _model.Year;
-                    model.PartsNeeded = _model.PartsNeeded;
-                    model.PersonalItemInVehicle = _model.PersonalItemInVehicle;
-                    model.PhoneNumber = _model.PhoneNumber;
-                    model.CustomerPartSupplied = _model.CustomerPartSupplied;
-                    model.OdoMeter = _model.OdoMeter;
-                    model.Models = _model.Models;
-                    model.Make = _model.Make;
+                    model.Id = _model.CheckInModel.Id;
+                    model.SummeryOfTaskCompleted = _model.CheckInModel.SummeryOfTaskCompleted;
+                    model.EmailAddress = _model.CheckInModel.EmailAddress;
+                    model.Name = _model.CheckInModel.Name;
+                    model.Vin = _model.CheckInModel.Vin;
+                    model.Year = _model.CheckInModel.Year;
+                    model.PartsNeeded = _model.CheckInModel.PartsNeeded;
+                    model.PersonalItemInVehicle = _model.CheckInModel.PersonalItemInVehicle;
+                    model.PhoneNumber = _model.CheckInModel.PhoneNumber;
+                    model.CustomerPartSupplied = _model.CheckInModel.CustomerPartSupplied;
+                    model.OdoMeter = _model.CheckInModel.OdoMeter;
+                    model.Models = _model.CheckInModel.Models;
+                    model.Make = _model.CheckInModel.Make;
                     model.CreatedOn = DateTime.Now;
-                    model.IsActive = _model.IsActive;
+                    model.IsActive = true;
                     model.IsCheckOut = false;
-                    model.StoreId = _model.StoreId;
+                    model.StoreId = _model.CheckInModel.StoreId;
                     acmContext.SaveChanges();
-
+                    if (!string.IsNullOrEmpty(_model.ProfileModel.Signature))
+                    {
+                        _model.ProfileModel.CheckInId = model.Id;
+                        var signResponse = profileManager.UpdateProfileDetail(_model.ProfileModel, imagePath, signPath);
+                        if (signResponse.Status)
+                        {
+                            response.Data.ProfileModel = signResponse.Data;
+                        }
+                    }
                     // response.Data = list;
+                    response.Data.CheckInModel = _model.CheckInModel;
                     response.Data = _model;
                     response.Message = "Record updated successfully";
                     response.Status = true;
@@ -156,27 +167,41 @@ namespace ACM.Core.Managers
                 else
                 {
                     CheckInForm modelCheckInForm = new CheckInForm();
-                    modelCheckInForm.SummeryOfTaskCompleted = _model.SummeryOfTaskCompleted;
-                    modelCheckInForm.EmailAddress = _model.EmailAddress;
-                    modelCheckInForm.Name = _model.Name;
-                    modelCheckInForm.Vin = _model.Vin;
-                    modelCheckInForm.Year = _model.Year;
-                    modelCheckInForm.PartsNeeded = _model.PartsNeeded;
-                    modelCheckInForm.PersonalItemInVehicle = _model.PersonalItemInVehicle;
-                    modelCheckInForm.PhoneNumber = _model.PhoneNumber;
-                    modelCheckInForm.OdoMeter = _model.OdoMeter;
-                    modelCheckInForm.Models = _model.Models;
-                    modelCheckInForm.Make = _model.Make;
-                    modelCheckInForm.CustomerPartSupplied = _model.CustomerPartSupplied;
+                    modelCheckInForm.SummeryOfTaskCompleted = _model.CheckInModel.SummeryOfTaskCompleted;
+                    modelCheckInForm.EmailAddress = _model.CheckInModel.EmailAddress;
+                    modelCheckInForm.Name = _model.CheckInModel.Name;
+                    modelCheckInForm.Vin = _model.CheckInModel.Vin;
+                    modelCheckInForm.Year = _model.CheckInModel.Year;
+                    modelCheckInForm.PartsNeeded = _model.CheckInModel.PartsNeeded;
+                    modelCheckInForm.PersonalItemInVehicle = _model.CheckInModel.PersonalItemInVehicle;
+                    modelCheckInForm.PhoneNumber = _model.CheckInModel.PhoneNumber;
+                    modelCheckInForm.OdoMeter = _model.CheckInModel.OdoMeter;
+                    modelCheckInForm.Models = _model.CheckInModel.Models;
+                    modelCheckInForm.Make = _model.CheckInModel.Make;
+                    modelCheckInForm.CustomerPartSupplied = _model.CheckInModel.CustomerPartSupplied;
                     modelCheckInForm.CreatedOn = DateTime.Now;
-                    modelCheckInForm.IsActive = _model.IsActive;
-                    modelCheckInForm.StoreId = _model.StoreId;
+                    modelCheckInForm.IsActive = true;
+                    modelCheckInForm.StoreId = _model.CheckInModel.StoreId;
                     modelCheckInForm.IsCheckOut = false;
                     acmContext.Add(modelCheckInForm);
                     acmContext.SaveChanges();
-                    _model.Id = modelCheckInForm.Id;
-                    _model.StoreId = modelCheckInForm.StoreId;
-                    response.Data = _model;
+
+                    if (!string.IsNullOrEmpty(_model.ProfileModel.Signature))
+                    {
+                        _model.ProfileModel.CheckInId = modelCheckInForm.Id;
+                        var signResponse = profileManager.AddProfileDetail(_model.ProfileModel, imagePath, signPath);
+                        if (signResponse.Status)
+                        {
+                            response.Data.ProfileModel = signResponse.Data;
+                        }
+                    }
+
+                    _model.CheckInModel.Id = modelCheckInForm.Id;
+                    _model.CheckInModel.StoreId = modelCheckInForm.StoreId;
+                    response.Data.CheckInModel = _model.CheckInModel;
+
+
+                   // response.Data = _model;
                     response.Message = "Record saved successfully";
                     response.Status = true;
                 }
@@ -246,6 +271,7 @@ namespace ACM.Core.Managers
                     model.CreatedOn = item.CreatedOn;
                     model.CreatedDate = item.CreatedOn.ToString();
                     model.IsActive = item.IsActive;
+                    model.StoreId = item.StoreId;
                     if (isCheckOut)
                     {
                         model.IsCheckOut = item.IsCheckOut;
@@ -326,6 +352,7 @@ namespace ACM.Core.Managers
                     model.Data.IsActive = _model.IsActive;
                     model.Data.CreatedDate = _model.CreatedOn.ToString();
                     model.Data.StoreId = _model.StoreId;
+                    model.Data.Signature = _model.ProfileInfo.Where(x => x.CheckInId == contractId).FirstOrDefault().Signature;
                 }
                 model.Status = true;
             }
@@ -404,6 +431,40 @@ namespace ACM.Core.Managers
             }
             return response;
         }
+        public ResponseModel<StoreInfoViewModel> WebStoreLogo(string userId)
+        {
+            ResponseModel<StoreInfoViewModel> response = new ResponseModel<StoreInfoViewModel> { Data = new StoreInfoViewModel() };
+            try
+            {
+                var model = acmContext.StoreInfo.Where(e => e.StoreId == userId).FirstOrDefault();
+                if (model != null)
+                {
+                    response.Data.Logo = model.Logo;
+                    response.Data.LogoId = model.LogoId;
+                    response.Data.StoreId = model.StoreId == null ? userId : model.StoreId;
+                    response.Data.LogoName = model.Logo;
+                    // response.Data = list;
+                    response.Status = true;
+                }
+                else
+                {
 
+                    //response.Data.StoreId = model.StoreId == null ? userId : model.StoreId;
+                    // response.Data = list;
+                    response.Status = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                response.Status = false;
+                response.ErrorMessage = ex.Message;
+
+            }
+
+
+
+            return response;
+        }
     }
 }
