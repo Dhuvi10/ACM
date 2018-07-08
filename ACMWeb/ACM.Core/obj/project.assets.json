@@ -8856,30 +8856,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Vikas\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
+    "C:\\Users\\Ragini\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
-    "restoreSettings": {
-      "hideWarningsAndErrors": true
-    },
     "restore": {
-      "projectUniqueName": "E:\\Projects\\ACM\\July7\\ACM\\ACMWeb\\ACM.Core\\ACM.Core.csproj",
+      "projectUniqueName": "G:\\Robin\\8jul\\ACM\\ACMWeb\\ACM.Core\\ACM.Core.csproj",
       "projectName": "ACM.Core",
-      "projectPath": "E:\\Projects\\ACM\\July7\\ACM\\ACMWeb\\ACM.Core\\ACM.Core.csproj",
-      "packagesPath": "C:\\Users\\Vikas\\.nuget\\packages\\",
-      "outputPath": "E:\\Projects\\ACM\\July7\\ACM\\ACMWeb\\ACM.Core\\obj\\",
+      "projectPath": "G:\\Robin\\8jul\\ACM\\ACMWeb\\ACM.Core\\ACM.Core.csproj",
+      "packagesPath": "C:\\Users\\Ragini\\.nuget\\packages\\",
+      "outputPath": "G:\\Robin\\8jul\\ACM\\ACMWeb\\ACM.Core\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Vikas\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
+        "C:\\Users\\Ragini\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"

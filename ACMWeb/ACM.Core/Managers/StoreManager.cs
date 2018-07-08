@@ -2,6 +2,7 @@
 using ACM.Core.Interfaces;
 using ACM.Core.Models;
 using ACM.Core.Models.CheckInContractViewModels;
+using ACM.Core.Models.UserViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,18 +45,19 @@ namespace ACM.Core.Managers
 
             return response;
         }
-        public ResponseModel<StoreInfoViewModel> StoreLogo(string userId)
+        public ResponseModel<UserViewModel> StoreLogo(string userId)
         {
-            ResponseModel<StoreInfoViewModel> response = new ResponseModel<StoreInfoViewModel> { Data = new StoreInfoViewModel() };
+            ResponseModel<UserViewModel> response = new ResponseModel<UserViewModel> { Data = new UserViewModel() };
             try
             {
-                var model = acmContext.StoreInfo.Where(e => e.StoreId == userId).FirstOrDefault();
+
+                var model = acmContext.AspNetUsers.Where(e => e.Id == userId).FirstOrDefault();
                 if (model != null)
                 {
-                    response.Data.Logo = model.Logo;
-                    response.Data.LogoId = model.LogoId;
-                    response.Data.StoreId = model.StoreId == null ? userId : model.StoreId;
-                    response.Data.LogoName = model.Logo;
+                    response.Data.Email = model.Email;
+                    response.Data.id = model.Id;
+                    response.Data.Logo = model.StoreInfo.Select(e => e.Logo).FirstOrDefault();
+                    response.Data.suspened = true;
                     // response.Data = list;
                     response.Status = true;
                 }
@@ -219,12 +221,12 @@ namespace ACM.Core.Managers
 
             return response;
         }
-        public ResponseModel<List<CheckInContractsViewModel>> ManageContractList(bool isCheckOut)
+        public ResponseModel<List<CheckInContractsViewModel>> HistoryList(bool isCheckOut,string StoreId)
         {
             ResponseModel<List<CheckInContractsViewModel>> response = new ResponseModel<List<CheckInContractsViewModel>> { Data = new List<CheckInContractsViewModel>() };
             try
             {
-                var _list = acmContext.CheckInForm.Where(x=>x.IsCheckOut== isCheckOut).Select(e => e).ToList();
+                var _list = acmContext.CheckInForm.Where(x=>x.IsCheckOut== isCheckOut && x.StoreId== StoreId).Select(e => e).ToList();
                 foreach (var item in _list)
                 {
                     CheckInContractsViewModel model = new CheckInContractsViewModel();

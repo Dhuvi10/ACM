@@ -13,6 +13,7 @@ namespace ACM.Core.Interfaces
         ResponseModel<List<GalleryViewModel>> GalleryByStore(string storeId);
         ResponseModel<string> DeleteImages(List<long> Ids, string serverPath, string thumbPath);
         ResponseModel<List<GalleryViewModel>> GalleryByCheckinForm(int checkInId);
+        ResponseModel<string> WebAddMultipleImages(List<GalleryViewModel> models, string serverPath, string thumbPath);
 
     }
 }

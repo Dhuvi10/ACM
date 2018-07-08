@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.DrawingCore;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using ACM.Core.Interfaces;
+﻿using ACM.Core.Interfaces;
 using ACM.Core.Models;
-using ACM.Core.Models.AccountViewModels;
 using ACM.Core.Models.CheckInContractViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.DrawingCore;
+using System.IO;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
 
 namespace ACMWeb.Controllers
 {
@@ -22,10 +21,11 @@ namespace ACMWeb.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IStoreManager _storeManager;
         private readonly IHostingEnvironment _hostingEnvironment;
+        private readonly IGalleryManager _galleryManager;
         string webRootPath = "";
 
         public ManageStoreInfoController(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager, IStoreManager storeManager,
-            IHostingEnvironment hostingEnvironment
+            IHostingEnvironment hostingEnvironment,IGalleryManager galleryManager
 )
         {
             _roleManager = roleManager;
@@ -33,6 +33,7 @@ namespace ACMWeb.Controllers
             _storeManager = storeManager;
             _hostingEnvironment = hostingEnvironment;
             webRootPath = _hostingEnvironment.WebRootPath;
+            _galleryManager = galleryManager;
 
         }
         private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
@@ -174,6 +175,8 @@ namespace ACMWeb.Controllers
             var result = _storeManager.ManageContractList(false);
             return PartialView("_CheckIn", result.Data);
         }
+      
 
+       
     }
 }

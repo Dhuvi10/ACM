@@ -209,10 +209,10 @@ namespace ACMWeb.Controllers.API
             }
         }
         [HttpGet]
-        [Route("History")]
-        public IActionResult CheckOutHistory()
+        [Route("History/{storeid}")]
+        public IActionResult CheckOutHistory(string storeid)
         {
-            var result = _storeManager.ManageContractList(true);
+            var result = _storeManager.HistoryList(true, storeid);
             if (result.Status)
             {
                 return Ok(new { status = result.Status, Data = result.Data.OrderByDescending(x => x.CheckOutDate) });

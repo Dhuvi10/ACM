@@ -212,6 +212,47 @@ namespace ACM.Core.Managers
             }
             return response;
         }
+        public ResponseModel<string> WebAddMultipleImages(List<GalleryViewModel> models, string serverPath, string thumbPath)
+        {
+            ResponseModel<string> response = new ResponseModel<string> { Data = "" };
+            try
+            {
+                foreach (var model in models)
+                {
+                    Gallery gallery = new Gallery();
+                    gallery.CreatedOn = DateTime.Now;
+                    gallery.IsActive = true;
+                    gallery.IsMain = model.IsMain;
+                    gallery.StoreId = model.StoreId;
+
+                    string FileName = Guid.NewGuid().ToString() + "." + Convert.ToString(model.FileName.Split('.')[1]);
+                    var path = Path.Combine(serverPath, FileName.ToString());
+                    string image64Base = model.Image.Replace("\r", "").Replace("\n", "");
+                    byte[] imageBytes = Convert.FromBase64String(image64Base);
+                    File.WriteAllBytes(path, imageBytes);
+                    gallery.Image = FileName;
+                   
+
+                    var outpath = Path.Combine(thumbPath, FileName.ToString());
+
+                    ImageUtility.Thumbnail(path, outpath);
+                    gallery.ThumbnailImage = FileName;
+                    gallery.CheckInId = model.CheckInId;                    
+                    acmContext.Gallery.Add(gallery);
+
+                }
+                acmContext.SaveChanges();
+                response.Status = true;
+                response.Message = "success";
+            }
+            catch (Exception ex)
+            {
+                response.Status = false;
+                response.Message = ex.Message;
+            }
+            return response;
+
+        }
 
     }
 }
