@@ -60,7 +60,7 @@ namespace ACMWeb.Controllers
             }
             else
             {
-                return Json(result);
+                return Json("");
             }
 
 
@@ -108,7 +108,7 @@ namespace ACMWeb.Controllers
             else
             {
 
-                return Json(new { data = result.Data });
+                return Json(new { data =""});
             }
         }
         private string EnsureCorrectFilename(string filename)

@@ -38,9 +38,7 @@ namespace ACM.Core.Utility
                 // JPEG_QUALITYGOOD is 75 JPEG.
                 // JPEG_BASELINE strips metadata (EXIF, etc.)
                 //resized.Save()
-                resized.Save(outpath, FREE_IMAGE_FORMAT.FIF_JPEG,
-                    FREE_IMAGE_SAVE_FLAGS.JPEG_QUALITYGOOD |
-                    FREE_IMAGE_SAVE_FLAGS.JPEG_BASELINE);
+                resized.Save(outpath);
             }
         }
     }
