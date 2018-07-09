@@ -3,6 +3,7 @@ using ACM.Core.Interfaces;
 using ACM.Core.Models;
 using ACM.Core.Models.CheckInContractViewModels;
 using ACM.Core.Models.UserViewModel;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -465,6 +466,11 @@ namespace ACM.Core.Managers
 
 
             return response;
+        }
+        public CheckInForm HistoryDetail(int Id)
+        {
+            var result = acmContext.CheckInForm.Include("ProfileInfo").Include("Gallery").Where(k => k.Id == Id).FirstOrDefault();
+            return result;
         }
     }
 }

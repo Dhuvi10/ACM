@@ -1,4 +1,5 @@
-﻿using ACM.Core.Models;
+﻿using ACM.Core.Context;
+using ACM.Core.Models;
 using ACM.Core.Models.CheckInContractViewModels;
 using ACM.Core.Models.UserViewModel;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace ACM.Core.Interfaces
         ResponseModel<ManageContractViewModel> SaveContract(ManageContractViewModel model);
         ResponseModel<ManageContractViewModel> EditContract(string id);
         ResponseModel<CheckInContractsViewModel> CheckOutForm(int contractId);
-
+        CheckInForm HistoryDetail(int Id);
 
     }
 }

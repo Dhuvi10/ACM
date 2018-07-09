@@ -118,6 +118,9 @@ footer a:hover{
     font-family: arial;
     font-size: 14px;
 }
+.margin10right {
+    margin-right: 10px;
+}
 .img-border{
     position: relative;
 }

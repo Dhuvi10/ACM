@@ -25,7 +25,7 @@ namespace ACMWeb.Controllers
         string webRootPath = "";
 
         public ManageStoreInfoController(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager, IStoreManager storeManager,
-            IHostingEnvironment hostingEnvironment,IGalleryManager galleryManager
+            IHostingEnvironment hostingEnvironment, IGalleryManager galleryManager
 )
         {
             _roleManager = roleManager;
@@ -140,8 +140,8 @@ namespace ACMWeb.Controllers
         {
             if (id.HasValue)
             {
-               var result = _storeManager.CheckInContractDetail(id.Value);
-              return View(result.Data);
+                var result = _storeManager.CheckInContractDetail(id.Value);
+                return View(result.Data);
             }
             else
             {
@@ -149,7 +149,7 @@ namespace ACMWeb.Controllers
             }
         }
         [HttpPost]
-               
+
         public IActionResult CheckInForm(CheckInContractsViewModel model)
         {
             if (ModelState.IsValid)
@@ -161,16 +161,16 @@ namespace ACMWeb.Controllers
                 profileModel.Photo = null;
                 _model.ProfileModel = profileModel;
                 model.StoreId = GetCurrentUserId().Result;
-                 var result = _storeManager.SaveCheckInForm(_model,null,null);
+                var result = _storeManager.SaveCheckInForm(_model, null, null);
                 return View(result.Data.CheckInModel);
             }
 
             else
             {
-              //  ModelState.
+                //  ModelState.
             }
             return View(model);
-            
+
         }
         public IActionResult CheckInFormList()
         {
@@ -182,8 +182,23 @@ namespace ACMWeb.Controllers
             var result = _storeManager.ContractListByStore(GetCurrentUserId().Result);
             return PartialView("_CheckIn", result.Data);
         }
-      
 
-       
+        public IActionResult History()
+        {
+            return View();
+        }
+        public IActionResult HistoryList()
+        {
+            var result = _storeManager.HistoryList(true, GetCurrentUserId().Result);
+            return PartialView("_HistoryList", result.Data);
+        }
+        public IActionResult ViewHistory(int id)
+        {
+            var result = _storeManager.HistoryDetail(id);
+            return PartialView("_HistoryDetail", result);
+           
+        }
     }
+
+
 }
