@@ -226,6 +226,20 @@ namespace ACMWeb.Controllers.API
             }
         }
         [HttpGet]
+        [Route("DeleteHistory/{historyId}")]
+        public IActionResult DeleteHistory(int historyId)
+        {
+            var result = _storeManager.DeleteHistory(historyId);
+            if (result.Status)
+            {
+                return Ok(result);
+            }
+            else
+            {
+                return StatusCode(404, result);
+            }
+        }
+        [HttpGet]
         [Route("Checkout/{checkInId}")]
         public IActionResult CheckOutForm(int checkInId)
         {

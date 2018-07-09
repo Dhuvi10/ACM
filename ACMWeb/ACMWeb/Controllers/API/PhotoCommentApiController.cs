@@ -29,7 +29,7 @@ namespace ACMWeb.Controllers.API
                 return StatusCode(404, result);
         }
         [HttpGet]
-        [Route("PhotoComment")]
+        [Route("PhotoComment/{photoId}")]
         public IActionResult CommentList(int photoId)
         {
             var result = _commentManager.PhotoComments(photoId);

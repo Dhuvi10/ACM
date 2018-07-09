@@ -19,6 +19,7 @@ namespace ACM.Core.Interfaces
         ResponseModel<ManageContractViewModel> SaveContract(ManageContractViewModel model);
         ResponseModel<ManageContractViewModel> EditContract(string id);
         ResponseModel<CheckInContractsViewModel> CheckOutForm(int contractId);
+        ResponseModel<string> DeleteHistory(int Id);
 
 
     }

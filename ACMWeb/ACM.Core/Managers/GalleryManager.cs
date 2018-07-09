@@ -63,9 +63,31 @@ namespace ACM.Core.Managers
         
         public ResponseModel<string> AddMultipleImages(List<GalleryViewModel> models, string serverPath, string thumbPath)
         {
+            
             ResponseModel<string> response = new ResponseModel<string> { Data = "" };
             try
             {
+               var id= models.Select(e => e.CheckInId).FirstOrDefault();
+
+
+                var removalList = acmContext.Gallery.Where(x => x.CheckInId == id).ToList();
+               
+                foreach (var item in removalList)
+                {
+                    var thumbnailImage = Path.Combine(thumbPath, item.ThumbnailImage.ToString());
+                    if (System.IO.File.Exists(thumbnailImage))
+                    {
+                        System.IO.File.Delete(thumbnailImage);
+                    }
+                    var galleryImage = Path.Combine(thumbPath, item.Image.ToString());
+                    if (System.IO.File.Exists(galleryImage))
+                    {
+                        System.IO.File.Delete(galleryImage);
+                    }
+                }
+                acmContext.Gallery.RemoveRange(removalList);
+                response.Message = "success";
+                response.Status = true;
                 foreach (var model in models)
                 {
                     Gallery gallery = new Gallery();

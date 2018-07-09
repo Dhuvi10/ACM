@@ -251,7 +251,7 @@ namespace ACM.Core.Managers
             ResponseModel<List<CheckInContractsViewModel>> response = new ResponseModel<List<CheckInContractsViewModel>> { Data = new List<CheckInContractsViewModel>() };
             try
             {
-                var _list = acmContext.CheckInForm.Where(x=>x.IsCheckOut== isCheckOut && x.StoreId== StoreId).Select(e => e).ToList();
+                var _list = acmContext.CheckInForm.Where(x=>x.IsCheckOut== isCheckOut && x.IsActive == true && x.StoreId== StoreId).Select(e => e).ToList();
                 foreach (var item in _list)
                 {
                     CheckInContractsViewModel model = new CheckInContractsViewModel();
@@ -281,6 +281,32 @@ namespace ACM.Core.Managers
                     response.Data.Add(model);
                 }
                 response.Status = true;
+            }
+            catch (Exception ex)
+            {
+                response.Status = false;
+                response.Message = ex.Message;
+            }
+            return response;
+        }
+        public ResponseModel<string> DeleteHistory( int Id)
+        {
+            ResponseModel<string> response = new ResponseModel<string>();
+            try
+            {
+                var _list = acmContext.CheckInForm.Where(x =>  x.Id == Id && x.IsCheckOut==true).Select(e => e).FirstOrDefault();
+                if (_list != null)
+                {
+                    _list.IsActive = false;
+                    acmContext.SaveChanges();
+                    response.Status = true;
+                    response.Message = "deleted successfully";
+                }
+                else
+                {
+                    response.Status = false;
+                    response.Message = "no record found";
+                }
             }
             catch (Exception ex)
             {
