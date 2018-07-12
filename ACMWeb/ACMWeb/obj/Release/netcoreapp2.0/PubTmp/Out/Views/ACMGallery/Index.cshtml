@@ -4,15 +4,19 @@
 }
 
 <div class="row">
-   
+    @*<a asp-controller="campaign" asp-action="create"><i class="fas fa-plus"></i> Neu Kampagne</a>*@
     <div class="col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-               
+                @*<h2>Verwalten Kampagnen</h2>*@
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                
+                <h2 style="float:right"> <a href="@Url.Action("AddGallery","ACMGallery", new { id = ViewData["id"] })">Add new Photo</a></h2>
+                @*@if (Model.Count == 0)
+                    {
+                        <h3>Keine Kampagne gefunden!</h3>
+                    }*@
                 <div id="divList">
                 </div>
 
@@ -20,16 +24,17 @@
         </div>
     </div>
 </div>
+
 @section Scripts
     {
     <script type="text/javascript">
-    $(document).ready(function () {
-        $('#tbList').dataTable({
-            "paging": false,
-            "ordering": false,
-            "info": false
-        });
-    });
+        $(document).ready(function () {
+        //    $('#tbList').dataTable({
+        //        "paging": false,
+        //        "ordering": false,
+        //        "info": false
+        //    });
+        //});
     </script>
     <script type="text/javascript">
     $(function () {
@@ -44,20 +49,19 @@
             success: function (result) {
                 debugger
                 console.log(result);
-                 if (result!=null) {
+                if (result != "") {
                      $('#divList').html(result);
                      //$('#tbList').dataTable({
                      //    "paging": false,
                      //    "ordering": false,
                      //    "info": false
-                     //});  
+                     //});
                     }
-                 if(result.data.length==0) {
-                     
+                 else {
                      window.location.href = "@Url.Action("AddGallery", "ACMGallery")" + "/" + Id+"";
 
                     }
-               
+
             },
             error: function (err) {
                 console.log(err);
@@ -81,9 +85,21 @@
     }
     function AddEditGarllery(id) {
         window.location.href = "@Url.Action("AddGallery", "ManageStoreInfo")" + "/" + id + "";
-    }
-   
+        }
+        function DisplayImageInPopup(mainImage) {
+           
+            $('.modal-body img').attr('src',"http://localhost:5200"+mainImage);
+            $('#myModal').modal('show');
+            //captionText.innerHTML = this.alt;
+        }
+        // Get the <span> element that closes the modal
 
+
+        // When the user clicks on <span> (x), close the modal
+          function cancel()
+          {
+              $('#myModal').modal('hide');
+            }
     </script>
 }
 

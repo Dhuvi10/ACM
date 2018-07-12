@@ -317,6 +317,8 @@ namespace ACM.Core.Managers
                     model.CreatedDate = item.CreatedOn.ToString();
                     model.IsActive = item.IsActive;
                     model.StoreId = item.StoreId;
+                    model.Signature = acmContext.ProfileInfo.Where(e => e.CheckInId == item.Id).FirstOrDefault()?.Signature;
+
                     response.Data.Add(model);
                 }
                 response.Status = true;

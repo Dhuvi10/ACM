@@ -1,0 +1,122 @@
+﻿@model ACM.Core.Context.CheckInForm
+@{
+    ViewData["Title"] = "CheckInForm";
+
+}
+<div class="row">
+    <div class="col-xs-12">
+
+        <div class="x_panel">
+
+            @*<div class="x_title">*@
+            <div class="signin-up-area">
+                <div class="form-cont">
+                    <div class="form">
+                        <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+                            <input asp-for="Id" type="hidden" class="form-control" />
+                            @*<div asp-validation-summary="All" class="text-danger"></div>*@
+                            <h1 class="h3 mb-5 font-weight-bold"><span> @ViewData["Title"]</span></h1>
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <label asp-for="Name"></label>
+                                    <input asp-for="Name" class="form-control" disabled />
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6">
+
+                                    <label asp-for="PhoneNumber"></label>
+                                    <input asp-for="PhoneNumber" class="form-control" disabled />
+                                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <label asp-for="EmailAddress"></label>
+                                    <input asp-for="EmailAddress" class="form-control" disabled />
+                                    <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label asp-for="Year"></label>
+                                    <input asp-for="Year" class="form-control" disabled />
+                                    <span asp-validation-for="Year" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <label asp-for="Make"></label>
+                                    <input asp-for="Make" class="form-control" disabled />
+                                    <span asp-validation-for="Make" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label asp-for="Models"></label>
+                                    <input asp-for="Models" class="form-control" disabled />
+                                    <span asp-validation-for="Models" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <label asp-for="Vin"></label>
+                                    <input asp-for="Vin" class="form-control" disabled />
+                                    <span asp-validation-for="Vin" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label asp-for="OdoMeter"></label>
+                                    <input asp-for="OdoMeter" class="form-control" disabled />
+                                    <span asp-validation-for="OdoMeter" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="SummeryOfTaskCompleted"></label>
+                                <input asp-for="SummeryOfTaskCompleted" class="form-control" disabled />
+                                <span asp-validation-for="SummeryOfTaskCompleted" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="PartsNeeded"></label>
+                                <input asp-for="PartsNeeded" class="form-control" disabled />
+                                <span asp-validation-for="PartsNeeded" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="CustomerPartSupplied"></label>
+                                <input asp-for="CustomerPartSupplied" class="form-control" disabled />
+                                <span asp-validation-for="CustomerPartSupplied" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="PersonalItemInVehicle"></label>
+                                <input asp-for="PersonalItemInVehicle" class="form-control" disabled />
+                                <span asp-validation-for="PersonalItemInVehicle" class="text-danger"></span>
+                            </div>
+                            @if (Model.Gallery.Count > 0)
+                            {
+
+                                foreach (var item in Model.Gallery)
+                                {
+                                    <div class="form-group">
+                                        <img src="~/Thumbnail/@item.ThumbnailImage" />
+                                    </div>
+                                }
+                            }
+                            @if (Model.ProfileInfo.Count > 0)
+                            { 
+                                    <div class="form-group">
+                                        <img src="~/Sign/@Model.ProfileInfo.FirstOrDefault().Signature" />
+                                    </div>
+
+                            }
+                            @if (Model.Id == 0)
+                            {
+                                <button type="submit" class="btn btn-default">Register</button>
+                            }
+                            else
+                            {
+                                <button type="submit" class="btn btn-default">Save</button>
+                                @*<button type="submit" class="btn btn-default" onclick="SavePopUp()">Save</button>*@
+                            }
+                            <a href="@Url.Action("Index","UserManagement")" class="btn btn-default">Cancel</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            @*</div>*@
+        </div>
+    </div>
+</div>

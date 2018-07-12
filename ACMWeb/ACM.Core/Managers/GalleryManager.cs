@@ -66,33 +66,44 @@ namespace ACM.Core.Managers
             ResponseModel<string> response = new ResponseModel<string> { Data = "" };
             try
             {
-                foreach (var model in models)
+                var checkinid = models.Select(e => e.CheckInId).FirstOrDefault();
+                var _deleteId = acmContext.Gallery.Where(e => e.CheckInId==checkinid).Select(e=>e.Id).ToList();
+               var result= DeleteImages(_deleteId, serverPath, thumbPath);
+                if (result.Status)
                 {
-                    Gallery gallery = new Gallery();
-                    gallery.CreatedOn = DateTime.Now;
-                    gallery.IsActive = true;
-                    gallery.IsMain = model.IsMain;
-                    gallery.StoreId = model.StoreId;
+                    foreach (var model in models)
+                    {
+                        Gallery gallery = new Gallery();
+                        gallery.CreatedOn = DateTime.Now;
+                        gallery.IsActive = true;
+                        gallery.IsMain = model.IsMain;
+                        gallery.StoreId = model.StoreId;
 
-                    string FileName = Guid.NewGuid().ToString() + "." + Convert.ToString(model.FileName.Split('.')[1]);
-                    var path = Path.Combine(serverPath, FileName.ToString());
-                    string image64Base = model.Image.Replace("\r", "").Replace("\n", "");
-                    byte[] imageBytes = Convert.FromBase64String(image64Base);
-                    File.WriteAllBytes(path, imageBytes);
+                        string FileName = Guid.NewGuid().ToString() + "." + Convert.ToString(model.FileName.Split('.')[1]);
+                        var path = Path.Combine(serverPath, FileName.ToString());
+                        string image64Base = model.Image.Replace("\r", "").Replace("\n", "");
+                        byte[] imageBytes = Convert.FromBase64String(image64Base);
+                        File.WriteAllBytes(path, imageBytes);
 
-                    gallery.Image = FileName;
-                    
-                    var outpath = Path.Combine(thumbPath, FileName.ToString());
-                    
-                    ImageUtility.Thumbnail(path, outpath);
-                    gallery.ThumbnailImage = FileName;
-                    gallery.CheckInId = model.CheckInId;
-                    acmContext.Gallery.Add(gallery);
-                    
+                        gallery.Image = FileName;
+
+                        var outpath = Path.Combine(thumbPath, FileName.ToString());
+
+                        ImageUtility.Thumbnail(path, outpath);
+                        gallery.ThumbnailImage = FileName;
+                        gallery.CheckInId = model.CheckInId;
+                        acmContext.Gallery.Add(gallery);
+
+                    }
+                    acmContext.SaveChanges();
+                    response.Status = true;
+                    response.Message = "success";
                 }
-                acmContext.SaveChanges();
-                response.Status = true;
-                response.Message = "success";
+                else
+                {
+                    response.Status = result.Status;
+                    response.Message = result.Message;
+                }
             }
             catch (Exception ex)
             {

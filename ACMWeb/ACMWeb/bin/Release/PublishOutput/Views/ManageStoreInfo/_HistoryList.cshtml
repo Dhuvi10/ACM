@@ -1,0 +1,40 @@
+﻿@model List<ACM.Core.Models.CheckInContractViewModels.CheckInContractsViewModel>
+
+<table class="table" id="tbList">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>SummeryOfTaskCompleted</th>
+            <th>CheckOut Date</th>
+            @*<th>Action</th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            var test = item.CreatedOn.HasValue ? item.CreatedOn.Value.ToString("dd-MM-yyyy") : "NoDate";
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.EmailAddress</td>
+                <td>@item.SummeryOfTaskCompleted</td>
+
+                <td>@item.DateCheckOut</td>
+                @*<td><button o style="width:100px">View</button></td>*@
+
+                <td><a style="cursor:pointer;" onclick="ViewHistory(@item.Id);">View</a></td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+<input id="userID" type="hidden" />
+<input id="status" type="hidden" />
+
+
+@*@foreach (var item in Model)
+    {
+
+    }*@
+
